@@ -1,0 +1,355 @@
+.pinned-group {
+  align-items: flex-start;
+  border-radius: 16px;
+  display: flex;
+  gap: 10px;
+  padding: 20px 25px 20px 20px;
+  position: relative;
+  width: 210px;
+}
+
+.pinned-group .main-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.pinned-group .title-2 {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 3px;
+  position: relative;
+}
+
+.pinned-group .text-wrapper-2 {
+  font-family: var(--semibold-16-font-family);
+  font-size: var(--semibold-16-font-size);
+  font-style: var(--semibold-16-font-style);
+  font-weight: var(--semibold-16-font-weight);
+  letter-spacing: var(--semibold-16-letter-spacing);
+  line-height: var(--semibold-16-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .vector {
+  height: 20px !important;
+  position: relative !important;
+  width: 20px !important;
+}
+
+.pinned-group .tags-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.pinned-group .tag-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.pinned-group .icon-2 {
+  background-image: url(../../../public/imgHome/icon-9.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: #ffab611a;
+  border-radius: 4px;
+  box-shadow: 0px 3px 3px #ffab610f;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.pinned-group .name-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.pinned-group .javascript-2 {
+  font-family: var(--semibold-12-font-family);
+  font-size: var(--semibold-12-font-size);
+  font-style: var(--semibold-12-font-style);
+  font-weight: var(--semibold-12-font-weight);
+  letter-spacing: var(--semibold-12-letter-spacing);
+  line-height: var(--semibold-12-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .element-posted-by-3 {
+  font-family: var(--regular-9-font-family);
+  font-size: var(--regular-9-font-size);
+  font-style: var(--regular-9-font-style);
+  font-weight: var(--regular-9-font-weight);
+  letter-spacing: var(--regular-9-letter-spacing);
+  line-height: var(--regular-9-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .icon-3 {
+  background-image: url(../../../public/imgHome/icon-8.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: #ef63561a;
+  border-radius: 4px;
+  box-shadow: 0px 3px 3px #ef63560f;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.pinned-group .bitcoin-2 {
+  font-family: var(--semibold-12-font-family);
+  font-size: var(--semibold-12-font-size);
+  font-style: var(--semibold-12-font-style);
+  font-weight: var(--semibold-12-font-weight);
+  letter-spacing: var(--semibold-12-letter-spacing);
+  line-height: var(--semibold-12-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .element-posted-2 {
+  font-family: var(--regular-9-font-family);
+  font-size: var(--regular-9-font-size);
+  font-style: var(--regular-9-font-style);
+  font-weight: var(--regular-9-font-weight);
+  letter-spacing: var(--regular-9-letter-spacing);
+  line-height: var(--regular-9-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .icon-4 {
+  align-items: flex-start;
+  background-image: url(../../../public/imgHome/icon-7.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: #55a1ff1a;
+  border-radius: 4px;
+  box-shadow: 0px 3px 3px #55a1ff0f;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 6px;
+  position: relative;
+}
+
+.pinned-group .design-3 {
+  font-family: var(--semibold-12-font-family);
+  font-size: var(--semibold-12-font-size);
+  font-style: var(--semibold-12-font-style);
+  font-weight: var(--semibold-12-font-weight);
+  letter-spacing: var(--semibold-12-letter-spacing);
+  line-height: var(--semibold-12-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .element-trending-in-3 {
+  font-family: var(--regular-9-font-family);
+  font-size: var(--regular-9-font-size);
+  font-style: var(--regular-9-font-style);
+  font-weight: var(--regular-9-font-weight);
+  letter-spacing: var(--regular-9-letter-spacing);
+  line-height: var(--regular-9-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .icon-5 {
+  background-image: url(../../../public/imgHome/icon-6.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: #ffc9631a;
+  border-radius: 4px;
+  box-shadow: 0px 3px 3px #ffc9630f;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.pinned-group .blogging-2 {
+  font-family: var(--semibold-12-font-family);
+  font-size: var(--semibold-12-font-size);
+  font-style: var(--semibold-12-font-style);
+  font-weight: var(--semibold-12-font-weight);
+  letter-spacing: var(--semibold-12-letter-spacing);
+  line-height: var(--semibold-12-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .element-posted-by-4 {
+  font-family: var(--regular-9-font-family);
+  font-size: var(--regular-9-font-size);
+  font-style: var(--regular-9-font-style);
+  font-weight: var(--regular-9-font-weight);
+  letter-spacing: var(--regular-9-letter-spacing);
+  line-height: var(--regular-9-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .icon-6 {
+  background-image: url(../../../public/imgHome/icon-5.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: #6666661a;
+  border-radius: 4px;
+  box-shadow: 0px 3px 3px #6666660f;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.pinned-group .tutorial-2 {
+  font-family: var(--semibold-12-font-family);
+  font-size: var(--semibold-12-font-size);
+  font-style: var(--semibold-12-font-style);
+  font-weight: var(--semibold-12-font-weight);
+  letter-spacing: var(--semibold-12-letter-spacing);
+  line-height: var(--semibold-12-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group .element-trending-in-4 {
+  font-family: var(--regular-9-font-family);
+  font-size: var(--regular-9-font-size);
+  font-style: var(--regular-9-font-style);
+  font-weight: var(--regular-9-font-weight);
+  letter-spacing: var(--regular-9-letter-spacing);
+  line-height: var(--regular-9-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.pinned-group.dark-18-off {
+  background-color: #FFFFFF;
+}
+
+.pinned-group.dark-18-on {
+  background-color: #262D34;
+}
+
+.pinned-group.dark-18-off .text-wrapper-2 {
+  color: var(--secondary-colorsecondary-2);
+}
+
+.pinned-group.dark-18-on .text-wrapper-2 {
+  color: #F7F7F7;
+}
+
+.pinned-group.dark-18-off .javascript-2 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .javascript-2 {
+  color: #F7F7F7;
+}
+
+.pinned-group.dark-18-off .element-posted-by-3 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .element-posted-by-3 {
+  color: #97989D;
+}
+
+.pinned-group.dark-18-off .bitcoin-2 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .bitcoin-2 {
+  color: #F7F7F7;
+}
+
+.pinned-group.dark-18-off .element-posted-2 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .element-posted-2 {
+  color: #97989D;
+}
+
+.pinned-group.dark-18-off .design-3 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .design-3 {
+  color: #F7F7F7;
+}
+
+.pinned-group.dark-18-off .element-trending-in-3 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .element-trending-in-3 {
+  color: #97989D;
+}
+
+.pinned-group.dark-18-off .blogging-2 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .blogging-2 {
+  color: #F7F7F7;
+}
+
+.pinned-group.dark-18-off .element-posted-by-4 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .element-posted-by-4 {
+  color: #97989D;
+}
+
+.pinned-group.dark-18-off .tutorial-2 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .tutorial-2 {
+  color: #F7F7F7;
+}
+
+.pinned-group.dark-18-off .element-trending-in-4 {
+  color: #858EAD;
+}
+
+.pinned-group.dark-18-on .element-trending-in-4 {
+  color: #97989D;
+}

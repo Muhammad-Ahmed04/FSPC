@@ -1,0 +1,250 @@
+.main {
+  /* align-items: flex-start; */
+  /* display: inline-flex; */
+  gap: 80px;
+  position: relative;
+  background-color: #1E252B;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main .div-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.main .design-component-instance-node {
+  flex: 0 0 auto !important;
+  width: 100%;
+}
+
+.main .popular-tags-instance {
+  margin-right: -2px !important;
+}
+
+.main .main-wrapper {
+  align-items: flex-start;
+  background-color: #262D34;
+  border-radius: 16px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+  width: 785px;
+}
+
+.main .div-4 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 20px;
+  position: relative;
+}
+
+.main .rectangle-2 {
+  height: 168px;
+  margin-bottom: -8px;
+  margin-left: -6px;
+  margin-top: -4px;
+  object-fit: cover;
+  position: relative;
+  width: 168px;
+}
+
+.main .data-4 {
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  position: relative;
+  width: 569px;
+}
+
+.main .data-5 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  width: 519px;
+}
+
+.main .title-6 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: -2px;
+  position: relative;
+  width: 521px;
+}
+
+.main .bitcoin-has-tumbled-2 {
+  flex: 0 0 auto;
+  position: relative;
+  width: 346.81px;
+}
+
+.main .user-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -52px;
+  position: relative;
+}
+
+.main .memoji-boys-wrapper {
+  background-color: #f0f1fe;
+  border-radius: 20px;
+  height: 40px;
+  position: relative;
+  width: 40px;
+}
+
+.main .memoji-boys-2 {
+  height: 34px;
+  left: 6px;
+  position: absolute;
+  top: 3px;
+  width: 28px;
+}
+
+.main .name-6 {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 521px;
+}
+
+.main .name-7 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.main .name-8 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.main .pavel-gvay-2 {
+  color: #F4F6F8;
+  font-family: var(--semibold-14-font-family);
+  font-size: var(--semibold-14-font-size);
+  font-style: var(--semibold-14-font-style);
+  font-weight: var(--semibold-14-font-weight);
+  letter-spacing: var(--semibold-14-letter-spacing);
+  line-height: var(--semibold-14-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.main .ellipse-2 {
+  background-color: #F4F6F8;
+  border-radius: 2.5px;
+  height: 5px;
+  position: relative;
+  width: 5px;
+}
+
+.main .element-weeks-ago-2 {
+  color: #F4F6F8;
+  font-family: var(--regular-10-font-family);
+  font-size: var(--regular-10-font-size);
+  font-style: var(--regular-10-font-style);
+  font-weight: var(--regular-10-font-weight);
+  letter-spacing: var(--regular-10-letter-spacing);
+  line-height: var(--regular-10-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.main .action-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 40px;
+  position: relative;
+}
+
+.main .text-wrapper-17 {
+  color: #F4F6F8;
+  font-family: var(--regular-14-font-family);
+  font-size: var(--regular-14-font-size);
+  font-style: var(--regular-14-font-style);
+  font-weight: var(--regular-14-font-weight);
+  letter-spacing: var(--regular-14-letter-spacing);
+  line-height: var(--regular-14-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.main .icon-like-wrapper {
+  align-items: center;
+  background-color: #2C353D;
+  border-radius: 15px;
+  display: flex;
+  gap: 10px;
+  height: 30px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  width: 30px;
+}
+
+.main .design-component-instance-node-2 {
+  margin-bottom: -5px !important;
+  margin-left: -5px !important;
+  margin-right: -5px !important;
+  margin-top: -5px !important;
+  position: relative !important;
+}
+
+.main .icon-like-instance {
+  background-image: url(../../../../public/imgHome/subtract-5.svg) !important;
+}
+
+.main .post-instance {
+  box-shadow: 0px 4px 4px #ff693440 !important;
+  margin-bottom: -5px !important;
+  margin-left: -5px !important;
+  margin-right: -5px !important;
+  margin-top: -5px !important;
+  position: relative !important;
+}
+
+.main .post-2 {
+  background-image: url(../../../../public/imgHome/subtract-2.svg) !important;
+}
+
+.main .post-3 {
+  background-color: #e0e2fd !important;
+}
+
+.main .post-4 {
+  background-image: url(../../../../public/imgHome/subtract-1.svg) !important;
+}
+
+.main .post-5 {
+  background-image: url(../../../../public/imgHome/subtract.svg) !important;
+}

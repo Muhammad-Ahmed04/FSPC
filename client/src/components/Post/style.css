@@ -1,0 +1,400 @@
+.post {
+  align-items: flex-start;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+  width: 785px;
+}
+
+.post .main-4 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 20px;
+  position: relative;
+}
+
+.post .rectangle {
+  height: 168px;
+  margin-bottom: -8px;
+  margin-left: -6px;
+  margin-top: -4px;
+  position: relative;
+  width: 168px;
+}
+
+.post .data {
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  position: relative;
+  width: 569px;
+}
+
+.post .data-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  width: 519px;
+}
+
+.post .title-3 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: -2px;
+  position: relative;
+  width: 521px;
+}
+
+.post .bitcoin-has-tumbled {
+  font-family: var(--semibold-18-font-family);
+  font-size: var(--semibold-18-font-size);
+  font-style: var(--semibold-18-font-style);
+  font-weight: var(--semibold-18-font-weight);
+  letter-spacing: var(--semibold-18-letter-spacing);
+  line-height: var(--semibold-18-line-height);
+  margin-top: -1px;
+  position: relative;
+  width: 521px;
+}
+
+.post .tags-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.post .div-wrapper {
+  align-items: center;
+  border-radius: 20px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 10px;
+  position: relative;
+}
+
+.post .text-wrapper-5 {
+  font-family: var(--semibold-10-font-family);
+  font-size: var(--semibold-10-font-size);
+  font-style: var(--semibold-10-font-style);
+  font-weight: var(--semibold-10-font-weight);
+  letter-spacing: var(--semibold-10-letter-spacing);
+  line-height: var(--semibold-10-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .tag-3 {
+  align-items: center;
+  border-radius: 20px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 10px;
+  position: relative;
+}
+
+.post .text-wrapper-6 {
+  font-family: var(--semibold-10-font-family);
+  font-size: var(--semibold-10-font-size);
+  font-style: var(--semibold-10-font-style);
+  font-weight: var(--semibold-10-font-weight);
+  letter-spacing: var(--semibold-10-letter-spacing);
+  line-height: var(--semibold-10-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .tag-4 {
+  align-items: center;
+  border-radius: 20px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 10px;
+  position: relative;
+}
+
+.post .text-wrapper-7 {
+  font-family: var(--semibold-10-font-family);
+  font-size: var(--semibold-10-font-size);
+  font-style: var(--semibold-10-font-style);
+  font-weight: var(--semibold-10-font-weight);
+  letter-spacing: var(--semibold-10-letter-spacing);
+  line-height: var(--semibold-10-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .user {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -52px;
+  position: relative;
+}
+
+.post .avatars {
+  background-color: #f0f1fe;
+  border-radius: 20px;
+  height: 40px;
+  position: relative;
+  width: 40px;
+}
+
+.post .memoji-boys {
+  height: 34px;
+  left: 6px;
+  position: absolute;
+  top: 3px;
+  width: 28px;
+}
+
+.post .name-3 {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 521px;
+}
+
+.post .name-4 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.post .name-5 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.post .pavel-gvay {
+  font-family: var(--semibold-14-font-family);
+  font-size: var(--semibold-14-font-size);
+  font-style: var(--semibold-14-font-style);
+  font-weight: var(--semibold-14-font-weight);
+  letter-spacing: var(--semibold-14-letter-spacing);
+  line-height: var(--semibold-14-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .ellipse {
+  background-color: #F4F6F8;
+  border-radius: 2.5px;
+  height: 5px;
+  position: relative;
+  width: 5px;
+}
+
+.post .element-weeks-ago {
+  font-family: var(--regular-10-font-family);
+  font-size: var(--regular-10-font-size);
+  font-style: var(--regular-10-font-style);
+  font-weight: var(--regular-10-font-weight);
+  letter-spacing: var(--regular-10-letter-spacing);
+  line-height: var(--regular-10-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .action {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 40px;
+  position: relative;
+}
+
+.post .text-wrapper-8 {
+  font-family: var(--regular-14-font-family);
+  font-size: var(--regular-14-font-size);
+  font-style: var(--regular-14-font-style);
+  font-weight: var(--regular-14-font-weight);
+  letter-spacing: var(--regular-14-letter-spacing);
+  line-height: var(--regular-14-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .element-likes {
+  font-family: var(--regular-14-font-family);
+  font-size: var(--regular-14-font-size);
+  font-style: var(--regular-14-font-style);
+  font-weight: var(--regular-14-font-weight);
+  letter-spacing: var(--regular-14-letter-spacing);
+  line-height: var(--regular-14-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .element-comments {
+  font-family: var(--regular-14-font-family);
+  font-size: var(--regular-14-font-size);
+  font-style: var(--regular-14-font-style);
+  font-weight: var(--regular-14-font-weight);
+  letter-spacing: var(--regular-14-letter-spacing);
+  line-height: var(--regular-14-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.post .love {
+  align-items: center;
+  border-radius: 15px;
+  display: flex;
+  gap: 10px;
+  height: 30px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  width: 30px;
+}
+
+.post.dark-32-off {
+  background-color: #FFFFFF
+}
+
+.post.dark-32-on {
+  background-color: #262D34;
+}
+
+.post.dark-32-off .bitcoin-has-tumbled {
+  color: var(--secondary-colorsecondary-2);
+}
+
+.post.dark-32-on .bitcoin-has-tumbled {
+  color: #F7F7F7;
+}
+
+.post.dark-32-off .div-wrapper {
+  background-color: #F4F6F8;
+}
+
+.post.dark-32-on .div-wrapper {
+  background-color:#2C353D;
+}
+
+.post.dark-32-off .text-wrapper-5 {
+  color: #858EAD;
+}
+
+.post.dark-32-on .text-wrapper-5 {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .tag-3 {
+  background-color: #F4F6F8;
+}
+
+.post.dark-32-on .tag-3 {
+  background-color: #2C353D;
+}
+
+.post.dark-32-off .text-wrapper-6 {
+  color: #858EAD;
+}
+
+.post.dark-32-on .text-wrapper-6 {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .tag-4 {
+  background-color: #F4F6F8;
+}
+
+.post.dark-32-on .tag-4 {
+  background-color: #2C353D;
+}
+
+.post.dark-32-off .text-wrapper-7 {
+  color: #858EAD;
+}
+
+.post.dark-32-on .text-wrapper-7 {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .pavel-gvay {
+  color: var(--secondary-colorsecondary-2);
+}
+
+.post.dark-32-on .pavel-gvay {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .element-weeks-ago {
+  color: #F4F6F8;
+}
+
+.post.dark-32-on .element-weeks-ago {
+  color:#F4F6F8;
+}
+
+.post.dark-32-off .text-wrapper-8 {
+  color: #F4F6F8;
+}
+
+.post.dark-32-on .text-wrapper-8 {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .element-likes {
+  color: var(--secondary-colorsecondary-3);
+}
+
+.post.dark-32-on .element-likes {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .element-comments {
+  color: var(--secondary-colorsecondary-3);
+}
+
+.post.dark-32-on .element-comments {
+  color: #F4F6F8;
+}
+
+.post.dark-32-off .love {
+  background-color: #F4F6F8;
+}
+
+.post.dark-32-on .love {
+  background-color: #2C353D;
+}
