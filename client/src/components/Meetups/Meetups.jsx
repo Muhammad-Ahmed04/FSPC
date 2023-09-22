@@ -5,28 +5,12 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 
 import PropTypes from "prop-types";
 import React from "react";
-import { Vector173 } from "../../icons/Vector173";
 import "./style.css";
 
-export const Meetups = ({
-  dark,
-  className,
-  text = "Meetups",
-  text1 = "UIHUT - Crunchbase Company Profile...",
-  text2 = "UIHUT&nbsp;&nbsp;•&nbsp;&nbsp;Sylhet, Bangladesh",
-  // text3 = "Design Meetups USA | Dribbble",
-  // text4 = "Dribbble&nbsp;&nbsp;•&nbsp;&nbsp;Austin, Texas, USA",
-  // text5 = "Meetup Brand Identity Design - Beha...",
-  // rectangle = "/imgHome/rectangle-32-3.svg",
-  // text6 = "Behance&nbsp;&nbsp;•&nbsp;&nbsp;Sab jose, Califonia, USA",
-}) => {
+export const Meetups = ({text1, text2}) => {
   return (
-    <div className={`meetups dark-46-${dark} ${className}`}>
+    <div className="meetups dark-46-on design-component-instance-node">
       <div className="main-5">
-        <div className="title-4">
-          <div className="text-wrapper-9">{text}</div>
-          <Vector173 className="vector-17-3" color={dark === "on" ? "#F7F7F7" : "#3F4354"} />
-        </div>
         <div className="div-2">
           <div className="date">
             <div className="text-wrapper-10">FEB</div>

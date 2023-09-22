@@ -47,6 +47,7 @@
 
 .main .design-component-instance-node {
   flex: 0 0 auto !important;
+  width: 130% !important;
 }
 
 .main .popular-tags-instance {
@@ -71,4 +72,55 @@
   height: 328px;
   position: relative;
   width: 338px;
+}
+
+.meetups {
+  align-items: flex-start;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  position: relative;
+  width: 135% !important;
+  
+}
+
+.meetups .main-5 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  margin-right: -10px;
+  position: relative;
+  width: 295px;
+}
+
+.meetups .text-wrapper-9 {
+  font-family: var(--semibold-16-font-family);
+  font-size: var(--semibold-16-font-size);
+  font-style: var(--semibold-16-font-style);
+  font-weight: var(--semibold-16-font-weight);
+  letter-spacing: var(--semibold-16-letter-spacing);
+  line-height: var(--semibold-16-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.meetups .title-4 {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 3px;
+  position: relative;
+}
+.meetups.dark-46-off {
+  background-color: #FFFFFF;
+}
+
+.meetups.dark-46-on {
+  background-color: #262D34;
 }
