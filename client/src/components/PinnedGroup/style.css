@@ -52,13 +52,17 @@
   gap: 10px;
   position: relative;
 }
+.pinned-group #userIcon{
+  max-width: 13%;
+}
 
-.pinned-group .tag-2 {
+.pinned-group #user.tag-2 {
+  display: flex;
   align-items: flex-start;
-  display: inline-flex;
   flex: 0 0 auto;
   gap: 10px;
   position: relative;
+  width: 260px;
 }
 
 .pinned-group .icon-2 {
