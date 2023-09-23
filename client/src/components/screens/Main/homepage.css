@@ -1,12 +1,13 @@
-.main {
+#Home.main{
   /* align-items: flex-start; */
   /* display: inline-flex; */
-  gap: 80px;
+  gap: 100px !important;
   position: relative;
   background-color: #1E252B;
   width: 100%;
   display: flex;
   flex-direction: row;
+  padding-top: 15px;
   justify-content: center;
 }
 
@@ -17,6 +18,7 @@
   flex-direction: column;
   gap: 20px;
   position: relative;
+  right: 75px;
 }
 
 .main .design-component-instance-node {
@@ -28,7 +30,7 @@
   margin-right: -2px !important;
 }
 
-.main .main-wrapper {
+.main #post.main-wrapper {
   align-items: flex-start;
   background-color: #262D34;
   border-radius: 16px;
@@ -38,7 +40,7 @@
   gap: 30px;
   padding: 20px;
   position: relative;
-  width: 785px;
+  width: 829px;
 }
 
 .main .div-4 {

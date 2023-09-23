@@ -7,11 +7,11 @@ import { Home28 } from "../../icons/Home28";
 import { Notification3 } from "../../icons/Notification3";
 import { SearchIcon2 } from "../../icons/SearchIcon2";
 import { Vector82 } from "../../icons/Vector82";
-import "./style.css";
+import "./header.css";
 
 export const Header = () => {
   return (
-    <div className="header">
+    <div id="navbar" className="header">
       <div className="main">
         <div className="div-2">
           <img className="logo" alt="Logo" src="/imgHome/logo-1.png" />

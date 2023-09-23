@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Meetups } from "../../Meetups";
 import { PopularTags } from "../../PopularTags";
 import { Bitcoin3 } from "../../../icons/Bitcoin3";
-import "./style.css";
+import "./admin.css";
 import MyModal from "../../Modal/modal";
 import { Vector173 } from "../../../icons/Vector173";
 
@@ -79,7 +79,7 @@ export default function Admin() {
         onClose={closeModal}
         onSubmit={handleModalSubmit}
       />
-      <div className="main">
+      <div id="admin" className="main">
         <div className="div-3">
           <PopularTags
             className="design-component-instance-node"
@@ -103,7 +103,7 @@ export default function Admin() {
           <button type="button" className="button text-wrapper-3" onClick={openModal}> Upload Competition</button>
         </div>
         <div className="right-bar">
-          <div className="meetups dark-46-on design-component-instance-node">
+          <div id="comp" className="meetups dark-46-on design-component-instance-node">
             <div className="main-5">
               <div className="title-4">
                 <div className="text-wrapper-9">Upcoming Competitions</div>
@@ -117,18 +117,6 @@ export default function Admin() {
             </div>
           </div>
           
-          {/* <Meetups
-          className="design-component-instance-node"
-          dark="on"
-          rectangle="/imgHome/rectangle-32-6.svg"
-          text="Upcoming Competitions"
-          text1="SOFTEC"
-          text2="FAST&nbsp;&nbsp;•&nbsp;&nbsp;Lahore, Pakistan"
-          // text3="Procom’24"
-          // text4="FAST&nbsp;&nbsp;•&nbsp;&nbsp;Karachi, Pakistan"
-          // text5="Asia West"
-          // text6="GIKI&nbsp;&nbsp;•&nbsp;&nbsp;Islamabad, Pakistan"
-        /> */}
         </div>
       </div>
     </>

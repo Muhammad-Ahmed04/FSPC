@@ -1,8 +1,8 @@
-.header {
+#navbar.header{
   align-items: center;
-  background-color: #1E252B;
   display: flex;
   flex-direction: column;
+  background-color: #1E252B;
   /* gap: 10px; */
   height: 83px;
   /* padding: 20px 22px; */
@@ -10,14 +10,16 @@
   width: 100%;
 }
 
-.header .main {
+#navbar .main{
   align-items: center;
   display: flex;
   flex: 0 0 auto;
-  gap: 130px;
+  gap: 130px !important;
+  height: 63px !important;
   position: relative;
-  width: 1360px;
-  top: 20px;
+  width: 1520px;
+  top: 10px;
+  padding: 0 !important;
 }
 
 .header .div-2 {
