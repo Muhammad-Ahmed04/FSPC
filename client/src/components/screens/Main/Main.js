@@ -45,7 +45,7 @@ export default function Main() {
 
   return (
     <>
-      <Header></Header>
+      <Header page="home"></Header>
       <div id="Home" className="main">
         <div className="div-3">
           <PopularTags
@@ -69,15 +69,6 @@ export default function Main() {
             dark="on"
             icon={<Design />}
             text="Rankings"
-            text1="Cypher"
-            text2="82,645 Points"
-            text3="DECS"
-            text4="65,523 Points"
-            text5="CodeRunners"
-            text6="51,354 Points"
-            text7="Trojans"
-            text8="48,029 Points"
-            text9="CodeInc."
           />
         </div>
         <div className="div-3">

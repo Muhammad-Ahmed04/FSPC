@@ -8,8 +8,13 @@ import { Notification3 } from "../../icons/Notification3";
 import { SearchIcon2 } from "../../icons/SearchIcon2";
 import { Vector82 } from "../../icons/Vector82";
 import "./header.css";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const Header = () => {
+
+export const Header = (
+  {page}
+) => {
   return (
     <div id="navbar" className="header">
       <div className="main">
@@ -19,11 +24,15 @@ export const Header = () => {
         </div>
         <div className="main-2">
           <div className="icons">
-            <div className="home-wrapper">
+            <div className={page==="home"? "home-wrapper": "home-wrapper-2"}>
+              <Link to="/home">
               <Home className="icon-instance-node" color="white" />
+              </Link>
             </div>
-            <div className="home-wrapper-2">
-              <Calendar className="icon-instance-node" color="#F4F6F8" />
+            <div className={page==="pp"? "home-wrapper": "home-wrapper-2"}>
+             <Link to="/pastpaper">
+             <Calendar className="icon-instance-node" color="#F4F6F8" />
+             </Link>
             </div>
             <div className="home-wrapper-2">
               <Group
@@ -71,4 +80,7 @@ export const Header = () => {
       </div>
     </div>
   );
+};
+Header.propTypes = {
+  page: PropTypes.string
 };

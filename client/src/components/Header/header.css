@@ -217,3 +217,7 @@
   position: relative;
   width: 71px;
 }
+
+a{
+  cursor: pointer;
+}

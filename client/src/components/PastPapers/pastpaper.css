@@ -1,0 +1,19 @@
+#back {
+    background-color: #FF6934;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+thead{
+    text-align:justify
+}
+
+th{
+ border: none;   
+}
+
+td {
+    border-bottom: 1px solid white;
+}

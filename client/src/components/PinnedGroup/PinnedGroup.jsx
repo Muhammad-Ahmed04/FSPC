@@ -5,7 +5,6 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { Design2 } from "../../icons/Design2";
 import { Vector173 } from "../../icons/Vector173";
 import "./style.css";
 
@@ -15,16 +14,7 @@ export const PinnedGroup = ({
   dark,
   className,
   text = "Pinned Group",
-  text1 = "#javascript",
-  text2 = "82,645 Posted by this tag",
-  text3 = "#bitcoin",
-  text4 = "65,523 Posted • Trending",
-  icon = <Design2 className="vector" color="#5D95E8" />,
-  text5 = "#design",
-  text6 = "51,354 • Trending in Bangladesh",
-  text7 = "#blogging",
-  text8 = "48,029 Posted by this tag",
-  text9 = "#tutorial",
+ 
 }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

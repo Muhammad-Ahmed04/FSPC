@@ -17,6 +17,7 @@ import FspcLogin from './components/screens/FspcLogin/FspcLogin';
 
 /** auth middleware */
 import { AuthorizeUser, ProtectRoute } from './middleware/auth'
+import PastPapers from './components/PastPapers/pastpaper';
 
 /** root routes */
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
     {
         path : '/reset',
         element : <Reset></Reset>
+    },
+    {
+        path : '/pastpaper',
+        element : <PastPapers></PastPapers>
     },
     {
         path : '*',

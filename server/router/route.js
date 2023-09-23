@@ -17,6 +17,7 @@ router.route('/generateOTP').get(controller.generateOTP) // generate random OTP
 router.route('/verifyOTP').get(controller.verifyOTP) // verify generated OTP
 router.route('/createResetSession').get(controller.createResetSession) // reset all the variables
 router.route('/competitions').get(controller.getComp) // reset all the variables
+router.route('/pastpapers').get(controller.getPastPapers) // reset all the variables
 
 /** PUT Methods */
 router.route('/updateuser').put(controller.updateUser); // used to update user profile
