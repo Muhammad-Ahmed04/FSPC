@@ -286,3 +286,29 @@ export async function getPastPapers(req, res) {
       res.status(500).send({ error: "Unable to Find Competition" });
     }
 }
+
+/** POST: http://localhost:8080/api/pastpapers */
+export async function postPastPapers(req, res) {
+
+  try {
+    const { name, link, type, date } = req.body;
+
+    //Check whether the user exists or not
+   
+    const paper = new pastpaperModel({
+      name,
+      link,
+      type,
+      date
+    });
+
+    // Save user to the database
+    await paper.save();
+
+    res.status(201).send({ msg: "Past Paper Uploaded Successfully" });
+  } catch (error) {
+    // Handle the error 
+    console.error(error);
+    res.status(500).send({ error: "Unable to upload Past Paper" });
+  }
+}

@@ -45,7 +45,7 @@ export default function FspcLogin() {
       if (response.ok) {
         // Data sent successfully
         console.log('Login Successful');
-        navigate('/')
+        navigate('/home')
       } else {
         // Handle errors
         console.error('Invalid Credentials');

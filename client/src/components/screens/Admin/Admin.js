@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import { CreatPost } from "../../CreatPost";
 import { Meetups } from "../../Meetups";
 import { PopularTags } from "../../PopularTags";
 import { Bitcoin3 } from "../../../icons/Bitcoin3";
 import "./admin.css";
 import MyModal from "../../Modal/modal";
 import { Vector173 } from "../../../icons/Vector173";
-
 
 const fetchData = async () => {
   try {
@@ -18,12 +16,11 @@ const fetchData = async () => {
   }
 };
 
-
 export default function Admin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const [fetchDataFlag, setFetchDataFlag] = useState(true); // State to trigger data fetching
-
+  const [modalMode, setModalMode] = useState(""); // State to store the modal mode
 
   // Call the fetchData function when the component is loaded
   useEffect(() => {
@@ -38,39 +35,42 @@ export default function Admin() {
     fetchDataAndSetData();
   }, [fetchDataFlag]);
 
-
-  const openModal = () => {
+  const openModal = (mode) => {
+    setModalMode(mode); // Set the modal mode based on the button clicked
     setIsModalOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
-  }
+  };
 
   const handleModalSubmit = async (competitionData) => {
     // Perform actions with the competitionData (e.g., send it to your API)
     console.log("Competition Data:", competitionData);
+    let url = modalMode === "competition"? "admin-uc": "pastpapers";
     try {
-      const response = await fetch('http://localhost:8080/api/admin-uc', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8080/api/" + url, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(competitionData),
       });
 
       if (response.ok) {
         // Data sent successfully
-        console.log('Competition Upload Successful');
+        console.log("Competition Upload Successful");
         setFetchDataFlag(true);
       } else {
         // Handle errors
-        console.error('Competition Upload Failed');
+        console.error("Competition Upload Failed");
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
+  
+ 
 
   return (
     <>
@@ -78,6 +78,8 @@ export default function Admin() {
         isOpen={isModalOpen}
         onClose={closeModal}
         onSubmit={handleModalSubmit}
+        mode={modalMode} // Pass the modal mode as a prop
+        // clearInputFields={clearInputFields}
       />
       <div id="admin" className="main">
         <div className="div-3">
@@ -100,25 +102,38 @@ export default function Admin() {
           />
         </div>
         <div className="div-3">
-          <button type="button" className="button text-wrapper-3" onClick={openModal}> Upload Competition</button>
+          <button
+            type="button"
+            className="button text-wrapper-3"
+            onClick={() => openModal("competition")} // Specify the mode when clicking "Upload Competition"
+          >
+            Upload Competition
+          </button>
+          <button
+            type="button"
+            className="button text-wrapper-3"
+            onClick={() => openModal("pastpaper")} // Specify the mode when clicking "Add Pastpaper"
+          >
+            Add Pastpaper
+          </button>
         </div>
+
         <div className="right-bar">
           <div id="comp" className="meetups dark-46-on design-component-instance-node">
             <div className="main-5">
               <div className="title-4">
                 <div className="text-wrapper-9">Upcoming Competitions</div>
-                <Vector173 className="vector-17-3" color="#F7F7F7"/>
+                <Vector173 className="vector-17-3" color="#F7F7F7" />
               </div>
               <ul>
-            {data.map((item) => (
-              <Meetups text1={item.title} text2={item.location}></Meetups>
-            ))}
-          </ul>
+                {data.map((item) => (
+                  <Meetups text1={item.title} text2={item.location} key={item.id}></Meetups>
+                ))}
+              </ul>
             </div>
           </div>
-          
         </div>
       </div>
     </>
   );
-};
+}
