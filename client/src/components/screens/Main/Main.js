@@ -174,7 +174,7 @@ export default function Main() {
                 <div>
                   {/* Display your fetched data here */}
                   {data.map((item) => (
-                    <Meetups text1={item.title} text2={item.location}></Meetups>
+                  <Meetups date={item.date} text1={item.title} text2={item.location} key={item.id}></Meetups>
                   ))}
                 </div>
               )}

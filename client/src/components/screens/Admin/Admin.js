@@ -127,7 +127,7 @@ export default function Admin() {
               </div>
               <ul>
                 {data.map((item) => (
-                  <Meetups text1={item.title} text2={item.location} key={item.id}></Meetups>
+                  <Meetups date={item.date} text1={item.title} text2={item.location} key={item.id}></Meetups>
                 ))}
               </ul>
             </div>

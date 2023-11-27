@@ -21,12 +21,23 @@ export const UserSchema = new mongoose.Schema({
         required: [true, "Please provide role"],
         unique: false,  
     },
+    picturePath: {
+        type: String,
+        default: "",  
+    },
+    friends: {
+        type: Array,
+        default: [],  
+    },
     firstName: { type:String},
     lastName: { type:String},
     mobile: { type:Number},
     address: { type:String},
-    profile: { type:String},
+    location: String,
+    viewedProfile: Number,
+    impressions: Number,
 
-});
+},{timestamps: true}
+);
 
 export default mongoose.model.Users || mongoose.model('User', UserSchema);

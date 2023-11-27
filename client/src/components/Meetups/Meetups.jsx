@@ -7,14 +7,17 @@ import PropTypes from "prop-types";
 import React from "react";
 import "./meetups.css";
 
-export const Meetups = ({text1, text2}) => {
+export const Meetups = ({text1, text2, date}) => {
+  const dateObject = new Date(date);
+  const month = dateObject.toLocaleString('default', {month:'short'});
+  const day = dateObject.getDate();
   return (
     <div className="meetups dark-46-on design-component-instance-node">
       <div className="main-5">
         <div className="div-2">
           <div className="date">
-            <div className="text-wrapper-10">FEB</div>
-            <div className="text-wrapper-11">7</div>
+            <div className="text-wrapper-10">{month.toUpperCase()}</div>
+            <div className="text-wrapper-11">{day}</div>
           </div>
           <div className="data-3">
             <div className="title-5">
@@ -26,10 +29,10 @@ export const Meetups = ({text1, text2}) => {
             </div>
             <div className="tags-4">
               <div className="tag-5">
-                <div className="text-wrapper-13">Remote</div>
+                <div className="text-wrapper-13">Local</div>
               </div>
               <div className="tag-6">
-                <div className="text-wrapper-13">Part-time</div>
+                <div className="text-wrapper-13">Regional</div>
               </div>
               <div className="tag-7">
                 <div className="text-wrapper-13">Worldwide</div>

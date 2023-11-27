@@ -59,7 +59,7 @@ export default function FspcSignup() {
 
   //login button routes to login
   const redirectToLogin = () => {
-    navigate('/login');
+    navigate('/');
   };
 
 

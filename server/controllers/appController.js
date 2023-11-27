@@ -1,6 +1,7 @@
 import UserModel from '../model/User.model.js';
 import UpCompModel from '../model/UpComp.model.js';
 import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
 import pastpaperModel from '../model/Pastpaper.model.js';
 let existUsername;
 
@@ -19,7 +20,7 @@ let existUsername;
  */
 export async function register(req, res) {
   try {
-    const { username, password, confirmPass, profile, email } = req.body;
+    const { username, password, confirmPass, profile, email, picturePath, friends } = req.body;
 
     // Check existing user
     const existUsername = await UserModel.findOne({ username }).exec();
@@ -47,12 +48,15 @@ export async function register(req, res) {
         password: hashedPassword,
         profile: profile || '',
         email,
+        role: "student",
+        picturePath, 
+        friends, 
       });
 
       // Save user to the database
-      await user.save();
+      const savedUser = await user.save();
 
-      res.status(201).send({ msg: "User Registered Successfully" });
+      res.status(201).send({ msg: "User Registered Successfully" })  //.json(savedUser);
     }
   } catch (error) {
     // Handle the error
@@ -86,9 +90,11 @@ export async function login(req, res) {
     if (!passwordMatch) {
       return res.status(400).send({ error: "Incorrect Password" });
     }
+    const token = jwt.sign({id: existUsername._id}, process.env.JWT_SECRET)
+    delete existUsername.password;
 
     // If both username and password are correct, send a success message.
-    res.status(200).send({ message: "Login Successful", user: existUsername });
+    res.status(200).send({ message: "Login Successful", user: existUsername}) //.json({token, user})
   } catch (error) {
     // Handle the error properly, e.g., log it
     console.error(error);
@@ -312,3 +318,66 @@ export async function postPastPapers(req, res) {
     res.status(500).send({ error: "Unable to upload Past Paper" });
   }
 }
+
+/** user - profile - traits */
+// export const fetchUser = async (req,res) => {
+//   try{
+//     const {id} = req.params;
+//     const user = await UserModel.findById(id);
+//     res.status(200).json(user);
+//   } catch(err){
+//     res.status(404).json({message: err.message});
+//   }
+// }
+
+// export const getUserFriends = async (req,res) => {
+//   try{
+//     const {id} = req.params;
+//     const user = await UserModel.findById(id);
+
+//     const friends = await Promise.all(
+//     user.friends.map((id)=> UserModel.findById(id))
+//     );
+//     const formattedFriends = friends.map(
+//       ({ _id, username, password, confirmPass, profile, email, picturePath, friends }) => {
+//         return{ _id, username, password, confirmPass, profile, email, picturePath, friends};
+//       }
+//     );
+//   } catch(err){
+//     res.status(404).json({message: err.message});
+//   }
+// }
+
+// export const addRemoveFriend = async (req,res) => {
+//   try{
+//     const {id, friendId} = req.params;
+//     const user = await UserModel.findById(id);
+//     const friend = await UserModel.findById(friendId);
+//     if(user.friends.includes(friendId)) {
+//       user.friends = user.friends.filter((id)=> id !== friendId);
+//       friend.friends = friend.friends.filter((id)=> id!== id);
+//     }
+//     else{
+//       user.friends.push(friendId);
+//       friend.friends.push(id);
+//     }
+
+//     await user.save();
+//     await friend.save();
+
+//     const friends = await Promise.all(
+//       user.friends.map((id)=> UserModel.findById(id))
+//       );
+//       const formattedFriends = friends.map(
+//         ({ _id, username, password, confirmPass, profile, email, picturePath, friends }) => {
+//           return{ _id, username, password, confirmPass, profile, email, picturePath, friends};
+//         }
+//       );
+
+//       res.status(200).json(formattedFriends);
+
+//   } catch (err){
+//     res.status(404).json({message: err.message})
+//   }
+// }
+

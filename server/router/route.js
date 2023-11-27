@@ -1,4 +1,10 @@
 import { Router } from "express";
+import{
+    getUser,
+    getUserFriends,
+    addRemoveFriend,
+} from "../controllers/users.js";
+import {verifyToken} from "../middleware/auth.js";
 const router = Router();
 
 /** Import all controllers */
@@ -25,7 +31,9 @@ router.route('/pastpapers').get(controller.getPastPapers) // reset all the varia
 router.route('/updateuser').put(controller.updateUser); // used to update user profile
 router.route('/resetPassword').put(controller.resetPassword); // used to reset password
 
-/** DELTE Methods */
+
+
+
 
 
 export default router;

@@ -1,6 +1,7 @@
 import React from "react";
 // import { Check } from "../../check/index.js";
 import { useState } from "react";
+import GlitchButton from "../../GlitchButton";
 // import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
 import {useNavigate} from 'react-router-dom';
 
@@ -158,7 +159,7 @@ export default function FspcLogin() {
                     <div className="frame-5">
                       <div className="text-wrapper-6">Password</div>
                       <div className="frame-8">
-                      <input type="text"
+                      <input type="password"
                         value={password}
                         onChange={handleChange1}
                         placeholder="********" 
@@ -176,7 +177,8 @@ export default function FspcLogin() {
                   </div>
                 </div>
                 <div className="frame-10">
-                  <button type="submit" className="text-wrapper-11">Login</button>
+                  <button type="submit" className="text-wrapper-11"><GlitchButton text= "Login"/></button>
+
                 </div>
               </div>
             </form>
