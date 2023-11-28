@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const DB_URI = 'mongodb://127.0.0.1:27017/fspcdb';
+const DB_URI = 'mongodb+srv://ahmed:Password.123@fspc.j3x1x2u.mongodb.net/';
 
 async function connect() {
   try {

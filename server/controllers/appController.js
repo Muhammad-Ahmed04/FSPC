@@ -79,6 +79,7 @@ export async function login(req, res) {
 
     // Check if a user with the given username exists in the database.
     existUsername = await UserModel.findOne({ username }).exec();
+    console.log(existUsername)
 
     if (!existUsername) {
       return res.status(400).send({ error: "Incorrect username" });
@@ -90,8 +91,8 @@ export async function login(req, res) {
     if (!passwordMatch) {
       return res.status(400).send({ error: "Incorrect Password" });
     }
-    const token = jwt.sign({id: existUsername._id}, process.env.JWT_SECRET)
-    delete existUsername.password;
+    // const token = jwt.sign({id: existUsername._id}, process.env.JWT_SECRET)
+    // delete existUsername.password;
 
     // If both username and password are correct, send a success message.
     res.status(200).send({ message: "Login Successful", user: existUsername}) //.json({token, user})
