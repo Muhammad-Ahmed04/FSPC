@@ -1,6 +1,7 @@
 import React from "react";
 // import { Check } from "../../check/index.js";
 import { useState } from "react";
+// import { Cookies } from "universal-cookie"
 import GlitchButton from "../../GlitchButton";
 // import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
 import {useNavigate} from 'react-router-dom';
@@ -13,6 +14,8 @@ export default function FspcLogin() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
+  // const cookie = new Cookies();
+
 
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
@@ -42,11 +45,19 @@ export default function FspcLogin() {
         },
         body: JSON.stringify(data),
       });
-
+  
       if (response.ok) {
-        // Data sent successfully
+        const responseData = await response.json(); // Parse the response JSON
+        const { username, role } = responseData;
+  
+        console.log(`Logged in as ${username} with role ${role}`);
+  
+        // Now you can use username and role as needed
+        // For example, you can set cookies or store them in your application state
+  
+        // cookies.set('AUTHORISATION',  { path: '/' });
         console.log('Login Successful');
-        navigate('/home')
+        navigate('/home');
       } else {
         // Handle errors
         console.error('Invalid Credentials');
@@ -55,6 +66,7 @@ export default function FspcLogin() {
       console.error('Error:', error);
     }
   };
+  
 
     //create an account button routes to register page
     const redirectToRegister = () => {
