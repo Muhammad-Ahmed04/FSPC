@@ -3,14 +3,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 
 /** import all components */
-// import Username from './components/Username';
-// import Password from './components/Password';
+
+import FspcStart from './components/screens/FspcStart/FspcStart'
 import FspcSignup from './components/screens/FspcSignup/FspcSignup';
 import Admin from './components/screens/Admin/Admin';
 import Main  from './components/screens/Main/Main';
 import ProfilePage from './components/screens/ProfilePage/ProfilePage';
-// import Recovery from './components/Recovery';
-// import Reset from './components/Reset';
 import PageNotFound from './components/PageNotFound';
 import FspcLogin from './components/screens/FspcLogin/FspcLogin';
 
@@ -23,12 +21,12 @@ import PastPapers from './components/PastPapers/pastpaper';
 const router = createBrowserRouter([
     {
         path : '/',
+        element : <FspcStart></FspcStart>
+    },
+    {
+        path : '/login',
         element : <FspcLogin></FspcLogin>
     },
-    // {
-    //     path : '/login',
-    //     element : <FspcLogin></FspcLogin>
-    // },
 
     {
         path : '/register',

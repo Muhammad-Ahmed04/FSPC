@@ -3,6 +3,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 // import { Button } from "../Button";
+import TextareaAutosize from 'react-textarea-autosize';
 import "./style.css";
 
 import { useState } from 'react';
@@ -17,6 +18,7 @@ import { useState } from 'react';
   
     const handleCreatePost = async () => {
       // You can handle the creation of the post here, e.g., by sending a request to your server
+      // Add current user in future IMP004
       const data = {username: "ramshaahmed", description: postContent, picturePath: "" };
       sendDataToBackend(data);
     };
@@ -52,12 +54,16 @@ import { useState } from 'react';
         <div className="abatars">
           <img className="mask-group" alt="Mask group" src="/imgHome/mask-group-1.png" />
         </div>
-          <input
-            className= "input-data" 
-            placeholder="Let’s share what's going on your mind..."
-            value={postContent}
-            onChange={handlePostContentChange}
-          />
+        <TextareaAutosize
+          className="input-data"
+          placeholder="Let’s share what's going on your mind..."
+          value={postContent}
+          onChange={handlePostContentChange}
+          minRows={1}  // Adjust this value as needed
+          maxRows={10} // Adjust this value as needed
+        />
+
+
 
         <button type ="submit" className="text-wrapper-3 button" onClick={handleCreatePost}>Create
         </button>
