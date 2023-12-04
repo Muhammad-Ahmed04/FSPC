@@ -78,28 +78,34 @@ export async function login(req, res) {
     const { username, password } = req.body;
 
     // Check if a user with the given username exists in the database.
-    existUsername = await UserModel.findOne({ username }).exec();
-    console.log(existUsername)
+    const existUsername = await UserModel.findOne({ username }).exec();
 
     if (!existUsername) {
-      return res.status(400).send({ error: "Incorrect username" });
+      return res.status(400).send({ error: 'Incorrect username' });
     }
 
     // Compare the provided password with the hashed password stored in the database.
     const passwordMatch = await bcrypt.compare(password, existUsername.password);
 
     if (!passwordMatch) {
-      return res.status(400).send({ error: "Incorrect Password" });
+      return res.status(400).send({ error: 'Incorrect Password' });
     }
-    // const token = jwt.sign({id: existUsername._id}, process.env.JWT_SECRET)
-    // delete existUsername.password;
 
-    // If both username and password are correct, send a success message.
-    res.status(200).send({ message: "Login Successful", user: existUsername}) //.json({token, user})
+    // Fetch the role from the MongoDB value named "role"
+    const role = existUsername.role;
+
+    // Generate a JWT token
+    const token = jwt.sign({ id: existUsername._id }, process.env.JWT_SECRET);
+
+    // Omit the password from the response
+    delete existUsername.password;
+
+    // Send a response object containing token, username, and role
+    res.status(200).json({ username: existUsername.username, role });
   } catch (error) {
     // Handle the error properly, e.g., log it
     console.error(error);
-    res.status(500).send({ error: "Unable to login" });
+    res.status(500).send({ error: 'Unable to login' });
   }
 }
 
