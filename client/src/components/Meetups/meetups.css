@@ -163,6 +163,7 @@
 }
 
 .meetups .tag-5 {
+  background-color: #FF4401;
   align-items: center;
   border-radius: 20px;
   display: inline-flex;
@@ -173,8 +174,9 @@
   position: relative;
 }
 
+
 .meetups .text-wrapper-13 {
-  color: #858EAD;
+  color: #FFFF;
   font-family: var(--semibold-9-font-family);
   font-size: var(--semibold-9-font-size);
   font-style: var(--semibold-9-font-style);
@@ -394,9 +396,9 @@
   background-color: #F4F6F8;
 }
 
-.meetups.dark-46-on .tag-5 {
-  background-color:#2C353D;
-}
+/* .meetups.dark-46-on .tag-5 {
+  /* background-color:#2C353D; */
+/* } */ */
 
 .meetups.dark-46-off .tag-6 {
   background-color: #F4F6F8;
