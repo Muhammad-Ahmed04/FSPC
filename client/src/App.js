@@ -1,6 +1,5 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { useEffect, useState,React } from 'react';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 /** import all components */
 
@@ -9,8 +8,8 @@ import FspcSignup from './components/screens/FspcSignup/FspcSignup';
 import Admin from './components/screens/Admin/Admin';
 import Main  from './components/screens/Main/Main';
 import ProfilePage from './components/screens/ProfilePage/ProfilePage';
-import PageNotFound from './components/PageNotFound';
 import FspcLogin from './components/screens/FspcLogin/FspcLogin';
+import Notification from './components/Notification/Notification.tsx';
 
 
 /** auth middleware */
@@ -18,58 +17,50 @@ import FspcLogin from './components/screens/FspcLogin/FspcLogin';
 import PastPapers from './components/PastPapers/pastpaper';
 
 /** root routes */
-const router = createBrowserRouter([
-    {
-        path : '/',
-        element : <FspcStart></FspcStart>
-    },
-    {
-        path : '/login',
-        element : <FspcLogin></FspcLogin>
-    },
-
-    {
-        path : '/register',
-        element : <FspcSignup></FspcSignup>
-    },
-    {
-        path : '/home',
-        element : <Main></Main>
-    },
-    // {
-    //     path : '/password',
-    //     element : <ProtectRoute><Password /></ProtectRoute>
-    // },
-    {
-        path : '/profile/:userId',
-        element : <ProfilePage></ProfilePage>
-    },
-    {
-        path : '/Admin',
-        element : <Admin></Admin>
-    },
-    // {
-    //     path : '/recovery',
-    //     element : <Recovery></Recovery>
-    // },
-    // {
-    //     path : '/reset',
-    //     element : <Reset></Reset>
-    // },
-    {
-        path : '/pastpaper',
-        element : <PastPapers></PastPapers>
-    },
-    {
-        path : '*',
-        element : <PageNotFound></PageNotFound>
-    },
-])
-
 export default function App() {
+    const [notification, setNotification] = useState('');
+  const navigate = useNavigate();
+  const token = localStorage.getItem('access');
+
+  useEffect(() => {
+    const handleStorageEvent = () => {
+      if (!token) {
+        navigate('/');
+        setNotification('Your session has expired. Please log in again.');
+      }
+    };
+    window.addEventListener('storage', handleStorageEvent);
+    return () => {
+      window.removeEventListener('storage', handleStorageEvent);
+    };
+  }, [navigate, token]);
+
   return (
-    <main>
-        <RouterProvider router={router}></RouterProvider>
-    </main>
-  )
-}
+    <div className="container-fluid">
+      <Routes>
+        <Route path="/" element={<FspcStart />} />
+        <Route path="/login" element={<FspcLogin />} />
+        <Route path="/register" element={<FspcSignup />} />       
+
+
+        {/* Protected routes. Only Authed users can access. */}
+        {token && (
+          <>
+          <Route path="/home" element={<Main />} />
+          <Route path="/pastpaper" element={<PastPapers />} />
+          <Route path="/home" element={<Main />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
+          </>
+        )}
+
+        {/* Catch non-existing routes. */}
+        <Route path="*" element={<Navigate to="/" />} />
+
+      </Routes>
+      {notification && (
+        <Notification message={notification} handleClose={() => setNotification('')} />
+      )}
+    </div>
+  );
+};

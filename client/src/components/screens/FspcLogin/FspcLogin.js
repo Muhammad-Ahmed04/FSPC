@@ -48,7 +48,8 @@ export default function FspcLogin() {
   
       if (response.ok) {
         const responseData = await response.json(); // Parse the response JSON
-        const { username, role } = responseData;
+        const { username, role , access_token} = responseData;
+        localStorage.setItem('access', access_token);
   
         console.log(`Logged in as ${username} with role ${role}`);
   

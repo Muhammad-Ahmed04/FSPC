@@ -101,7 +101,7 @@ export async function login(req, res) {
     delete existUsername.password;
 
     // Send a response object containing token, username, and role
-    res.status(200).json({ username: existUsername.username, role });
+    res.status(200).json({ username: existUsername.username, role  , access_token: token});
   } catch (error) {
     // Handle the error properly, e.g., log it
     console.error(error);
@@ -113,6 +113,7 @@ export async function login(req, res) {
 /**GET: http://localhost:8080/api/user/example123 */
 export async function getUser(req, res) {
   const { username } = req.params;
+  console.log(username)
 
   try {
     //Check if any username entered
