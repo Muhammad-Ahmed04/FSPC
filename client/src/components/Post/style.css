@@ -132,6 +132,19 @@
   padding: 4px 10px;
   position: relative;
 }
+.post {
+  align-items: flex-start;
+  background-color: #262D34; /* Set background color */
+  border-radius: 16px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+  width: 100%; /* Set width to 100% */
+}
+
 
 .post .text-wrapper-7 {
   font-family: var(--semibold-10-font-family);
@@ -293,6 +306,8 @@
 
 .post.dark-32-on {
   background-color: #262D34;
+  width: 122.9%;
+  margin-bottom: 20px;
 }
 
 .post.dark-32-off .bitcoin-has-tumbled {

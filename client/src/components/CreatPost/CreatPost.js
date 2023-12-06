@@ -19,7 +19,7 @@ import { useState } from 'react';
     const handleCreatePost = async () => {
       // You can handle the creation of the post here, e.g., by sending a request to your server
       // Add current user in future IMP004
-      const data = {username: "mateen", description: postContent, picturePath: "" };
+      const data = {username: "shamil", description: postContent, picturePath: "" };
       sendDataToBackend(data);
     };
   

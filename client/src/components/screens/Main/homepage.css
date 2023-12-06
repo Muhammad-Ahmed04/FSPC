@@ -30,7 +30,7 @@
   margin-right: -2px !important;
 }
 
-.main #post.main-wrapper {
+/* .main #post.main-wrapper {
   align-items: flex-start;
   background-color: #262D34;
   border-radius: 16px;
@@ -41,7 +41,7 @@
   padding: 20px;
   position: relative;
   width: 829px;
-}
+} */
 
 .main .div-4 {
   align-items: flex-start;

@@ -27,13 +27,14 @@ export const createPost = async (req, res) => {
 
 /** Read */
 export const getFeedPosts = async (req, res) => {
-    try{
-        const post = await Post.find();
-        res.status(200).json(post);
-    } catch(err) {
-        res.status(404).json({ message: err.message })
+    try {
+        const posts = await Post.find().sort({ createdAt: -1 });
+        res.status(200).json(posts); // Corrected to send 'posts' instead of 'post'
+    } catch (err) {
+        res.status(404).json({ message: err.message });
     }
-}
+};
+
 
 
 export const getUserPosts = async (req, res) => {
