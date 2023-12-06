@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 export default function FspcStart() {
   const navigate = useNavigate();
 
+  const redirectToRegister = () => {
+    navigate('/register');
+  };
   const redirectToLogin = () => {
     navigate('/login');
   };
@@ -15,14 +18,14 @@ export default function FspcStart() {
   return (
     <div className="users-container">
       <div className="users">
-        <button className="user-button" onClick={redirectToLogin}>
+      <button className="user-button" onClick={redirectToLogin}>
           <User className="user-instance" />
-          <div className="text-wrapper">Coder</div>
+          <div className="text-wrapper">User Login</div>
         </button>
 
-        <button className="user-button">
+        <button className="user-button" onClick={redirectToRegister}>
           <Users02 className="users-02" />
-          <div className="text-wrapper-2">Teacher</div>
+          <div className="text-wrapper-2">User Register</div>
         </button>
 
         <button className="user-button">

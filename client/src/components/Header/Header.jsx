@@ -4,12 +4,28 @@ import { Calendar } from "../../icons/Calendar";
 import { Home } from "../../icons/Home";
 import { Home25 } from "../../icons/Home25";
 import { Home28 } from "../../icons/Home28";
-import { Notification3} from "../../icons/Notification3"; 
+import { Notification3 } from "../../icons/Notification3";
 import { SearchIcon2 } from "../../icons/SearchIcon2";
 import { Vector82 } from "../../icons/Vector82";
 import "./header.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useNavigate } from 'react-router-dom';
+
+const LogoutButton = () => {
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    localStorage.removeItem('access');
+    navigate('/');
+    navigate(0);
+  };
+
+  return (
+    <button onClick={handleLogOut}>
+      Log Out
+    </button>
+  );
+};
 
 export const Header = ({ page }) => {
   return (
@@ -76,7 +92,7 @@ export const Header = ({ page }) => {
                   <div className="dropdown-content">
                     <Link to="/profile">Profile</Link>
                     <Link to="/settings">Settings</Link>
-                    <a href="/">Signout</a>
+                    <LogoutButton />
                   </div>
                 </div>
               </div>
