@@ -21,6 +21,11 @@ export const UpCompSchema = new mongoose.Schema({
         required: [true, "Please provide location"],
         unique: false,  
     },
+    kind: {
+        type: String,
+        required: [true, "Please provide kind"],
+        unique: false,
+    }
     
 
 });

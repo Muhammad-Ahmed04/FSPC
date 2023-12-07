@@ -16,9 +16,9 @@ export const pastPaper = new mongoose.Schema({
         required: false,
         unique: false, 
     },
-    type: {
+    kind: {
         type: String,
-        required: [true, "Please provide location"],
+        required: [true, "Please provide type"],
         unique: false,  
     },
     

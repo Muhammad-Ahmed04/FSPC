@@ -1,52 +1,47 @@
-
-
 import PropTypes from "prop-types";
-import React from "react";
-// import { Button } from "../Button";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 import TextareaAutosize from 'react-textarea-autosize';
 import "./style.css";
 
-import { useState } from 'react';
+export const CreatPost = ({ dark, className, onPostCreated }) => {
+  const [postContent, setPostContent] = useState("");
+  const navigate = useNavigate();  // Use useNavigate hook
 
-  export const CreatPost = ({ dark, className }) => {
-    const [postContent, setPostContent] = useState("");
-    // const navigate = useNavigate();
-  
-    const handlePostContentChange = (event) => {
-      setPostContent(event.target.value);
-    };
-  
-    const handleCreatePost = async () => {
-      // You can handle the creation of the post here, e.g., by sending a request to your server
-      // Add current user in future IMP004
-      const data = {username: "shamil", description: postContent, picturePath: "" };
-      sendDataToBackend(data);
-    };
-  
-    const sendDataToBackend = async (data) => {
-      console.log(JSON.stringify(data));
-      try {
-        const response = await fetch("http://localhost:8080/posts/postcreate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-  
-        if (response.ok) {
-          // Data sent successfully
-          console.log("Post Successful");
-          // navigate("/home");
-        } else {
-          // Handle errors
-          console.error("Post Failed");
+  const handlePostContentChange = (event) => {
+    setPostContent(event.target.value);
+  };
+
+  const handleCreatePost = async () => {
+    const data = { username: "shamil", description: postContent, picturePath: "" };
+
+    try {
+      const response = await fetch("http://localhost:8080/posts/postcreate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Data sent successfully
+        console.log("Post Successful");
+        setPostContent("");
+        navigate('/home');
+        // Notify the parent component that a new post has been created
+        if (onPostCreated) {
+          onPostCreated();
         }
-      } catch (error) {
-        console.error("Error:", error);
+      } else {
+        // Handle errors
+        console.error("Post Failed");
       }
-      setPostContent("");
-    };
+      
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <div className={`creat-post dark-30-${dark} ${className}`}>
@@ -59,20 +54,18 @@ import { useState } from 'react';
           placeholder="Let’s share what's going on your mind..."
           value={postContent}
           onChange={handlePostContentChange}
-          minRows={1}  // Adjust this value as needed
-          maxRows={10} // Adjust this value as needed
+          minRows={1}
+          maxRows={10}
         />
-
-
-
-        <button type ="submit" className="text-wrapper-3 button" onClick={handleCreatePost}>Create
+        <button type="submit" className="text-wrapper-3 button" onClick={handleCreatePost}>
+          Create
         </button>
       </div>
     </div>
   );
 };
 
-
 CreatPost.propTypes = {
   dark: PropTypes.oneOf(["off", "on"]),
+  onPostCreated: PropTypes.func, // Callback function to notify the parent component about the new post
 };

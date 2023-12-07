@@ -7,7 +7,6 @@
   padding: 20px;
   position: relative;
   width: 135% !important;
-  
 }
 
 .meetups .main-5 {
@@ -138,6 +137,7 @@
   height: 16px;
   position: relative;
   width: 16px;
+  margin: auto;
 }
 
 .meetups .text-wrapper-12 {
@@ -163,7 +163,7 @@
 }
 
 .meetups .tag-5 {
-  background-color: #FF4401;
+  background-color: var(--tag-color, #2C353D);  
   align-items: center;
   border-radius: 20px;
   display: inline-flex;
@@ -174,9 +174,13 @@
   position: relative;
 }
 
+.meetups .tag-5[data-selected="Local"] {
+  background-color: #FF4401;
+}
+
 
 .meetups .text-wrapper-13 {
-  color: #FFFF;
+  color: #FFFFFF;
   font-family: var(--semibold-9-font-family);
   font-size: var(--semibold-9-font-size);
   font-style: var(--semibold-9-font-style);
@@ -190,6 +194,7 @@
 }
 
 .meetups .tag-6 {
+  background-color: var(--tag-color, #2C353D);
   align-items: center;
   border-radius: 20px;
   display: inline-flex;
@@ -200,7 +205,13 @@
   position: relative;
 }
 
+.meetups .tag-6[data-selected="Regional"] {
+  background-color: #FF4401;
+}
+
+
 .meetups .tag-7 {
+  background-color: var(--tag-color, #2C353D);
   align-items: center;
   border-radius: 20px;
   display: inline-flex;
@@ -210,6 +221,12 @@
   padding: 2px 8px;
   position: relative;
 }
+
+.meetups .tag-7[data-selected="Worldwide"] {
+  background-color: #FF4401;
+}
+
+
 
 .meetups .date-2 {
   align-items: center;
@@ -392,28 +409,28 @@
   color: #F7F7F7;
 }
 
-.meetups.dark-46-off .tag-5 {
-  background-color: #F4F6F8;
+.meetups.dark-46-off .tag-5[data-selected="Local"] {
+  background-color: #FF4401;
 }
 
-/* .meetups.dark-46-on .tag-5 {
-  /* background-color:#2C353D; */
-/* } */ */
-
-.meetups.dark-46-off .tag-6 {
-  background-color: #F4F6F8;
+.meetups.dark-46-off .tag-6[data-selected="Regional"] {
+  background-color: #FF4401;
 }
 
-.meetups.dark-46-on .tag-6 {
-  background-color: #2C353D;
+.meetups.dark-46-off .tag-7[data-selected="Worldwide"] {
+  background-color: #FF4401;
 }
 
-.meetups.dark-46-off .tag-7 {
-  background-color: #F4F6F8;
+.meetups.dark-46-on .tag-5[data-selected="Local"] {
+  background-color: #FF4401;
 }
 
-.meetups.dark-46-on .tag-7 {
-  background-color: #2C353D;
+.meetups.dark-46-on .tag-6[data-selected="Regional"] {
+  background-color: #FF4401;
+}
+
+.meetups.dark-46-on .tag-7[data-selected="Worldwide"] {
+  background-color: #FF4401;
 }
 
 .meetups.dark-46-off .date-2 {

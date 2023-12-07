@@ -7,7 +7,7 @@ import FspcStart from './components/screens/FspcStart/FspcStart'
 import FspcSignup from './components/screens/FspcSignup/FspcSignup';
 import Admin from './components/screens/Admin/Admin';
 import Main  from './components/screens/Main/Main';
-import ProfilePage from './components/screens/ProfilePage/ProfilePage';
+import Profile from './components/screens/Profile/Box.jsx';
 import FspcLogin from './components/screens/FspcLogin/FspcLogin';
 import Notification from './components/Notification/Notification.tsx';
 
@@ -50,7 +50,7 @@ export default function App() {
           <Route path="/pastpaper" element={<PastPapers />} />
           <Route path="/home" element={<Main />} />
           <Route path="/Admin" element={<Admin />} />
-          <Route path="/profile/:userId" element={<ProfilePage />} />
+          <Route path="/profile" element={<Profile />} />
           </>
         )}
 
