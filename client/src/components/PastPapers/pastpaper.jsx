@@ -74,7 +74,7 @@ const PastPapers = () => {
                                             {paper.link}
                                         </a>
                                     </td>
-                                    <td>{paper.type}</td>
+                                    <td>{paper.kind}</td>
                                 </tr>
                             );
                         })}
