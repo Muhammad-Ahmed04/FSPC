@@ -13,8 +13,18 @@ import PropTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
 
 const LogoutButton = () => {
-  const navigate = useNavigate();
-  const handleLogOut = () => {
+    const navigate = useNavigate();
+    const handleLogOut = async () => {
+      const response = await fetch('http://localhost:8080/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    if(!response.ok){
+      console.log('could not end the user session')
+    }
+    console.log('done done')
     localStorage.removeItem('access');
     navigate('/');
     navigate(0);

@@ -48,10 +48,11 @@ export default function FspcLogin() {
   
       if (response.ok) {
         const responseData = await response.json(); // Parse the response JSON
-        const { username, role , access_token} = responseData;
-        localStorage.setItem('access', access_token);
+        const { username, role , access, userInfo} = responseData;
+        localStorage.setItem('access', access);
   
         console.log(`Logged in as ${username} with role ${role}`);
+        console.log(JSON.stringify(userInfo))
   
         // Now you can use username and role as needed
         // For example, you can set cookies or store them in your application state

@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import pastpaperModel from '../model/Pastpaper.model.js';
 let existUsername;
+let sessionUser;
 
 
 /** POST: http://localhost:8080/api/register
@@ -49,8 +50,8 @@ export async function register(req, res) {
         profile: profile || '',
         email,
         role: "student",
-        picturePath, 
-        friends, 
+        picturePath,
+        friends,
       });
 
       // Save user to the database
@@ -100,12 +101,52 @@ export async function login(req, res) {
     // Omit the password from the response
     delete existUsername.password;
 
+    const userInfo = {
+      id: existUsername._id,
+      username: existUsername.username,
+      email: existUsername.email,
+      role: existUsername.role,
+
+    }
+    sessionUser = userInfo
+    req.session.user = userInfo
+    await req.session.save()
+
     // Send a response object containing token, username, and role
-    res.status(200).json({ username: existUsername.username, role  , access_token: token});
+    res.status(200).json({ username: existUsername.username, role, access: token, userInfo: req.session.user });
   } catch (error) {
     // Handle the error properly, e.g., log it
     console.error(error);
     res.status(500).send({ error: 'Unable to login' });
+  }
+}
+//  GET: http://localhost:8080/api/me
+
+export async function userSessionInfo(req, res) {
+  try {
+    console.log('helo')
+
+    res.status(200).json({ sessionUser });
+
+  } catch (error) {
+    // Handle the error properly, e.g., log it
+    console.error(error);
+    res.status(500).send({ error: `Can't fetch user SessionInfo ` });
+  }
+}
+
+
+//  POST: http://localhost:8080/api/logout
+
+export async function logout(req, res) {
+  try {
+    req.session.destroy()
+    res.send('logged Out successfully')
+
+  } catch (error) {
+    // Handle the error properly, e.g., log it
+    console.error(error);
+    res.status(500).send({ error: 'Unable to Logout' });
   }
 }
 
@@ -225,7 +266,7 @@ export async function resetPassword(req, res) {
 /** POST: http://localhost:8080/api/admin-uc */
 export async function upcomingComp(req, res) {
   try {
-    const { title, date, location, link } = req.body;
+    const { title, date, location, link, kind  } = req.body;
 
     // Check existing competition
     const existTitle = await UserModel.findOne({ title }).exec();
@@ -246,7 +287,8 @@ export async function upcomingComp(req, res) {
       title,
       link,
       date,
-      location
+      location,
+      kind
     });
 
     // Save user to the database
@@ -277,42 +319,42 @@ export async function getComp(req, res) {
     // Handle the error 
     console.error(error);
     res.status(500).send({ error: "Unable to Find Competition" });
-  
-}
+
+  }
 }
 
 /** GET: http://localhost:8080/api/pastpapers */
 export async function getPastPapers(req, res) {
 
-    try {
+  try {
 
-      //Check whether the user exists or not
-      const data = await pastpaperModel.find().exec()
-      if (!data) {
-        res.status(404).send({ error: "data not found" })
-      }
-      //Send success response with user data
-      res.status(200).send(data);
-
-    } catch (error) {
-      // Handle the error 
-      console.error(error);
-      res.status(500).send({ error: "Unable to Find Competition" });
+    //Check whether the user exists or not
+    const data = await pastpaperModel.find().exec()
+    if (!data) {
+      res.status(404).send({ error: "data not found" })
     }
+    //Send success response with user data
+    res.status(200).send(data);
+
+  } catch (error) {
+    // Handle the error 
+    console.error(error);
+    res.status(500).send({ error: "Unable to Find Competition" });
+  }
 }
 
 /** POST: http://localhost:8080/api/pastpapers */
 export async function postPastPapers(req, res) {
 
   try {
-    const { name, link, type, date } = req.body;
+    const { name, link, kind, date } = req.body;
 
     //Check whether the user exists or not
-   
+
     const paper = new pastpaperModel({
       name,
       link,
-      type,
+      kind,
       date
     });
 
