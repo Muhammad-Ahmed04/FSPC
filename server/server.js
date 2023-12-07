@@ -14,6 +14,8 @@ import postRoutes from "./router/posts.js";
 import { register } from './controllers/appController.js';
 import { verifyToken } from './middleware/auth.js';
 import { createPost } from './controllers/posts.js';
+import session from 'express-session'
+import cookieParser from 'cookie-parser';
 // import { CreatPost } from '../client/src/components/CreatPost';
 
 /** CONFIGURATIONS */
@@ -21,11 +23,25 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
+
+app.use(cookieParser());
+ 
+app.use(session({
+    secret: "superSecret",
+    saveUninitialized: true,
+    resave: true,
+    sameSite: 'None'
+}));
+ 
+const corsOptions = {
+  origin: 'http://localhost:3000', // Update with your frontend's origin
+  credentials: true,
+};
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use("/assets", express.static(path.join(__dirname, 'public/assets')));
 
 /** File Storage */

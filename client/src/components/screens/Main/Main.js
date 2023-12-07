@@ -15,7 +15,7 @@ export default function Main() {
   const [competitions, setCompetitions] = useState([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(true);
   const [isLoadingCompetitions, setIsLoadingCompetitions] = useState(true);
-
+  const [user,setUser] = useState()
   useEffect(() => {
     // Fetch posts
     const fetchPosts = async () => {
@@ -45,9 +45,28 @@ export default function Main() {
       }
     };
 
+    const fetchUser = async ()=>{
+      try{
+        const response = await fetch("http://localhost:8080/api/me",{
+          method : 'GET',
+          credentials : 'include'
+        });
+        const result = await response.json();
+        const { me } = result;
+        console.log(me)
+        console.log(result)
+        console.log(response.json())
+        setUser(response);
+        
+      }catch(error){
+        console.error('Error Fetching User data', error)
+      }
+    }
+
     // Call both fetch functions when the component mounts
     fetchPosts();
     fetchCompetitions();
+    fetchUser();
   }, []);
 
   return (
@@ -120,7 +139,7 @@ export default function Main() {
                   <div>
                     {/* Display competitions here */}
                     {competitions.map((item) => (
-                      <Meetups date={item.date} text1={item.title} text2={item.location} key={item.id}></Meetups>
+                      <Meetups kind ={item.kind} date={item.date} text1={item.title} text2={item.location} key={item.id}></Meetups>
                     ))}
                   </div>
                 )}

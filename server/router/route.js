@@ -17,8 +17,8 @@ router.route('/authenticate').post((req, res) => res.end()); // authenticate use
 router.route('/login').post(controller.login); // login in app
 router.route('/admin-uc').post(controller.upcomingComp); //upload Upcoming Competition
 router.route('/pastpapers').post(controller.postPastPapers); //upload pp
-
-
+router.route('/logout').post(controller.logout)
+router.route('/me').get(controller.userSessionInfo)
 /** GET Methods */
 router.route('/user/:username').get(controller.getUser) // user with username
 router.route('/generateOTP').get(controller.generateOTP) // generate random OTP
