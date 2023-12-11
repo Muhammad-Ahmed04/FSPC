@@ -1,19 +1,50 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import TextareaAutosize from 'react-textarea-autosize';
 import "./style.css";
 
 export const CreatPost = ({ dark, className, onPostCreated }) => {
   const [postContent, setPostContent] = useState("");
-  const navigate = useNavigate();  // Use useNavigate hook
+  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const {sessionUser} = result
+        console.log(`in create post ${JSON.stringify(sessionUser)}`);
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+      } catch (error) {
+        console.error('Error Fetching User data', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const handlePostContentChange = (event) => {
     setPostContent(event.target.value);
   };
 
   const handleCreatePost = async () => {
-    const data = { username: "shamil", description: postContent, picturePath: "" };
+    console.log(`user info is ${userInfo}`)
+    if (!userInfo) {
+      console.error("User information not available");
+      return;
+    }
+
+    const data = {
+      userId: userInfo.id,
+      userName : userInfo.username,
+      description: postContent,
+      picturePath: ""
+    };
 
     try {
       const response = await fetch("http://localhost:8080/posts/postcreate", {
@@ -22,22 +53,20 @@ export const CreatPost = ({ dark, className, onPostCreated }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: 'include',
       });
 
       if (response.ok) {
-        // Data sent successfully
         console.log("Post Successful");
         setPostContent("");
-        navigate('/home');
-        // Notify the parent component that a new post has been created
+        navigate(0)
         if (onPostCreated) {
           onPostCreated();
         }
       } else {
-        // Handle errors
         console.error("Post Failed");
       }
-      
+
     } catch (error) {
       console.error("Error:", error);
     }
@@ -67,5 +96,5 @@ export const CreatPost = ({ dark, className, onPostCreated }) => {
 
 CreatPost.propTypes = {
   dark: PropTypes.oneOf(["off", "on"]),
-  onPostCreated: PropTypes.func, // Callback function to notify the parent component about the new post
+  onPostCreated: PropTypes.func,
 };

@@ -30,7 +30,6 @@ app.use(session({
     secret: "superSecret",
     saveUninitialized: true,
     resave: true,
-    sameSite: 'None'
 }));
  
 const corsOptions = {

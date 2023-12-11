@@ -62,7 +62,7 @@ export const Post = ({
   );
 };
 
-Post.propTypes = {
+Post.propTypes = { 
   dark: PropTypes.oneOf(["off", "on"]),
   text: PropTypes.string,
   text1: PropTypes.string,

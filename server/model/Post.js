@@ -1,17 +1,25 @@
+import { ObjectId } from "mongodb";
 import mongoose, { mongo } from "mongoose";
 
 const postSchema = mongoose.Schema(
 {
-    username: {
-        type: String,
+    userId: {
+        type: ObjectId,
         required: true,
+    },
+    userName :{
+        type :String,
+
     },
     email: {
         type: String,
         required: true,
     },
     location: String,
-    description: String,
+    description: {
+        type: String,
+        required : true
+    },
     picturePath: String,
     userPicturePath: String,
     likes: {
