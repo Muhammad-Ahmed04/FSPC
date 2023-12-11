@@ -112,6 +112,9 @@ export async function login(req, res) {
     req.session.user = userInfo
     await req.session.save()
 
+    console.log('Session user:', req.session.user); // Add this line
+
+
     // Send a response object containing token, username, and role
     res.status(200).json({ username: existUsername.username, role, access: token, userInfo: req.session.user });
   } catch (error) {
@@ -124,8 +127,8 @@ export async function login(req, res) {
 
 export async function userSessionInfo(req, res) {
   try {
-    console.log('helo')
-
+    // console.log('helo')
+    
     res.status(200).json({ sessionUser });
 
   } catch (error) {

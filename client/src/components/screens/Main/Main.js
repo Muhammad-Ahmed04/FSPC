@@ -52,10 +52,10 @@ export default function Main() {
           credentials : 'include'
         });
         const result = await response.json();
-        const { me } = result;
-        console.log(me)
-        console.log(result)
-        console.log(response.json())
+        // const { me } = result;
+        console.log(`result is ${JSON.stringify(result)}`)
+        // console.log(result)
+        // console.log(response.json())
         setUser(response);
         
       }catch(error){
@@ -112,7 +112,7 @@ export default function Main() {
                         key={item._id}
                         dark="on"
                         text={item.description}
-                        text1={item.username}
+                        text1={item.userName}
                         text2={item.createdAt}
                         text3="36,6545 Likes"
                         text4="56 comments"
