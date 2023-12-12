@@ -19,6 +19,7 @@ router.route('/admin-uc').post(controller.upcomingComp); //upload Upcoming Compe
 router.route('/pastpapers').post(controller.postPastPapers); //upload pp
 router.route('/logout').post(controller.logout)
 router.route('/me').get(controller.userSessionInfo)
+
 /** GET Methods */
 router.route('/user/:username').get(controller.getUser) // user with username
 router.route('/generateOTP').get(controller.generateOTP) // generate random OTP
@@ -30,6 +31,8 @@ router.route('/pastpapers').get(controller.getPastPapers) // reset all the varia
 /** PUT Methods */
 router.route('/updateuser').put(controller.updateUser); // used to update user profile
 router.route('/resetPassword').put(controller.resetPassword); // used to reset password
+router.route('/update-profile').put(controller.updateUser)
+router.route('/update-profile-picture').put(controller.updateUserProfile)
 
 
 

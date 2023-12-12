@@ -40,7 +40,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<FspcStart />} />
         <Route path="/login" element={<FspcLogin />} />
-        <Route path="/register" element={<FspcSignup />} />       
+        <Route path="/register" element={<FspcSignup />} />  
+        <Route path="/admin" element={<Admin />} />  
+             
 
 
         {/* Protected routes. Only Authed users can access. */}

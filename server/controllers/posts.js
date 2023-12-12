@@ -3,7 +3,7 @@ import UserModel from "../model/User.model.js";
 
 export const createPost = async (req, res) => {
     try {
-        const { description, picturePath, userId,userName } = req.body;
+        const { description, profilepicture, userId, userName } = req.body;
         // console.log(`userName is ${userName}`)
         // Fetch the user using the user's ID
         const user = await UserModel.findById(userId);
@@ -18,10 +18,9 @@ export const createPost = async (req, res) => {
             userName: userName,
             email: user.email,
             description,
-            userPicturePath: " ",
-            picturePath,
             likes: {},
-            comments: []
+            comments: [],
+            profilepicture: profilepicture
         });
 
         await newPost.save();
@@ -51,26 +50,25 @@ export const getFeedPosts = async (req, res) => {
 };
 
 
-
 export const getUserPosts = async (req, res) => {
-    try{
-        const {username} = req.params;
-        const post = await Post.find({username});
+    try {
+        const { username } = req.params;
+        const post = await Post.find({ username });
         res.status(200).json(post);
-    } catch(err) {
+    } catch (err) {
         res.status(404).json({ message: err.message })
     }
 }
 
 /** Update */
 export const likePost = async (req, res) => {
-    try{
-        const {id} = req.params;
-        const {username} = req.body;
+    try {
+        const { id } = req.params;
+        const { username } = req.body;
         const post = await Post.findById(id);
         const isLiked = post.likes.get(username);
 
-        if(isLiked){
+        if (isLiked) {
             post.likes.delete(username)
         } else {
             post.likes.set(username, true)
@@ -78,12 +76,12 @@ export const likePost = async (req, res) => {
 
         const updatedPost = await Post.findByIdAndUpdate(
             id,
-            {likes: post.likes},
-            {new: true}
+            { likes: post.likes },
+            { new: true }
         );
 
         res.status(200).json(updatedPost);
-    } catch(err) {
+    } catch (err) {
         res.status(404).json({ message: err.message })
     }
 }

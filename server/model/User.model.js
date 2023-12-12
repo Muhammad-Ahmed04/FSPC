@@ -21,9 +21,16 @@ export const UserSchema = new mongoose.Schema({
         required: [true, "Please provide role"],
         unique: false,  
     },
+    profilePicture: {
+        type: String,
+      },
     picturePath: {
         type: String,
         default: "",  
+    },
+    aboutme: {
+        type: String,
+        default: "Put your bio here !",  
     },
     friends: {
         type: Array,

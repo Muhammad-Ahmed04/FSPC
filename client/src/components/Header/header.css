@@ -216,6 +216,8 @@
   line-height: var(--bold-16-line-height);
   position: relative;
   width: 71px;
+  margin-right: 10px;
+
 }
 
 /* Add this CSS to your header.css file or create a separate CSS file */

@@ -16,6 +16,13 @@
   gap: 20px;
   position: relative;
 }
+.post .post-image {
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  margin-right: 10px; /* Adjust the margin as needed */
+  border-radius: 8px; /* Add border-radius if desired */
+}
+
 
 .post .rectangle {
   height: 168px;
@@ -298,6 +305,7 @@
   padding: 10px;
   position: relative;
   width: 30px;
+  
 }
 
 .post.dark-32-off {

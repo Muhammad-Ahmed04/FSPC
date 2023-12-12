@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import TextareaAutosize from 'react-textarea-autosize';
 import "./style.css";
 
-export const CreatPost = ({ dark, className, onPostCreated }) => {
+export const CreatPost = ({ dark, className, onPostCreated ,profilepicture}) => {
   const [postContent, setPostContent] = useState("");
-  const [userInfo, setUserInfo] = useState(null);
+  
   const navigate = useNavigate()
-
+  const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -43,7 +43,7 @@ export const CreatPost = ({ dark, className, onPostCreated }) => {
       userId: userInfo.id,
       userName : userInfo.username,
       description: postContent,
-      picturePath: ""
+      profilepicture: userInfo.profilepicture,
     };
 
     try {
@@ -76,7 +76,7 @@ export const CreatPost = ({ dark, className, onPostCreated }) => {
     <div className={`creat-post dark-30-${dark} ${className}`}>
       <div className="main-3">
         <div className="abatars">
-          <img className="mask-group" alt="Mask group" src="/imgHome/mask-group-1.png" />
+          <img className="abatars" alt="Mask group" src={`data:image/${userInfo && userInfo.profilepicture};base64, ${userInfo && userInfo.profilepicture}`} />
         </div>
         <TextareaAutosize
           className="input-data"
