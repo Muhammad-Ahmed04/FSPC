@@ -98,7 +98,7 @@ export default function Main() {
           />
         </div>
         <div className="div-3">
-          <CreatPost className="design-component-instance-node" dark="on" />
+          <CreatPost className="design-component-instance-node" dark="on"  />
           <div id="post" className="main-wrapper">
             <div className="div-4">
               <div className="data-4">
@@ -109,6 +109,7 @@ export default function Main() {
                     {/* Display posts here */}
                     {posts.map((item) => (
                       <Post
+                        profilepicture={item.profilepicture}
                         key={item._id}
                         dark="on"
                         text={item.description}

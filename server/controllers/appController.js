@@ -106,7 +106,8 @@ export async function login(req, res) {
       username: existUsername.username,
       email: existUsername.email,
       role: existUsername.role,
-
+      aboutme: existUsername.aboutme,
+      profilepicture: existUsername.profilePicture
     }
     sessionUser = userInfo
     req.session.user = userInfo
@@ -128,7 +129,7 @@ export async function login(req, res) {
 export async function userSessionInfo(req, res) {
   try {
     // console.log('helo')
-    
+
     res.status(200).json({ sessionUser });
 
   } catch (error) {
@@ -137,6 +138,7 @@ export async function userSessionInfo(req, res) {
     res.status(500).send({ error: `Can't fetch user SessionInfo ` });
   }
 }
+
 
 
 //  POST: http://localhost:8080/api/logout
@@ -181,54 +183,45 @@ export async function getUser(req, res) {
   }
 }
 
-/** PUT: http://localhost:8080/api/updateuser
- * @param: {
+/** PUT: http://localhost:8080/api/update-profile
+ * @body: {
   "id" : "<userid>"
+  "aboutme" 
 }
-body: {
-  "firstName" : '', 
-  "address" : '',
-  "profile" : ''
-}
- */
+*/
 export async function updateUser(req, res) {
-  try {
-    // Extract the user ID from the request query parameters
-    const id = req.query.id;
-
-    if (id) {
-      // Extract the data to update from the request body
-      const body = req.body;
-
-      // Use async/await to update the data in the database
-      const result = await UserModel.updateOne({ _id: id }, body);
-      console.log(result);
-
-      if (result.modifiedCount > 0) {
-        // If at least one document was modified, send a success response
-        return res.status(201).send({ msg: "Record Updated" });
-      }
-      if (result.modifiedCount === 0 && result.matchedCount > 0) {
-        // If no record change but Id match
-        return res.status(201).send({ msg: "No record changed, users matched" });
-      }
-      if (result.matchedCount === 0) {
-        // If no documents were modified, send a response indicating that the user was not found
-        return res.status(404).send({ error: "User Not Found" });
-      }
-    } else {
-      // If the user ID is missing, send an unauthorized response
-      return res.status(401).send({ error: "User ID is required" });
-    }
-  } catch (error) {
-    // Handle any errors that may occur during the process
-    console.error(error);
-    res.status(500).send({ error: "Unable to Update User" });
+  const { aboutMe, userId } = req.body;
+  const user = await UserModel.findOne({ _id: userId })
+  if (!user) {
+    return res.status(404).json({ error: 'No user' });
   }
-}
+  if (!aboutMe) {
+    return res.status(400).json({ error: 'About Me is required' });
+  }
 
+  // Update the user data (this might involve a database operation in a real-world scenario)
+  user.aboutme = aboutMe;
+  await user.save()
+  sessionUser.aboutme = aboutMe
+  console.log(`about is ${user.aboutme}`)
+  // Respond with the updated user data
+  res.status(200).json({ success: true, aboutMe: aboutMe });
+};
 
+export async function updateUserProfile(req, res) {
+  const { userId, profilePicture } = req.body;
+  console.log('inside user profile controller')
+  try {
+    // Update the user's profile picture in MongoDB
+    await UserModel.findByIdAndUpdate(userId, { profilePicture });
 
+    res.status(200).json({ message: 'Profile picture updated successfully' });
+    sessionUser.profilepicture = profilePicture
+  } catch (error) {
+    console.error('Error updating profile picture:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 
 
@@ -269,7 +262,7 @@ export async function resetPassword(req, res) {
 /** POST: http://localhost:8080/api/admin-uc */
 export async function upcomingComp(req, res) {
   try {
-    const { title, date, location, link, kind  } = req.body;
+    const { title, date, location, link, kind } = req.body;
 
     // Check existing competition
     const existTitle = await UserModel.findOne({ title }).exec();

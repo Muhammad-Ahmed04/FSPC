@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { Group } from "../../components/Group";
 import { Calendar } from "../../icons/Calendar";
 import { Home } from "../../icons/Home";
@@ -13,18 +13,18 @@ import PropTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
 
 const LogoutButton = () => {
-    const navigate = useNavigate();
-    const handleLogOut = async () => {
-      const response = await fetch('http://localhost:8080/api/logout', {
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    const response = await fetch('http://localhost:8080/api/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       }
     });
-    if(!response.ok){
+    if (!response.ok) {
       console.log('could not end the user session')
     }
-    console.log('done done')
     localStorage.removeItem('access');
     navigate('/');
     navigate(0);
@@ -38,6 +38,25 @@ const LogoutButton = () => {
 };
 
 export const Header = ({ page }) => {
+  const [userInfo, setUserInfo] = useState(null);
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const { sessionUser } = result
+        console.log(`in create post ${JSON.stringify(sessionUser)}`);
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+      } catch (error) {
+        console.error('Error Fetching User data', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
   return (
     <div id="navbar" className="header">
       <div className="main">
@@ -90,10 +109,12 @@ export const Header = ({ page }) => {
                 <div className="name">
                   <div className="profile-image">
                     <div className="mask-group-wrapper">
-                      <img className="mask-group" alt="Mask group" src="/imgHome/mask-group-1.png" />
+                      <img className="mask-group" alt="Mask group"
+                        src={`data:image/${userInfo && userInfo.profilepicture};base64, ${userInfo && userInfo.profilepicture}`}
+                      />
                     </div>
                   </div>
-                  <div className="AR-jakir">Mateen</div>
+                  <div className="AR-jakir">{userInfo && userInfo.username}</div>
                 </div>
                 <div className="dropdown">
                   <button className="dropbtn">

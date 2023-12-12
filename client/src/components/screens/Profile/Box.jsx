@@ -1,16 +1,140 @@
-import React from "react";
 import "./style.css";
 import { Header } from "../../Header";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Box() {
+  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const { sessionUser } = result;
+        console.log(`in create post ${JSON.stringify(sessionUser)}`);
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+      } catch (error) {
+        console.error('Error Fetching User data', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+  const handleProfilePictureChange = async (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      try {
+        const base64Image = await convertImageToBase64(file);
+        await updateProfilePicture(base64Image);
+        // Optionally, you can update the UI to show the new profile picture.
+      } catch (error) {
+        console.error("Error handling profile picture change:", error);
+      }
+    }
+  };
+
+  const convertImageToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result.split(",")[1]); // Extract base64 data
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const updateProfilePicture = async (base64Image) => {
+    try {
+      const response = await fetch("http://localhost:8080/api/update-profile-picture", {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ userId: userInfo.id, profilePicture: base64Image }),
+      });
+
+      if (response.ok) {
+        console.log('Profile picture updated successfully');
+        navigate(0)
+      } else {
+        console.error('Failed to update profile picture');
+      }
+    } catch (error) {
+      console.error('Error updating profile picture', error);
+    }
+  };
+
+  const editProfile = async () => {
+    // Assume you have an input field or a modal for the user to enter/update about me data.
+    const updatedAboutMe = prompt("Enter your updated 'About Me'");
+
+    try {
+      const response = await fetch("http://localhost:8080/api/update-profile", {
+        method: 'PUT', // Assuming your backend supports updating the profile using PUT method
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ userId: userInfo.id, aboutMe: updatedAboutMe }),
+      });
+
+      if (response.ok) {
+        // Update the local state with the new 'aboutMe' data
+        setUserInfo({
+          ...userInfo,
+          aboutme: updatedAboutMe,
+        });
+
+        console.log('Profile updated successfully');
+      } else {
+        console.error('Failed to update profile');
+      }
+    } catch (error) {
+      console.error('Error updating profile', error);
+    }
+
+  };
+
+
   return (
     <>
       <Header page="home"></Header>
       <div className="box">
         <div className="profile">
+          <div className="change-picture">
+          </div>
           <div className="overlap">
             <div className="haha">
               <div className="overlap-group">
+                <div id="profile-picture-button">
+                  <label htmlFor="profile-picture-input" className="change-picture-label" style={{cursor : "pointer"}}>
+                    Change Profile Pic
+                  </label>
+                  <input
+                    type="file"
+                    id="profile-picture-input"
+                    accept="image/*"
+                    onChange={handleProfilePictureChange}
+                    style={{ display: "none" }}
+                  />
+                </div>
+                <div id="update-profile" >
+                  <button class='edit-profile' onClick={editProfile}> Update profile
+                  </button>
+                </div>
                 <div className="rectangle" />
               </div>
               <img className="banner-DDD" alt="Banner DDD" src="/imgProfile/banner-ddd.png" />
@@ -20,37 +144,41 @@ export default function Box() {
               <div className="text-wrapper">ICPC</div>
             </div>
             <div className="avatar">
-              <img className="img" alt="Avatar" src="/imgProfile/avatar.png" />
-            </div>
+              <img
+                className="img"
+                alt="Avatar"
+                src={`data:image/${userInfo && userInfo.profilepicture};base64, ${userInfo && userInfo.profilepicture}`}
+              /> 
+              </div>
             <div className="nick">
               <div className="div">
-                <div className="text-wrapper-2">Mateen</div>
-                <div className="text-wrapper-3">#0280</div>
+                <div className="text-wrapper-2">{userInfo && userInfo.username}</div>
+                <div className="text-wrapper-3"></div>
               </div>
             </div>
-            {/* Integrated content of the "Profilee" component */}
+
             <div className="profilee">
               <div className="text-wrapper-4">ABOUT ME</div>
-              <div className="text-wrapper-5">NOTE</div>
+              {/* <div className="text-wrapper-5">NOTE</div> */}
               <p className="about">
-                Web Developer, love all things related to code.
+                {userInfo && userInfo.aboutme}
               </p>
-              <p className="note-click">Click to add a note</p>
+              {/* <p className="note-click">Click to add a note</p> */}
             </div>
-          <div className="all-line">
-            <div className="line-wrapper">
-              <img className="line" alt="Line" src="/imgProfile/line-2.svg" />
+            <div className="all-line">
+              <div className="line-wrapper">
+                <img className="line" alt="Line" src="/imgProfile/line-2.svg" />
+              </div>
+              <img className="line-2" alt="Line" src="/imgProfile/line-3.svg" />
             </div>
-            <img className="line-2" alt="Line" src="/imgProfile/line-3.svg" />
-          </div>
-          <div className="element-text">
-            <div className="text-wrapper-6">User Info</div>
-            <div className="text-wrapper-7">Team</div>
-            <div className="text-wrapper-8">Stats</div>
+            <div className="element-text">
+              <div className="text-wrapper-6">User Info</div>
+              <div className="text-wrapper-7">Team</div>
+              <div className="text-wrapper-8">Stats</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
-};
+}

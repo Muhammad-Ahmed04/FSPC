@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState ,useEffect} from "react";
 import { IconLike } from "../IconLike";
 import "./style.css";
+
 
 export const Post = ({
   dark,
@@ -13,29 +14,41 @@ export const Post = ({
   text4 = "Default comments",
   iconLikeIconLikeClassName,
   iconLikeHeartClassName,
+  profilepicture
 }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const { sessionUser } = result
+        console.log(`in create post ${JSON.stringify(sessionUser)}`);
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+      } catch (error) {
+        console.error('Error Fetching User data', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
+  const handleLikeClick = () => {
+    setIsLiked(!isLiked);
+  };
+
   return (
     <div className={`post dark-32-${dark} ${className}`}>
       <div className="main-4">
-        {/* {hasRectangle && <div className="rectangle" />} */}
-
         <div className="data">
+          <img className="post-image" src={`data:image/${profilepicture};base64, ${profilepicture}`}alt="Post Image" />
           <div className="data-2">
             <div className="title-3">
               <p className="bitcoin-has-tumbled">{text}</p>
-              {/* {hasTags && (
-                <div className="tags-3">
-                  <div className="div-wrapper">
-                    <div className="text-wrapper-5">finance</div>
-                  </div>
-                  <div className="tag-3">
-                    <div className="text-wrapper-6">bitcoin</div>
-                  </div>
-                  <div className="tag-4">
-                    <div className="text-wrapper-7">crypto</div>
-                  </div>
-                </div>
-              )} */}
             </div>
             <div className="user">
               <div className="name-3">
@@ -46,15 +59,18 @@ export const Post = ({
                   <div className="element-weeks-ago">{text2}</div>
                 </div>
                 <div className="action">
-                  {/* {hasDiv && <div className="text-wrapper-8">651,324 Views</div>} */}
                   <div className="element-likes">{text3}</div>
                   <div className="element-comments">{text4}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="love">
-            <IconLike className={iconLikeIconLikeClassName} heartClassName={iconLikeHeartClassName} />
+          <div className="love" onClick={handleLikeClick}>
+            <IconLike
+              className={iconLikeIconLikeClassName}
+              heartClassName={isLiked ? `${iconLikeHeartClassName} liked` : iconLikeHeartClassName}
+              fillColor={isLiked ? "#FF4401" : "transparent"}
+            />
           </div>
         </div>
       </div>
@@ -62,7 +78,7 @@ export const Post = ({
   );
 };
 
-Post.propTypes = { 
+Post.propTypes = {
   dark: PropTypes.oneOf(["off", "on"]),
   text: PropTypes.string,
   text1: PropTypes.string,

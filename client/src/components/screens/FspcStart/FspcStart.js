@@ -14,6 +14,9 @@ export default function FspcStart() {
   const redirectToLogin = () => {
     navigate('/login');
   };
+  const redirectToAdmin = () => {
+    navigate('/admin');
+  };
 
   return (
     <div className="users-container">
@@ -28,7 +31,7 @@ export default function FspcStart() {
           <div className="text-wrapper-2">User Register</div>
         </button>
 
-        <button className="user-button">
+        <button className="user-button" onClick={redirectToAdmin}>
           <UserChecked className="user-checked" />
           <div className="text-wrapper-3">Admin</div>
         </button>

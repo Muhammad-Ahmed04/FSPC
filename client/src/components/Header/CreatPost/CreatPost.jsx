@@ -8,12 +8,12 @@ import React from "react";
 import { Button } from "../Button";
 import "./style.css";
 
-export const CreatPost = ({ dark, className, hasInputData = true, buttonText = "Create Post" }) => {
+export const CreatPost = ({ dark, className, hasInputData = true, buttonText = "Create Post" , profilepicture}) => {
   return (
     <div className={`creat-post dark-18-${dark} ${className}`}>
       <div className="main-2">
         <div className="abatars">
-          <img className="mask-group" alt="Mask group" src="/imgHome/mask-group-1.png" />
+          <img className="mask-group" alt="Mask group" src={`data:image/${profilepicture};base64, ${profilepicture}`} />
         </div>
         {hasInputData && (
           <div className="input-data">
