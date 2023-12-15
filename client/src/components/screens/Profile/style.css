@@ -47,7 +47,7 @@
   height: 44px;
   left: 32px;
   position: relative;
-  top: 392px;
+  top: 410px;
   width: 271px;
 }
 
@@ -85,7 +85,7 @@
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 7px;
+  top: 10px;
   width: 49px;
 }
 
@@ -310,6 +310,7 @@
   text-align: center;
   top: 0;
   width: 33%;
+  cursor: pointer;
 }
 
 .box .text-wrapper-7 {
@@ -325,6 +326,7 @@
   text-align: center;
   top: 0;
   width: 33%;
+  cursor: pointer;
 }
 
 .box .text-wrapper-8 {
@@ -340,4 +342,5 @@
   text-align: center;
   top: 0;
   width: 33%;
+  cursor: pointer;
 }

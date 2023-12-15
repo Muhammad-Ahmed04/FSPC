@@ -57,6 +57,7 @@ export default function Main() {
         // console.log(result)
         // console.log(response.json())
         setUser(response);
+        console.log(user)
         
       }catch(error){
         console.error('Error Fetching User data', error)

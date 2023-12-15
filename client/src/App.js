@@ -10,6 +10,7 @@ import Main  from './components/screens/Main/Main';
 import Profile from './components/screens/Profile/Box.jsx';
 import FspcLogin from './components/screens/FspcLogin/FspcLogin';
 import Notification from './components/Notification/Notification.tsx';
+import RegistrationPage from './components/screens/Registrations/registration.js';
 
 
 /** auth middleware */
@@ -41,8 +42,7 @@ export default function App() {
         <Route path="/" element={<FspcStart />} />
         <Route path="/login" element={<FspcLogin />} />
         <Route path="/register" element={<FspcSignup />} />  
-        <Route path="/admin" element={<Admin />} />  
-             
+        <Route path="/admin" element={<Admin />} />               
 
 
         {/* Protected routes. Only Authed users can access. */}
@@ -53,6 +53,7 @@ export default function App() {
           <Route path="/home" element={<Main />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/registration" element={<RegistrationPage />} />  
           </>
         )}
 
