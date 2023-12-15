@@ -77,15 +77,19 @@ export const Header = ({ page }) => {
               </Link>
             </div>
             <div className="home-wrapper-2">
-              <Group
-                divClassName="design-component-instance-node"
-                ellipseClassName="group-instance"
-                ellipseClassNameOverride="group-instance"
-                img="/imgHome/subtract-8.svg"
-                subtract="/imgHome/subtract-9.svg"
-                subtract1="/imgHome/subtract-10.svg"
-                subtract2="/imgHome/subtract-11.svg"
-              />
+
+              <Link to="/register-competition">
+                <Group
+                  divClassName="design-component-instance-node"
+                  ellipseClassName="group-instance"
+                  ellipseClassNameOverride="group-instance"
+                  img="/imgHome/subtract-8.svg"
+                  subtract="/imgHome/subtract-9.svg"
+                  subtract1="/imgHome/subtract-10.svg"
+                  subtract2="/imgHome/subtract-11.svg"
+                  color="#F4F6F8" 
+                />
+              </Link>
             </div>
             <div className="home-wrapper-2">
               <Home25 className="icon-instance-node" color="#F4F6F8" />

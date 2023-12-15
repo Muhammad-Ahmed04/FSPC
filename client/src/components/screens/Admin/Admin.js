@@ -5,6 +5,9 @@ import { Bitcoin3 } from "../../../icons/Bitcoin3";
 import "./admin.css";
 import MyModal from "../../Modal/modal";
 import { Vector173 } from "../../../icons/Vector173";
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
 
 const fetchData = async () => {
   try {
@@ -21,8 +24,30 @@ export default function Admin() {
   const [data, setData] = useState([]);
   const [fetchDataFlag, setFetchDataFlag] = useState(true); // State to trigger data fetching
   const [modalMode, setModalMode] = useState(""); // State to store the modal mode
-  // Call the fetchData function when the component is loaded
+  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate() 
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const { sessionUser } = result
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+        if(sessionUser.role !== 'admin'){
+          navigate('/')
+          throw new Error('Unauthorized')
+        }
+      } catch (error) {
+        console.error(error.message);
+        // navigate()
+      }
+    };
 
+    fetchUserInfo();
+  }, []);
   useEffect(() => {
     const fetchDataAndSetData = async () => {
       const result = await fetchData();
@@ -94,7 +119,7 @@ export default function Admin() {
             dark="on"
             icon={<Bitcoin3 className="bitcoin-3" />}
             mainClassName="popular-tags-instance"
-            text="Registrations"
+            text="Registrations !"
             text1="SOFTEC"
             text10="IEEExtreme"
             text2="Upcoming"

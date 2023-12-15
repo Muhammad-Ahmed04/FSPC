@@ -3,8 +3,8 @@ import UpCompModel from '../model/UpComp.model.js';
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import pastpaperModel from '../model/Pastpaper.model.js';
-let existUsername;
-let sessionUser;
+let existUsername,
+sessionUser;
 
 
 /** POST: http://localhost:8080/api/register
@@ -117,7 +117,7 @@ export async function login(req, res) {
 
 
     // Send a response object containing token, username, and role
-    res.status(200).json({ username: existUsername.username, role, access: token, userInfo: req.session.user });
+    res.status(200).json({ username: existUsername.username, role, access: token, userInfo });
   } catch (error) {
     // Handle the error properly, e.g., log it
     console.error(error);

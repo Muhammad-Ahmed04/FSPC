@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import "./meetups.css";
 
-export const Meetups = ({ text1, text2, date, kind }) => {
+export const Meetups = ({ text1, text2, date, kind, link }) => {
   const dateObject = new Date(date);
   const month = dateObject.toLocaleString('default', { month: 'short' });
   const day = dateObject.getDate();
@@ -18,6 +18,7 @@ export const Meetups = ({ text1, text2, date, kind }) => {
           <div className="data-3">
             <div className="title-5">
               <p className="UIHUT-crunchbase">{text1}</p>
+              <p className="UIHUT-crunchbase" style={{color: "#FF4401"}}><a href={link}>Register Now</a> </p>
               <div className="profile">
                 <img className="img" alt="Rectangle" src="/imgHome/rectangle-32-5.png" />
                 <div className="text-wrapper-12">{text2}</div>

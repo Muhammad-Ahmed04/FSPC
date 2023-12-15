@@ -78,7 +78,7 @@ export default function Main() {
             className="design-component-instance-node"
             dark="on"
             mainClassName="popular-tags-instance"
-            text="Registerations"
+            text="Registerations !"
             text1="SOFTEC"
             text10="IEEExtreme"
             text2="Upcoming"
@@ -130,7 +130,7 @@ export default function Main() {
           <div id="comp" className="meetups dark-46-on design-component-instance-node">
             <div className="main-5">
               <div className="title-4">
-                <div className="text-wrapper-9">Upcoming Competitions</div>
+                <div className="text-wrapper-9"><a href="/register-competition" style={{ textDecoration:"underline"}}>Upcoming Competitions !</a></div>
                 <Vector173 className="vector-17-3" color="#F7F7F7" />
               </div>
               <ul>
@@ -140,7 +140,7 @@ export default function Main() {
                   <div>
                     {/* Display competitions here */}
                     {competitions.map((item) => (
-                      <Meetups kind ={item.kind} date={item.date} text1={item.title} text2={item.location} key={item.id}></Meetups>
+                      <Meetups kind ={item.kind} date={item.date} text1={item.title} text2={item.location} key={item.id} link={item.link}></Meetups>
                     ))}
                   </div>
                 )}

@@ -12,6 +12,7 @@ import { Dev2 } from "../../icons/Dev2";
 import { Seo1 } from "../../icons/Seo1";
 import { Tutorial2 } from "../../icons/Tutorial2";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 export const PopularTags = ({
   dark,
@@ -33,7 +34,7 @@ export const PopularTags = ({
     <div className={`popular-tags ${dark} ${className}`}>
       <div className={`div ${mainClassName}`}>
         <div className="title">
-          <div className="text-wrapper">{text}</div>
+          <div className="text-wrapper"><Link to="/register-competition" style={{textDecoration : "underline"}}>{text}</Link></div>
         </div>
         <div className="tags">
           <div className="tag">
