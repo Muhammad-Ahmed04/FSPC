@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Box() {
   const [userInfo, setUserInfo] = useState(null);
+  const [selectedSection, setSelectedSection] = useState("aboutMe");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,8 +17,7 @@ export default function Box() {
         });
         const result = await response.json();
         const { sessionUser } = result;
-        console.log(`in create post ${JSON.stringify(sessionUser)}`);
-        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+        setUserInfo(sessionUser);
       } catch (error) {
         console.error('Error Fetching User data', error);
       }
@@ -25,6 +25,7 @@ export default function Box() {
 
     fetchUserInfo();
   }, []);
+
   const handleProfilePictureChange = async (event) => {
     const file = event.target.files[0];
 
@@ -78,12 +79,11 @@ export default function Box() {
   };
 
   const editProfile = async () => {
-    // Assume you have an input field or a modal for the user to enter/update about me data.
     const updatedAboutMe = prompt("Enter your updated 'About Me'");
 
     try {
       const response = await fetch("http://localhost:8080/api/update-profile", {
-        method: 'PUT', // Assuming your backend supports updating the profile using PUT method
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -92,7 +92,6 @@ export default function Box() {
       });
 
       if (response.ok) {
-        // Update the local state with the new 'aboutMe' data
         setUserInfo({
           ...userInfo,
           aboutme: updatedAboutMe,
@@ -105,9 +104,39 @@ export default function Box() {
     } catch (error) {
       console.error('Error updating profile', error);
     }
-
   };
 
+  const handleSectionClick = (section) => {
+    setSelectedSection(section);
+  };
+
+  const renderSectionContent = () => {
+    switch (selectedSection) {
+      case "aboutMe":
+        return (
+          <>
+            <div className="text-wrapper-4">ABOUT ME</div>
+            <p className="about">{userInfo && userInfo.aboutme}</p>
+          </>
+        );
+      case "teams":
+        return (
+          <>
+            <div className="text-wrapper-7">Team</div>
+            {/* Render team information here */}
+          </>
+        );
+      case "stats":
+        return (
+          <>
+            <div className="text-wrapper-8">Stats</div>
+            {/* Render stats information here */}
+          </>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -121,7 +150,7 @@ export default function Box() {
               <div className="overlap-group">
                 <div id="profile-picture-button">
                   <label htmlFor="profile-picture-input" className="change-picture-label" style={{cursor : "pointer"}}>
-                    Change Profile Pic
+                    Change Display
                   </label>
                   <input
                     type="file"
@@ -132,7 +161,7 @@ export default function Box() {
                   />
                 </div>
                 <div id="update-profile" >
-                  <button class='edit-profile' onClick={editProfile}> Update profile
+                  <button className='edit-profile' onClick={editProfile}> Update profile
                   </button>
                 </div>
                 <div className="rectangle" />
@@ -158,23 +187,38 @@ export default function Box() {
             </div>
 
             <div className="profilee">
-              <div className="text-wrapper-4">ABOUT ME</div>
-              {/* <div className="text-wrapper-5">NOTE</div> */}
-              <p className="about">
-                {userInfo && userInfo.aboutme}
-              </p>
-              {/* <p className="note-click">Click to add a note</p> */}
+              {renderSectionContent()}
             </div>
             <div className="all-line">
               <div className="line-wrapper">
-                <img className="line" alt="Line" src="/imgProfile/line-2.svg" />
+                <img
+                  className="line"
+                  alt="Line"
+                  src="/imgProfile/line-2.svg"
+                  style={{ left: selectedSection === 'aboutMe' ? '96px' : selectedSection === 'teams' ? '320px' : '560px' }}
+                />
               </div>
               <img className="line-2" alt="Line" src="/imgProfile/line-3.svg" />
             </div>
             <div className="element-text">
-              <div className="text-wrapper-6">User Info</div>
-              <div className="text-wrapper-7">Team</div>
-              <div className="text-wrapper-8">Stats</div>
+              <div
+                className={`text-wrapper-6 ${selectedSection === 'aboutMe' ? 'active' : ''}`}
+                onClick={() => handleSectionClick("aboutMe")}
+              >
+                User Info
+              </div>
+              <div
+                className={`text-wrapper-7 ${selectedSection === 'teams' ? 'active' : ''}`}
+                onClick={() => handleSectionClick("teams")}
+              >
+                Team
+              </div>
+              <div
+                className={`text-wrapper-8 ${selectedSection === 'stats' ? 'active' : ''}`}
+                onClick={() => handleSectionClick("stats")}
+              >
+                Stats
+              </div>
             </div>
           </div>
         </div>
