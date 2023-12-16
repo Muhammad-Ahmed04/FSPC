@@ -76,7 +76,7 @@
   width: fit-content;
 }
 
-.FSPC-signup .div-wrapper {
+/* .FSPC-signup .div-wrapper {
   align-items: center;
   border: 1px solid;
   border-color: #ded2d9;
@@ -87,18 +87,20 @@
   padding: 13px 10px;
   position: relative;
   width: 420px;
-}
+} */
 
 .FSPC-signup .text-wrapper-3 {
   color: var(--gray-5);
-  font-family: "Nunito Sans", Helvetica;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-top: -1px;
+  align-items: center;
+  border: 1px solid;
+  border-color: #ded2d9;
+  border-radius: 5px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 13px;
+  padding: 13px 10px;
   position: relative;
-  width: fit-content;
+  width: 420px;
 }
 
 .FSPC-signup .frame-wrapper {

@@ -216,7 +216,54 @@
   line-height: var(--bold-16-line-height);
   position: relative;
   width: 71px;
+  margin-right: 10px;
+
 }
+
+/* Add this CSS to your header.css file or create a separate CSS file */
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #262D34; /* Background color for the dropdown */
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  color: #ffffff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #FF6934; /* Background color on hover */
+  color: #ffffff;
+}
+
+/* Show the dropdown content when hovering over the dropdown container */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 a{
   cursor: pointer;

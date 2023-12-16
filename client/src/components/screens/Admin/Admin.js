@@ -5,6 +5,9 @@ import { Bitcoin3 } from "../../../icons/Bitcoin3";
 import "./admin.css";
 import MyModal from "../../Modal/modal";
 import { Vector173 } from "../../../icons/Vector173";
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
 
 const fetchData = async () => {
   try {
@@ -21,8 +24,30 @@ export default function Admin() {
   const [data, setData] = useState([]);
   const [fetchDataFlag, setFetchDataFlag] = useState(true); // State to trigger data fetching
   const [modalMode, setModalMode] = useState(""); // State to store the modal mode
+  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate() 
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const { sessionUser } = result
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+        if(sessionUser.role !== 'admin'){
+          navigate('/')
+          throw new Error('Unauthorized')
+        }
+      } catch (error) {
+        console.error(error.message);
+        // navigate()
+      }
+    };
 
-  // Call the fetchData function when the component is loaded
+    fetchUserInfo();
+  }, []);
   useEffect(() => {
     const fetchDataAndSetData = async () => {
       const result = await fetchData();
@@ -47,7 +72,7 @@ export default function Admin() {
   const handleModalSubmit = async (competitionData) => {
     // Perform actions with the competitionData (e.g., send it to your API)
     console.log("Competition Data:", competitionData);
-    let url = modalMode === "competition"? "admin-uc": "pastpapers";
+    let url = modalMode === "competition" ? "admin-uc" : "pastpapers";
     try {
       const response = await fetch("http://localhost:8080/api/" + url, {
         method: "POST",
@@ -61,16 +86,23 @@ export default function Admin() {
         // Data sent successfully
         console.log("Competition Upload Successful");
         setFetchDataFlag(true);
-      } else {
-        // Handle errors
-        console.error("Competition Upload Failed");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+        const index = data.findIndex((item) => item.id === competitionData.id);
+
+      // Update the selectedTag for the specific competition
+      setData((prevData) => [
+        ...prevData.slice(0, index),
+        { ...prevData[index], kind: competitionData.kind },
+        ...prevData.slice(index + 1),
+      ]);
+    } else {
+      // Handle errors
+      const errorMessage = await response.text(); // Get the error message from the response
+      console.error("Competition Upload Failed:", errorMessage);
     }
-  };
-  
- 
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 
   return (
     <>
@@ -79,7 +111,6 @@ export default function Admin() {
         onClose={closeModal}
         onSubmit={handleModalSubmit}
         mode={modalMode} // Pass the modal mode as a prop
-        // clearInputFields={clearInputFields}
       />
       <div id="admin" className="main">
         <div className="div-3">
@@ -88,7 +119,7 @@ export default function Admin() {
             dark="on"
             icon={<Bitcoin3 className="bitcoin-3" />}
             mainClassName="popular-tags-instance"
-            text="Registrations"
+            text="Registrations !"
             text1="SOFTEC"
             text10="IEEExtreme"
             text2="Upcoming"
@@ -127,7 +158,13 @@ export default function Admin() {
               </div>
               <ul>
                 {data.map((item) => (
-                  <Meetups text1={item.title} text2={item.location} key={item.id}></Meetups>
+                  <Meetups
+                    date={item.date}
+                    text1={item.title}
+                    text2={item.location}
+                    kind={item.kind} // Pass the type here instead of selectedTag
+                    key={item.id}
+                  ></Meetups>
                 ))}
               </ul>
             </div>

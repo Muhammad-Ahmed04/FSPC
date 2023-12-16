@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { Group } from "../../components/Group";
 import { Calendar } from "../../icons/Calendar";
 import { Home } from "../../icons/Home";
@@ -10,11 +10,53 @@ import { Vector82 } from "../../icons/Vector82";
 import "./header.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useNavigate } from 'react-router-dom';
 
+const LogoutButton = () => {
+  const navigate = useNavigate();
 
-export const Header = (
-  {page}
-) => {
+  const handleLogOut = async () => {
+    const response = await fetch('http://localhost:8080/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    if (!response.ok) {
+      console.log('could not end the user session')
+    }
+    localStorage.removeItem('access');
+    navigate('/');
+    navigate(0);
+  };
+
+  return (
+    <button onClick={handleLogOut}>
+      Log Out
+    </button>
+  );
+};
+
+export const Header = ({ page }) => {
+  const [userInfo, setUserInfo] = useState(null);
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/me", {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const result = await response.json();
+        const { sessionUser } = result
+        console.log(`in create post ${JSON.stringify(sessionUser)}`);
+        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+      } catch (error) {
+        console.error('Error Fetching User data', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
   return (
     <div id="navbar" className="header">
       <div className="main">
@@ -24,26 +66,30 @@ export const Header = (
         </div>
         <div className="main-2">
           <div className="icons">
-            <div className={page==="home"? "home-wrapper": "home-wrapper-2"}>
+            <div className={page === "home" ? "home-wrapper" : "home-wrapper-2"}>
               <Link to="/home">
-              <Home className="icon-instance-node" color="white" />
+                <Home className="icon-instance-node" color="white" />
               </Link>
             </div>
-            <div className={page==="pp"? "home-wrapper": "home-wrapper-2"}>
-             <Link to="/pastpaper">
-             <Calendar className="icon-instance-node" color="#F4F6F8" />
-             </Link>
+            <div className={page === "pp" ? "home-wrapper" : "home-wrapper-2"}>
+              <Link to="/pastpaper">
+                <Calendar className="icon-instance-node" color="#F4F6F8" />
+              </Link>
             </div>
             <div className="home-wrapper-2">
-              <Group
-                divClassName="design-component-instance-node"
-                ellipseClassName="group-instance"
-                ellipseClassNameOverride="group-instance"
-                img="/imgHome/subtract-8.svg"
-                subtract="/imgHome/subtract-9.svg"
-                subtract1="/imgHome/subtract-10.svg"
-                subtract2="/imgHome/subtract-11.svg"
-              />
+
+              <Link to="/register-competition">
+                <Group
+                  divClassName="design-component-instance-node"
+                  ellipseClassName="group-instance"
+                  ellipseClassNameOverride="group-instance"
+                  img="/imgHome/subtract-8.svg"
+                  subtract="/imgHome/subtract-9.svg"
+                  subtract1="/imgHome/subtract-10.svg"
+                  subtract2="/imgHome/subtract-11.svg"
+                  color="#F4F6F8" 
+                />
+              </Link>
             </div>
             <div className="home-wrapper-2">
               <Home25 className="icon-instance-node" color="#F4F6F8" />
@@ -67,12 +113,23 @@ export const Header = (
                 <div className="name">
                   <div className="profile-image">
                     <div className="mask-group-wrapper">
-                      <img className="mask-group" alt="Mask group" src="/imgHome/mask-group-1.png" />
+                      <img className="mask-group" alt="Mask group"
+                        src={`data:image/${userInfo && userInfo.profilepicture};base64, ${userInfo && userInfo.profilepicture}`}
+                      />
                     </div>
                   </div>
-                  <div className="AR-jakir">Mateen</div>
+                  <div className="AR-jakir">{userInfo && userInfo.username}</div>
                 </div>
-                <Vector82 className="icon-instance-node" color="#F4F6F8" />
+                <div className="dropdown">
+                  <button className="dropbtn">
+                    <Vector82 className="icon-instance-node" color="#F4F6F8" />
+                  </button>
+                  <div className="dropdown-content">
+                    <Link to="/profile">Profile</Link>
+                    <Link to="/settings">Settings</Link>
+                    <LogoutButton />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -81,6 +138,7 @@ export const Header = (
     </div>
   );
 };
+
 Header.propTypes = {
-  page: PropTypes.string
+  page: PropTypes.string,
 };

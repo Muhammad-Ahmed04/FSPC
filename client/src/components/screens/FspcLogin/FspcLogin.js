@@ -1,6 +1,8 @@
 import React from "react";
 // import { Check } from "../../check/index.js";
 import { useState } from "react";
+// import { Cookies } from "universal-cookie"
+import GlitchButton from "../../GlitchButton";
 // import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
 import {useNavigate} from 'react-router-dom';
 
@@ -12,6 +14,8 @@ export default function FspcLogin() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
+  // const cookie = new Cookies();
+
 
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
@@ -41,11 +45,21 @@ export default function FspcLogin() {
         },
         body: JSON.stringify(data),
       });
-
+  
       if (response.ok) {
-        // Data sent successfully
+        const responseData = await response.json(); // Parse the response JSON
+        const { username, role , access, userInfo} = responseData;
+        localStorage.setItem('access', access);
+  
+        console.log(`Logged in as ${username} with role ${role}`);
+        console.log(JSON.stringify(userInfo))
+  
+        // Now you can use username and role as needed
+        // For example, you can set cookies or store them in your application state
+  
+        // cookies.set('AUTHORISATION',  { path: '/' });
         console.log('Login Successful');
-        navigate('/home')
+        navigate('/home');
       } else {
         // Handle errors
         console.error('Invalid Credentials');
@@ -54,6 +68,7 @@ export default function FspcLogin() {
       console.error('Error:', error);
     }
   };
+  
 
     //create an account button routes to register page
     const redirectToRegister = () => {
@@ -158,7 +173,7 @@ export default function FspcLogin() {
                     <div className="frame-5">
                       <div className="text-wrapper-6">Password</div>
                       <div className="frame-8">
-                      <input type="text"
+                      <input type="password"
                         value={password}
                         onChange={handleChange1}
                         placeholder="********" 
@@ -176,7 +191,8 @@ export default function FspcLogin() {
                   </div>
                 </div>
                 <div className="frame-10">
-                  <button type="submit" className="text-wrapper-11">Login</button>
+                  <button type="submit" className="text-wrapper-11"><GlitchButton text= "Login"/></button>
+
                 </div>
               </div>
             </form>

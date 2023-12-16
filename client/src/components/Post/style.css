@@ -16,6 +16,13 @@
   gap: 20px;
   position: relative;
 }
+.post .post-image {
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  margin-right: 10px; /* Adjust the margin as needed */
+  border-radius: 8px; /* Add border-radius if desired */
+}
+
 
 .post .rectangle {
   height: 168px;
@@ -132,6 +139,19 @@
   padding: 4px 10px;
   position: relative;
 }
+.post {
+  align-items: flex-start;
+  background-color: #262D34; /* Set background color */
+  border-radius: 16px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+  width: 100%; /* Set width to 100% */
+}
+
 
 .post .text-wrapper-7 {
   font-family: var(--semibold-10-font-family);
@@ -285,6 +305,7 @@
   padding: 10px;
   position: relative;
   width: 30px;
+  
 }
 
 .post.dark-32-off {
@@ -293,6 +314,8 @@
 
 .post.dark-32-on {
   background-color: #262D34;
+  width: 122.9%;
+  margin-bottom: 20px;
 }
 
 .post.dark-32-off .bitcoin-has-tumbled {

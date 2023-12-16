@@ -8,8 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 120px;
 }
+
 /* Style for the modal content */
 .modal-content {
   width: 33%;
@@ -17,6 +17,7 @@
   background-color: #1E252B;
   color: #fff;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 20px;
   border-radius: 8px;
@@ -33,6 +34,8 @@
 .input-container {
   background-color: #2C353D;
   margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 .input-container label {
@@ -42,12 +45,11 @@
 
 .input-container input {
   width: 100%;
+  border: none;
+  color: #fff;
+  background-color: #2C353D;
   padding: 8px;
-  border: 1px solid #ccc;
   border-radius: 4px;
-}
-#date {
-  margin-left: 4px;
 }
 
 .button-container button {
@@ -67,4 +69,3 @@
   background-color: #ccc;
   color: black;
 }
-

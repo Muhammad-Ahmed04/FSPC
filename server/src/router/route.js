@@ -1,4 +1,10 @@
 import { Router } from "express";
+import{
+    getUser,
+    getUserFriends,
+    addRemoveFriend,
+} from "../controllers/users.js";
+import {verifyToken} from "../middleware/auth.js";
 const router = Router();
 
 /** Import all controllers */
@@ -11,7 +17,8 @@ router.route('/authenticate').post((req, res) => res.end()); // authenticate use
 router.route('/login').post(controller.login); // login in app
 router.route('/admin-uc').post(controller.upcomingComp); //upload Upcoming Competition
 router.route('/pastpapers').post(controller.postPastPapers); //upload pp
-
+router.route('/logout').post(controller.logout)
+router.route('/me').get(controller.userSessionInfo)
 
 /** GET Methods */
 router.route('/user/:username').get(controller.getUser) // user with username
@@ -24,8 +31,12 @@ router.route('/pastpapers').get(controller.getPastPapers) // reset all the varia
 /** PUT Methods */
 router.route('/updateuser').put(controller.updateUser); // used to update user profile
 router.route('/resetPassword').put(controller.resetPassword); // used to reset password
+router.route('/update-profile').put(controller.updateUser)
+router.route('/update-profile-picture').put(controller.updateUserProfile)
 
-/** DELTE Methods */
+
+
+
 
 
 export default router;

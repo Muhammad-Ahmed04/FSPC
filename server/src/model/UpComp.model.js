@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-export const pastPaper = new mongoose.Schema({
-    name: {
+export const UpCompSchema = new mongoose.Schema({
+    title: {
         type: String,
         required: [true , "Please provide unique title"],
-        unique: false
+        unique: [true , "Title Exists"]
     },
     link: {
         type: String,
@@ -13,16 +13,21 @@ export const pastPaper = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: false,
+        required: [true, "Please provide date"],
         unique: false, 
     },
-    type: {
+    location: {
         type: String,
         required: [true, "Please provide location"],
         unique: false,  
     },
+    kind: {
+        type: String,
+        required: [true, "Please provide kind"],
+        unique: false,
+    }
     
 
 });
 
-export default mongoose.model.pastPaper || mongoose.model('pastPaper', pastPaper);
+export default mongoose.model.UpComp || mongoose.model('Upcomp', UpCompSchema);
