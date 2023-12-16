@@ -96,7 +96,7 @@ export async function login(req, res) {
     const role = existUsername.role;
 
     // Generate a JWT token
-    const token = jwt.sign({ id: existUsername._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: existUsername._id }, 'programmingforlife');
 
     // Omit the password from the response
     delete existUsername.password;
