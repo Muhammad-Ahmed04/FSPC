@@ -38,7 +38,7 @@ export default function FspcLogin() {
   const sendDataToBackend = async (data) => {
     console.log(JSON.stringify(data));
     try {
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch('http://52.200.18.237:8080/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

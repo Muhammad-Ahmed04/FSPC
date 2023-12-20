@@ -21,7 +21,7 @@ export const Post = ({
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/me", {
+        const response = await fetch("http://52.200.18.237:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });

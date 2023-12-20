@@ -20,7 +20,7 @@ export default function Main() {
     // Fetch posts
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/posts"); // Update URL to your posts API
+        const response = await fetch("http://52.200.18.237:8080/posts"); // Update URL to your posts API
         const result = await response.json();
         console.log("Fetched posts:", result); // Add this log
         setPosts(result);
@@ -35,7 +35,7 @@ export default function Main() {
     // Fetch competitions
     const fetchCompetitions = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/competitions");
+        const response = await fetch("http://52.200.18.237:8080/api/competitions");
         const result = await response.json();
         setCompetitions(result);
         setIsLoadingCompetitions(false);
@@ -47,7 +47,7 @@ export default function Main() {
 
     const fetchUser = async ()=>{
       try{
-        const response = await fetch("http://localhost:8080/api/me",{
+        const response = await fetch("http://52.200.18.237:8080/api/me",{
           method : 'GET',
           credentials : 'include'
         });
