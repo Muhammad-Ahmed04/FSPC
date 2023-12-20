@@ -33,7 +33,7 @@ app.use(session({
 }));
  
 const corsOptions = {
-  origin: `http://localhost:3000`, // Update with your frontend's origin
+  origin: `https://fspc.s3.amazonaws.com/`, // Update with your frontend's origin
   credentials: true,
 };
 app.use(helmet());
