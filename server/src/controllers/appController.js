@@ -318,6 +318,20 @@ export async function getComp(req, res) {
 
   }
 }
+//**DELETE 52.200.18.237:8080/api/pastpapers/
+export async function deletePastPaper(req,res){
+  try{
+    const id = req.body.id
+    console.log(req.body)
+    // console.log(`params is ${req.params}`)
+    await pastpaperModel.deleteOne({_id : id})
+    res.sendStatus(204)
+  
+  }
+  catch(error){
+    throw new Error('could not delete the past paper')
+  }
+}
 
 /** GET: http://localhost:8080/api/pastpapers */
 export async function getPastPapers(req, res) {
