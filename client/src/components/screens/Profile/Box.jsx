@@ -11,7 +11,7 @@ export default function Box() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/me", {
+        const response = await fetch("http://52.200.18.237:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });
@@ -58,7 +58,7 @@ export default function Box() {
 
   const updateProfilePicture = async (base64Image) => {
     try {
-      const response = await fetch("http://localhost:8080/api/update-profile-picture", {
+      const response = await fetch("http://52.200.18.237:8080/api/update-profile-picture", {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export default function Box() {
     const updatedAboutMe = prompt("Enter your updated 'About Me'");
 
     try {
-      const response = await fetch("http://localhost:8080/api/update-profile", {
+      const response = await fetch("http://52.200.18.237:8080/api/update-profile", {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
