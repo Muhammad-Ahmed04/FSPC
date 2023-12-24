@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 dotenv.config();
 
-const DB_URI = `${process.env.MONGODB_URI}`;
+const DB_URI = `mongodb+srv://ahmed:Password.123@fspc.j3x1x2u.mongodb.net/`;
 
 async function connect() {
   try {

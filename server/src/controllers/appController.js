@@ -96,7 +96,7 @@ export async function login(req, res) {
     const role = existUsername.role;
 
     // Generate a JWT token
-    const token = jwt.sign({ id: existUsername._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: existUsername._id }, 'programmingforlife');
 
     // Omit the password from the response
     delete existUsername.password;
@@ -316,6 +316,20 @@ export async function getComp(req, res) {
     console.error(error);
     res.status(500).send({ error: "Unable to Find Competition" });
 
+  }
+}
+//**DELETE 52.200.18.237:8080/api/pastpapers/
+export async function deletePastPaper(req,res){
+  try{
+    const id = req.body.id
+    console.log(req.body)
+    // console.log(`params is ${req.params}`)
+    await pastpaperModel.deleteOne({_id : id})
+    res.sendStatus(204)
+  
+  }
+  catch(error){
+    throw new Error('could not delete the past paper')
   }
 }
 
