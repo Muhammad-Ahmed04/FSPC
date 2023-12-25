@@ -1,10 +1,12 @@
 import React from "react";
 // import { Check } from "../../check/index.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { Cookies } from "universal-cookie"
 import GlitchButton from "../../GlitchButton";
 // import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+ 
 
 import "./style.css";
 
@@ -15,6 +17,30 @@ export default function FspcLogin() {
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
   // const cookie = new Cookies();
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/me', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+
+        if (response.ok) {
+          const { sessionUser } = await response.json()
+          if (sessionUser)
+            navigate('/home');
+        }
+      }
+      catch (error) {
+        console.error('Error Fetching User data', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
 
 
   const handleRememberMeChange = () => {
@@ -32,48 +58,56 @@ export default function FspcLogin() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendDataToBackend({username, password});
+    sendDataToBackend({ username, password });
   };
 
   const sendDataToBackend = async (data) => {
     console.log(JSON.stringify(data));
     try {
-      const response = await fetch('http://52.200.18.237:8080/api/login', {
+      const response = await fetch('http://localhost:8080/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
         const responseData = await response.json(); // Parse the response JSON
-        const { username, role , access, userInfo} = responseData;
+        const { username, role, access, userInfo } = responseData;
         localStorage.setItem('access', access);
-  
+
         console.log(`Logged in as ${username} with role ${role}`);
         console.log(JSON.stringify(userInfo))
-  
+
         // Now you can use username and role as needed
         // For example, you can set cookies or store them in your application state
-  
+
         // cookies.set('AUTHORISATION',  { path: '/' });
         console.log('Login Successful');
+        toast("login Successfully")
         navigate('/home');
       } else {
         // Handle errors
+        toast("wrong credentials",{
+          position: "top-right",
+          autoClose : true,
+          hideProgressBar : false,
+          closeOnClick : true,
+          theme : "colored"
+        })
         console.error('Invalid Credentials');
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
 
-    //create an account button routes to register page
-    const redirectToRegister = () => {
-      navigate('/register');
-    };
+
+  //create an account button routes to register page
+  const redirectToRegister = () => {
+    navigate('/register');
+  };
 
   return (
     <div className="FSPC-login">
@@ -82,7 +116,7 @@ export default function FspcLogin() {
           <div className="rectangle" />
           <div className="frame">
             <div className="text-wrapper">Not Registered Yet?</div>
-            <button className="Create-an-account-button" onClick = {redirectToRegister}>Create an account</button>
+            <button className="Create-an-account-button" onClick={redirectToRegister}>Create an account</button>
           </div>
           <div className="illustration">
             <div className="overlap-group">
@@ -165,7 +199,7 @@ export default function FspcLogin() {
                       <input type="text"
                         value={username}
                         onChange={handleChange}
-                        placeholder="Enter username" 
+                        placeholder="Enter username"
                         className="text-wrapper-7"></input>
                     </div>
                   </div>
@@ -173,25 +207,25 @@ export default function FspcLogin() {
                     <div className="frame-5">
                       <div className="text-wrapper-6">Password</div>
                       <div className="frame-8">
-                      <input type="password"
-                        value={password}
-                        onChange={handleChange1}
-                        placeholder="********" 
-                        className="text-wrapper-7"></input>
+                        <input type="password"
+                          value={password}
+                          onChange={handleChange1}
+                          placeholder="********"
+                          className="text-wrapper-7"></input>
                       </div>
                     </div>
                     <div className="frame-9">
-                    <label className="checkbox">
-                      <input type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
-                      <span className="checkmark"></span>
-                      <div className="text-wrapper-9">Remember Me</div>
-                    </label>
-                    <div className="text-wrapper-10">Forgot Password?</div>
-                  </div>
+                      <label className="checkbox">
+                        <input type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
+                        <span className="checkmark"></span>
+                        <div className="text-wrapper-9">Remember Me</div>
+                      </label>
+                      <div className="text-wrapper-10">Forgot Password?</div>
+                    </div>
                   </div>
                 </div>
                 <div className="frame-10">
-                  <button type="submit" className="text-wrapper-11"><GlitchButton text= "Login"/></button>
+                  <button type="submit" className="text-wrapper-11"><GlitchButton text="Login" /></button>
 
                 </div>
               </div>
