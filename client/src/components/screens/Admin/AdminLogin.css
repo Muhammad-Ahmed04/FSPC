@@ -1,0 +1,847 @@
+.FSPC-login {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .FSPC-login .overlap-wrapper {
+    background-color: #ffffff;
+    border: 10px solid;
+    border-color: #ffffff;
+    height: 1080px;
+    overflow: hidden;
+    width: 1920px;
+  }
+  
+  .FSPC-login .overlap {
+    height: 1225px;
+    left: -69px;
+    position: relative;
+    top: -60px;
+    width: 1989px;
+  }
+  
+  .FSPC-login .rectangle {
+    background-color: #ffffff;
+    height: 1080px;
+    left: 1178px;
+    position: absolute;
+    top: 60px;
+    width: 811px;
+  }
+  
+  .FSPC-login .frame {
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    justify-content: center;
+    left: 1431px;
+    position: absolute;
+    top: 1040px;
+  }
+  
+  .FSPC-login .text-wrapper {
+    color: var(--gray-3);
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .frame-9 {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 20px; /* Adjust the spacing between checkbox and text */
+  }
+  
+  .checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .text-wrapper-9 {
+    margin-left: 30px;
+    font-size: 14px;
+  }
+  
+  .text-wrapper-10 {
+    font-size: 14px;
+    color: #7f265b; /* Link color */
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* Style the checkmark when the checkbox is checked */
+  .checkbox input:checked + .checkmark {
+    background-color: #7f265b; /* Checked background color */
+    border: 1px solid #7f265b; /* Border color when checked */
+  }
+  
+  /* Style the checkmark's inner icon (you can replace this with your custom icon) */
+  .checkbox input:checked + .checkmark::before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #fff; /* Color of the checkmark */
+    border: 2px solid #fff; /* Border color of the checkmark */
+    border-radius: 50%;
+  }
+  
+  /* Style the "Forgot Password?" link on hover */
+  .text-wrapper-10:hover {
+    text-decoration: none;
+  }
+  
+  
+  .FSPC-login .div {
+    color: #7f265b;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .FSPC-login .illustration {
+    height: 1225px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1243px;
+  }
+  
+  .FSPC-login .overlap-group {
+    height: 1140px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1239px;
+  }
+  
+  .FSPC-login .rectangle-2 {
+    background-color: #1e222b;
+    height: 1080px;
+    left: 69px;
+    position: absolute;
+    top: 60px;
+    width: 1109px;
+  }
+  
+  .FSPC-login .img {
+    height: 597px;
+    left: 332px;
+    position: absolute;
+    top: 239px;
+    width: 594px;
+  }
+  
+  .FSPC-login .vector {
+    height: 65px;
+    left: 733px;
+    position: absolute;
+    top: 248px;
+    width: 65px;
+  }
+  
+  .FSPC-login .vector-2 {
+    height: 37px;
+    left: 892px;
+    position: absolute;
+    top: 643px;
+    width: 37px;
+  }
+  
+  .FSPC-login .vector-3 {
+    height: 82px;
+    left: 1072px;
+    position: absolute;
+    top: 1058px;
+    width: 167px;
+  }
+  
+  .FSPC-login .vector-4 {
+    height: 25px;
+    left: 204px;
+    position: absolute;
+    top: 903px;
+    width: 25px;
+  }
+  
+  .FSPC-login .group {
+    height: 512px;
+    left: 415px;
+    position: absolute;
+    top: 115px;
+    width: 544px;
+  }
+  
+  .FSPC-login .group-2 {
+    height: 565px;
+    left: 374px;
+    position: absolute;
+    top: 379px;
+    width: 499px;
+  }
+  
+  .FSPC-login .overlap-group-wrapper {
+    height: 293px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 297px;
+  }
+  
+  .FSPC-login .overlap-group-2 {
+    background-image: url(../../../../public/rectangle.png);
+    background-size: 100% 100%;
+    height: 233px;
+    left: 69px;
+    position: relative;
+    top: 60px;
+    width: 228px;
+  }
+  
+  .FSPC-login .vector-5 {
+    height: 168px;
+    left: 0;
+    position: absolute;
+    top: 30px;
+    width: 218px;
+  }
+  
+  .FSPC-login .vector-6 {
+    height: 167px;
+    left: 0;
+    position: absolute;
+    top: 6px;
+    width: 229px;
+  }
+  
+  .FSPC-login .text-wrapper-2 {
+    color: #e5ac62;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 40px;
+    font-weight: 800;
+    left: 364px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 973px;
+  }
+  
+  .FSPC-login .text-wrapper-3 {
+    color: #b44538;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 32px;
+    font-weight: 600;
+    left: 558px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 1020px;
+  }
+  
+  .FSPC-login .vector-7 {
+    height: 34px;
+    left: 238px;
+    position: absolute;
+    top: 634px;
+    width: 48px;
+  }
+  
+  .FSPC-login .vector-8 {
+    height: 2px;
+    left: 1068px;
+    position: absolute;
+    top: 694px;
+    width: 2px;
+  }
+  
+  .FSPC-login .vector-9 {
+    height: 3px;
+    left: 223px;
+    position: absolute;
+    top: 539px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-10 {
+    height: 3px;
+    left: 1061px;
+    position: absolute;
+    top: 700px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-11 {
+    height: 3px;
+    left: 1015px;
+    position: absolute;
+    top: 680px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-12 {
+    height: 3px;
+    left: 238px;
+    position: absolute;
+    top: 583px;
+    width: 3px;
+  }
+  
+  .FSPC-login .group-3 {
+    height: 34px;
+    left: 449px;
+    position: absolute;
+    top: 195px;
+    width: 48px;
+  }
+  
+  .FSPC-login .vector-13 {
+    height: 3px;
+    left: 1038px;
+    position: absolute;
+    top: 283px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-14 {
+    height: 3px;
+    left: 191px;
+    position: absolute;
+    top: 886px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-15 {
+    height: 3px;
+    left: 132px;
+    position: absolute;
+    top: 403px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-16 {
+    height: 3px;
+    left: 958px;
+    position: absolute;
+    top: 1103px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-17 {
+    height: 6px;
+    left: 979px;
+    position: absolute;
+    top: 307px;
+    width: 6px;
+  }
+  
+  .FSPC-login .vector-18 {
+    height: 6px;
+    left: 132px;
+    position: absolute;
+    top: 910px;
+    width: 6px;
+  }
+  
+  .FSPC-login .vector-19 {
+    height: 6px;
+    left: 1034px;
+    position: absolute;
+    top: 442px;
+    width: 6px;
+  }
+  
+  .FSPC-login .vector-20 {
+    height: 6px;
+    left: 187px;
+    position: absolute;
+    top: 1045px;
+    width: 6px;
+  }
+  
+  .FSPC-login .vector-21 {
+    height: 6px;
+    left: 391px;
+    position: absolute;
+    top: 122px;
+    width: 6px;
+  }
+  
+  .FSPC-login .vector-22 {
+    height: 6px;
+    left: 1060px;
+    position: absolute;
+    top: 966px;
+    width: 6px;
+  }
+  
+  .FSPC-login .vector-23 {
+    height: 3px;
+    left: 609px;
+    position: absolute;
+    top: 158px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-24 {
+    height: 3px;
+    left: 710px;
+    position: absolute;
+    top: 165px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-25 {
+    height: 2px;
+    left: 368px;
+    position: absolute;
+    top: 686px;
+    width: 2px;
+  }
+  
+  .FSPC-login .vector-26 {
+    height: 3px;
+    left: 349px;
+    position: absolute;
+    top: 725px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-27 {
+    height: 2px;
+    left: 966px;
+    position: absolute;
+    top: 144px;
+    width: 2px;
+  }
+  
+  .FSPC-login .vector-28 {
+    height: 2px;
+    left: 1037px;
+    position: absolute;
+    top: 129px;
+    width: 2px;
+  }
+  
+  .FSPC-login .vector-29 {
+    height: 3px;
+    left: 1106px;
+    position: absolute;
+    top: 202px;
+    width: 3px;
+  }
+  
+  .FSPC-login .vector-30 {
+    height: 3px;
+    left: 881px;
+    position: absolute;
+    top: 157px;
+    width: 3px;
+  }
+  
+  .FSPC-login .group-4 {
+    height: 107px;
+    left: 791px;
+    position: absolute;
+    top: 480px;
+    width: 196px;
+  }
+  
+  .FSPC-login .group-5 {
+    height: 99px;
+    left: 309px;
+    position: absolute;
+    top: 460px;
+    width: 181px;
+  }
+  
+  .FSPC-login .vector-31 {
+    height: 3px;
+    left: 1820px;
+    position: absolute;
+    top: 596px;
+    width: 3px;
+  }
+  
+  .FSPC-login .group-6 {
+    height: 72px;
+    left: 1379px;
+    position: absolute;
+    top: 239px;
+    width: 72px;
+  }
+  
+  .FSPC-login .oval-copy {
+    height: 11px;
+    left: 51px;
+    position: absolute;
+    top: 9px;
+    width: 11px;
+  }
+  
+  .FSPC-login .overlap-2 {
+    height: 30px;
+    left: 11px;
+    position: absolute;
+    top: 0;
+    width: 29px;
+  }
+  
+  .FSPC-login .oval-copy-2 {
+    height: 11px;
+    left: 0;
+    position: absolute;
+    top: 9px;
+    width: 11px;
+  }
+  
+  .FSPC-login .rectangle-3 {
+    background-color: #555555;
+    border-radius: 24px;
+    height: 7px;
+    left: 10px;
+    position: absolute;
+    top: 11px;
+    transform: rotate(90deg);
+    width: 30px;
+  }
+  
+  .FSPC-login .overlap-3 {
+    height: 30px;
+    left: 11px;
+    position: absolute;
+    top: 42px;
+    width: 29px;
+  }
+  
+  .FSPC-login .oval-copy-3 {
+    height: 11px;
+    left: 51px;
+    position: absolute;
+    top: 52px;
+    width: 11px;
+  }
+  
+  .FSPC-login .rectangle-4 {
+    background-color: #555555;
+    border-radius: 24px;
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: 32px;
+    width: 72px;
+  }
+  
+  .FSPC-login .frame-2 {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 36px;
+    justify-content: center;
+    left: 1379px;
+    position: absolute;
+    top: 347px;
+  }
+  
+  .FSPC-login .frame-3 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+  }
+  
+  .FSPC-login .div-wrapper {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 3px;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .FSPC-login .text-wrapper-4 {
+    color: #515151;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .FSPC-login .or-sign-in-with {
+    color: transparent;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .FSPC-login .span {
+    color: #dddddd;
+  }
+  
+  .FSPC-login .text-wrapper-5 {
+    color: #a1a1a1;
+  }
+  
+  .FSPC-login .frame-4 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+  }
+  
+  .FSPC-login .frame-5 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  
+  .FSPC-login .text-wrapper-6 {
+    color: var(--gray-3);
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  /* .FSPC-login .frame-6 {
+    align-items: center;
+    border: 1px solid;
+    border-color: #ded2d9;
+    border-radius: 5px;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 13px;
+    padding: 13px 10px;
+    position: relative;
+    width: 420px;
+  } */
+  
+  .FSPC-login .text-wrapper-7 {
+    align-items: center;
+    border: 1px solid;
+    border-color: #ded2d9;
+    border-radius: 5px;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 13px;
+    padding: 13px 10px;
+    position: relative;
+    width: 420px;
+  }
+  
+  .FSPC-login .frame-7 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+  
+  /* .FSPC-login .frame-8 {
+    align-items: center;
+    border: 1px solid;
+    border-color: #ded2d9;
+    border-radius: 5px;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 13px;
+    padding: 18px 10px 13px;
+    position: relative;
+    width: 420px;
+  } */
+  
+  .FSPC-login .text-wrapper-8 {
+    color: var(--gray-5);
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .FSPC-login .frame-9 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 222px;
+    position: relative;
+  }
+  
+  .FSPC-login .checkbox {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 8px;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .FSPC-login .check-instance {
+    background-color: #7f265b !important;
+    border: unset !important;
+    border-color: unset !important;
+    position: relative !important;
+  }
+  
+  .FSPC-login .design-component-instance-node {
+    left: 1px !important;
+    top: 1px !important;
+  }
+  
+  .FSPC-login .icons-navigation-others-10-check-1 {
+    height: 8px !important;
+    left: 1px !important;
+    position: absolute !important;
+    top: 1px !important;
+    width: 8px !important;
+  }
+  
+  .FSPC-login .text-wrapper-9 {
+    color: #a1a1a1;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .FSPC-login .text-wrapper-10 {
+    color: #7f265b;
+    font-family: "Nunito Sans", Helvetica;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  /* .FSPC-login .frame-10 {
+    align-items: center;
+    background-color: #7f265b;
+    border-radius: 6px;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 13px;
+    justify-content: center;
+    padding: 13px 10px 12px;
+    position: relative;
+    width: 420px;
+  } */
+  
+  .FSPC-login .text-wrapper-11 {
+    position: relative;
+    background-color: #7f265b;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 420px;
+    transition: all 0.3s ease;
+  }
+  
+  
+  .glitch-button {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .glitch-button:hover::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-shadow: -2px 0 #ff5722, 2px 0 #2196f3;
+    animation: glitch-anim 1s ease-in-out 0.3s forwards;
+    animation: glitch-anim 1s ease-in-out 0.3s backwards;
+  }
+  
+  @keyframes glitch-anim {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(4px, 0);
+    }
+  }
+  
+  
+  
+  /* @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+  
+  @media only screen and (max-width: 1080px) {
+    body {
+      background-color: lightblue;
+    }
+  } */

@@ -220,19 +220,27 @@
 
 }
 
+
+
 /* Add this CSS to your header.css file or create a separate CSS file */
 
 /* Dropdown container */
-.dropdown {
+.header .dropdown {
   position: relative;
   display: inline-block;
 }
 
 /* Dropdown button */
-.dropbtn {
+.header .dropbtn {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.header .dropbtn:focus {
+  outline: none;
 }
 
 /* Dropdown content (hidden by default) */
@@ -251,6 +259,19 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+}
+
+.logout-button {
+  color: #ffffff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #FF6934;
+  color: #ffffff;
 }
 
 /* Change color of dropdown links on hover */

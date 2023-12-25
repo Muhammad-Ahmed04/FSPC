@@ -15,6 +15,7 @@ router.route('/register').post(controller.register); // register user
 // router.route('/registerMail').post((req, res) => res.json('register Mail')); // send email
 router.route('/authenticate').post((req, res) => res.end()); // authenticate user 
 router.route('/login').post(controller.login); // login in app
+router.route('/admin/login').post(controller.adminLogin); // login in app
 router.route('/admin-uc').post(controller.upcomingComp); //upload Upcoming Competition
 router.route('/pastpapers').post(controller.postPastPapers); //upload pp
 router.route('/logout').post(controller.logout)
@@ -35,7 +36,8 @@ router.route('/update-profile').put(controller.updateUser)
 router.route('/update-profile-picture').put(controller.updateUserProfile)
 
 
-
+/**DELETE Methods */
+router.route('/pastpapers').delete(controller.deletePastPaper)
 
 
 

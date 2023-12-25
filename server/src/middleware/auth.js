@@ -11,7 +11,7 @@ export const verifyToken = async(req,res,next) => {
             token = token.slice(7, token.length).trimleft();
         }
 
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        const verified = jwt.verify(token, 'programmingforlife');
         req.user = verified
         next();
 

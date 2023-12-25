@@ -33,7 +33,7 @@ app.use(session({
 }));
  
 const corsOptions = {
-  origin: `${process.env.CLIENT_URI}`, // Update with your frontend's origin
+  origin: `http://localhost:3000`,  //'https://fspc.s3.amazonaws.com/`, // Update with your frontend's origin
   credentials: true,
 };
 app.use(helmet());
@@ -58,12 +58,12 @@ const storage = multer.diskStorage({
 app.use(express.json());
 app.disable('x-powered-by');  //less hackers know about our stack
 
-const port = `${process.env.API_PORT}`;
+const port = 8080;
 
 /** HTTP GET Request */
-// app.get('/', (req, res) => {
-//   res.status(201).json("Home GET Request");
-// });
+app.get('/', (req, res) => {
+  res.send("Welcome to FSPC");
+});
 const upload = multer({storage});
 
 /** Routes with files */
