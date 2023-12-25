@@ -7,7 +7,7 @@ import { Home28 } from "../../icons/Home28";
 import { Notification3 } from "../../icons/Notification3";
 import { SearchIcon2 } from "../../icons/SearchIcon2";
 import { Vector82 } from "../../icons/Vector82";
-import "./header.css";
+import "./AdminHeader.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
@@ -31,8 +31,7 @@ const LogoutButton = () => {
     navigate(0);
   };
 
-
-    return (
+  return (
       <div className="dropdown-content">
         <div className="logout-button" onClick={handleLogOut}>
           Log Out
@@ -41,20 +40,10 @@ const LogoutButton = () => {
   );
 };
 
-
-export const Header = ({ page }) => {
+export const AdminHeader = ({ page }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [showDashboardOption, setShowDashboardOption] = useState(false);
   const navigate = useNavigate();
-  const handlePastPaperLink = () => {
-    console.log("Han bhai dab raha");
-    if (userInfo && userInfo.role === 'admin') {
-      navigate('/admin/pastpaper');
-    } else {
-      navigate('/pastpaper');
-    }
-    console.log("Han Bhai navigate bhi ho raha");
-  };
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -65,17 +54,14 @@ export const Header = ({ page }) => {
         const result = await response.json();
         const { sessionUser } = result
         console.log(`in create post ${JSON.stringify(sessionUser)}`);
-        setUserInfo(sessionUser);
-        console.log('User Info:', sessionUser);
+        setUserInfo(sessionUser); 
         if (sessionUser && sessionUser.role === 'admin') {
-          setShowDashboardOption(true);
-        }
-        
+            setShowDashboardOption(true);
+          }
       } catch (error) {
         console.error('Error Fetching User data', error);
       }
     };
-
 
     fetchUserInfo();
   }, []);
@@ -83,6 +69,8 @@ export const Header = ({ page }) => {
   const handleDashboardClick = () => {
     navigate('/admin/home');
   };
+
+
   return (
     <div id="navbar" className="header">
       <div className="main">
@@ -98,9 +86,9 @@ export const Header = ({ page }) => {
               </Link>
             </div>
             <div className={page === "pp" ? "home-wrapper" : "home-wrapper-2"}>
-            <Link to="#" onClick={(e) => { e.preventDefault(); handlePastPaperLink(); }}>
-              <Calendar className="icon-instance-node" color="#F4F6F8" />
-            </Link>
+              <Link to="/admin/pastpaper">
+                <Calendar className="icon-instance-node" color="#F4F6F8" />
+              </Link>
             </div>
             <div className="home-wrapper-2">
 
@@ -146,7 +134,7 @@ export const Header = ({ page }) => {
                   </div>
                   <div className="AR-jakir">{userInfo && userInfo.username}</div>
                 </div>
-                <div className="dropdown">
+                <div className="header dropdown">
                   <button className="dropbtn">
                     <Vector82 className="icon-instance-node" color="#F4F6F8" />
                   </button>
@@ -170,6 +158,6 @@ export const Header = ({ page }) => {
   );
 };
 
-Header.propTypes = {
+AdminHeader.propTypes = {
   page: PropTypes.string,
 };

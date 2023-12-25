@@ -85,11 +85,11 @@ export default function FspcLogin() {
 
         // cookies.set('AUTHORISATION',  { path: '/' });
         console.log('Login Successful');
-        toast("login Successfully")
+        toast.success("login Successfully")
         navigate('/home');
       } else {
         // Handle errors
-        toast("wrong credentials",{
+        toast.error("wrong credentials",{
           position: "top-right",
           autoClose : true,
           hideProgressBar : false,
