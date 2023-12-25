@@ -1,44 +1,19 @@
 #back {
-    background-color: #FF6934;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  background-color: #FF6934;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 thead{
-    text-align:justify
+  text-align:justify
 }
 
 th{
- border: none;   
+border: none;   
 }
 
 td {
-    border-bottom: 1px solid white;
+  border-bottom: 1px solid white;
 }
-
-.edit-options {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  
-  .edit-options button {
-    background-color: #FF6934;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px; /* Adjusted margin for more space */
-  }
-  
-  .edit-options button:hover {
-    background-color: #FF8F67;
-  }
-  
-  /* Add a little more margin for better spacing */
-  .edit-options td {
-    padding-top: 10px;
-  }
