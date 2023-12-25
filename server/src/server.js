@@ -61,9 +61,9 @@ app.disable('x-powered-by');  //less hackers know about our stack
 const port = 8080;
 
 /** HTTP GET Request */
-// app.get('/', (req, res) => {
-//   res.status(201).json("Home GET Request");
-// });
+app.get('/', (req, res) => {
+  res.send("Welcome to FSPC");
+});
 const upload = multer({storage});
 
 /** Routes with files */
