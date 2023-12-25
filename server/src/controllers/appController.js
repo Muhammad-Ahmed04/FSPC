@@ -128,6 +128,7 @@ export async function login(req, res) {
 
 export async function adminLogin(req, res) {
   try {
+    console.log('helooo')
     const { username, password } = req.body;
 
     // Check if a user with the given username exists in the database.
@@ -136,6 +137,7 @@ export async function adminLogin(req, res) {
     if (!existUsername) {
       return res.status(400).send({ error: 'Incorrect username' });
     }
+    console.log(existUsername.role)
     if(existUsername.role != 'admin'){
       return res.status(403).send({ error: 'Forbidden' });      
     }
@@ -184,7 +186,7 @@ export async function adminLogin(req, res) {
 export async function userSessionInfo(req, res) {
   try {
     // console.log('helo')
-
+    console.log(sessionUser)
     res.status(200).json({ sessionUser });
 
   } catch (error) {
@@ -201,6 +203,7 @@ export async function userSessionInfo(req, res) {
 export async function logout(req, res) {
   try {
     req.session.destroy()
+    sessionUser =  null
     res.send('logged Out successfully')
 
   } catch (error) {

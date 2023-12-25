@@ -11,7 +11,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 const fetchData = async () => {
   try {
-    const response = await fetch("http://52.200.18.237:8080/api/competitions");
+    const response = await fetch("http://localhost:8080/api/competitions");
     const result = await response.json();
     return result;
   } catch (error) {
@@ -29,7 +29,7 @@ export default function Admin() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://52.200.18.237:8080/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });
@@ -74,7 +74,7 @@ export default function Admin() {
     console.log("Competition Data:", competitionData);
     let url = modalMode === "competition" ? "admin-uc" : "pastpapers";
     try {
-      const response = await fetch("http://52.200.18.237:8080/api/" + url, {
+      const response = await fetch("http://localhost:8080/api/" + url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

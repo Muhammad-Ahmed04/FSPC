@@ -44,6 +44,7 @@ export default function App() {
         <Route path="/" element={<FspcStart />} />
         <Route path="/login" element={<FspcLogin />} />
         <Route path="/register" element={<FspcSignup />} />  
+        <Route path="/admin/login" element={<AdminLogin />} />
         {/* <Route path="/admin" element={<Admin />} />   */}
              
 
@@ -54,10 +55,9 @@ export default function App() {
           <Route path="/home" element={<Main />} />
           <Route path="/pastpaper" element={<PastPapers />} />
           <Route path="/home" element={<Main />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/home" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/register-competition" element={<RegistrationPage />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/pastpaper" element={<AdminPastpaper />} />
           </>
         )}

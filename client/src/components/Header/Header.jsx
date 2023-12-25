@@ -16,7 +16,7 @@ const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
-    const response = await fetch('http://52.200.18.237:8080/api/logout', {
+    const response = await fetch('http://localhost:8080/api/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,6 +25,7 @@ const LogoutButton = () => {
     if (!response.ok) {
       console.log('could not end the user session')
     }
+    console.log(response)
     localStorage.removeItem('access');
     navigate('/');
     navigate(0);
@@ -42,7 +43,7 @@ export const Header = ({ page }) => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://52.200.18.237:8080/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });
