@@ -6,7 +6,7 @@ import "./admin.css";
 import MyModal from "../../Modal/modal";
 import { Vector173 } from "../../../icons/Vector173";
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import { AdminHeader } from '../../Header/AdminHeader';
 
 
 const fetchData = async () => {
@@ -106,6 +106,8 @@ export default function Admin() {
 
   return (
     <>
+      <AdminHeader page="pp"></AdminHeader>
+    <>
       <MyModal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -172,5 +174,6 @@ export default function Admin() {
         </div>
       </div>
     </>
+  </>
   );
 }
