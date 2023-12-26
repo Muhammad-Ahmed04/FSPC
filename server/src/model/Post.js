@@ -29,7 +29,6 @@ const postSchema = mongoose.Schema(
     likedBy: {
         type :[ObjectId],
         default: [],
-        unique : true
     },
     comments: {
         type: Array,

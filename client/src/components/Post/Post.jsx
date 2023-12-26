@@ -45,12 +45,12 @@ export const Post = ({
     setIsLiked(!isLiked);
     let response
     try {
-     let data = {
+      let data = {
         id: idd,
         text3,
-        userId : userInfo.id
+        userId: userInfo.id
       }
-        response = await fetch("http://localhost:8080/posts/update-likes", {
+      response = await fetch("http://localhost:8080/posts/update-likes", {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -58,11 +58,11 @@ export const Post = ({
         },
         body: JSON.stringify(data),
       });
-  
+
       const result = await response.json();
       if (response.ok) {
         console.log('haha')
-        // navigate(0)
+        navigate(0)
       }
     } catch (error) {
       console.error('Error Fetching User data', error);
@@ -98,8 +98,8 @@ export const Post = ({
             <IconLike
               className={iconLikeIconLikeClassName}
               heartClassName={isLiked ? `${iconLikeHeartClassName} liked` : iconLikeHeartClassName}
-              fillColor={isLiked ? "#FF4401" : "transparent"}
-            />
+              fillColor={(isLiked || (userInfo && userInfo.likedPosts && userInfo.likedPosts.includes(idd))) ? "#FE4401" : "transparent"}
+              />
           </div>
         </div>
       </div>
