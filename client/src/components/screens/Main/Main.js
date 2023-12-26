@@ -24,6 +24,7 @@ export default function Main() {
         const result = await response.json();
         console.log("Fetched posts:", result); // Add this log
         setPosts(result);
+        console.log(result)
         setIsLoadingPosts(false);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -110,13 +111,13 @@ export default function Main() {
                     {posts.map((item) => (
                       <Post
                         profilepicture={item.profilepicture}
-                        key={item._id}
+                        idd={item._id}
                         dark="on"
                         text={item.description}
                         text1={item.userName}
                         text2={item.createdAt}
-                        text3="36,6545 Likes"
-                        text4="56 comments"
+                        text3={item.likes}
+                        text4={item.comments}
                         style={{ marginBottom: '50px' }} // Add styling here if needed
                       />
                     ))}

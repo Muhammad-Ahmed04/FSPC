@@ -1,24 +1,16 @@
 #admin.main {
-  /* align-items: flex-start;
-  display: flex;
-  gap: 300px !important;
-  position: relative;
-  width: 1366px;
-  height: 1000px;
-  background-color: #1E252B;
-  padding: 100px; */
   display: flex;
   gap: 306px !important;
-  width: 1905px;
+  width: 100vw; /* Use viewport width to cover the entire screen */
   justify-content: center;
-  height: 1000px;
+  height: 100vh; /* Use viewport height to cover the entire screen */
   background-color: #1E252B;
   padding: 100px;
+  margin: 0; /* Remove default margin */
 }
 
 .button {
   all: unset;
-  align-items: flex-start;
   background-color: #FF6934;
   border-radius: 6px;
   box-sizing: border-box;
@@ -41,16 +33,12 @@
   white-space: nowrap;
   width: fit-content;
   cursor: pointer;
-
 }
 
 #admin.main .div-3 {
-  align-items: flex-start;
   display: inline-flex;
-  flex: 0 0 auto;
   flex-direction: column;
   gap: 20px;
-  position: relative;
   width: 280px;
 }
 
@@ -58,6 +46,7 @@
   flex: 0 0 auto !important;
   width: 145% !important;
 }
+
 
 .main .popular-tags-instance {
   margin-right: -2px !important;
@@ -74,36 +63,35 @@
 }
 
 .main .right-bar {
-  align-items: flex-start;
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
   height: 328px;
-  position: relative;
   width: 338px;
 }
 
+.main #comp.design-component-instance-node .main-5 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-right: -10px;
+  width: 295px;
+}
 .meetups {
-  align-items: flex-start;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  position: relative;
   width: 135% !important;
-  
 }
 
 .meetups .main-5 {
-  align-items: flex-start;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
   gap: 20px;
   margin-right: -10px;
-  position: relative;
-  width: 295px;
+  width: 295px /* Use 100% width to cover the entire parent container */
 }
 
 .meetups .text-wrapper-9 {
@@ -122,10 +110,10 @@
 .meetups .title-4 {
   align-items: flex-end;
   display: inline-flex;
-  flex: 0 0 auto;
   gap: 3px;
   position: relative;
 }
+
 .meetups.dark-46-off {
   background-color: #FFFFFF;
 }

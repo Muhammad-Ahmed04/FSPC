@@ -18,7 +18,6 @@ export const createPost = async (req, res) => {
             userName: userName,
             email: user.email,
             description,
-            likes: {},
             comments: [],
             profilepicture: profilepicture
         });
@@ -36,7 +35,31 @@ export const createPost = async (req, res) => {
     }
 }
 
+export const updatePostLikes = async (req, res) => {
+    const { id, text3, userId } = req.body
+    console.log(req.body)
 
+    try {
+        const post = await Post.findOneAndUpdate(
+            { _id: id },
+            {
+                $inc: { likes: 1 },
+                $addToSet: { likedBy: userId }, // Use $addToSet to add userId only if not already present
+            },
+            { new: false }
+        );
+        res.status(200).send({ msg: 'Like successfully' })
+    } catch (error) {
+        if (error.code === 11000 && error.keyPattern && error.keyPattern.likedBy) {
+            // Duplicate key error, i.e., user has already liked the post
+            res.status(403).send({ msg: 'Already Liked' });
+        }
+        else {
+            console.error("Error updating post likes:", error);
+            res.status(500).send('Internal Server Error');
+          }
+    }
+}
 
 
 /** Read */
