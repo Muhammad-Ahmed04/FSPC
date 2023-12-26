@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconLike } from "../IconLike";
 import "./style.css";
+import { toast } from "react-toastify";
 
 
 export const Post = ({
@@ -60,11 +61,37 @@ export const Post = ({
       });
 
       const result = await response.json();
-      if (response.ok) {
-        console.log('haha')
-        navigate(0)
+      if (response.status == 200) {
+        toast.success("liked",{
+          autoClose: 100,
+          hideProgressBar: true,
+          position: "top-center"
+        }
+        )
+        setTimeout(() => {
+          navigate(0);
+        }, 1000);
+        
+      }
+      else if(response.status== 201){
+        toast.success("unliked",{
+          autoClose: 100,
+          hideProgressBar: true,
+          position: "top-center"
+        })
+        setTimeout(() => {
+          navigate(0);
+        }, 1000);
+        
       }
     } catch (error) {
+      toast.error(error.message,{
+        position: "top-right",
+        autoClose : true,
+        hideProgressBar : false,
+        closeOnClick : true,
+        theme : "colored"
+      })
       console.error('Error Fetching User data', error);
     }
   };

@@ -77,11 +77,6 @@ export default function FspcLogin() {
         console.log(`Logged in as ${username} with role ${role}`);
         console.log(JSON.stringify(userInfo))
 
-        // Now you can use username and role as needed
-        // For example, you can set cookies or store them in your application state
-
-        // cookies.set('AUTHORISATION',  { path: '/' });
-        // console.log('Login Successful');
         toast.success("login Successfully")
         navigate('/admin/home');
       } else {
