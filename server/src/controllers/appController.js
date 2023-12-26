@@ -3,6 +3,8 @@ import UpCompModel from '../model/UpComp.model.js';
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import pastpaperModel from '../model/Pastpaper.model.js';
+import onSiteCompetitionsModel from '../model/onSiteCompetitions.model.js';
+import registrationsModel from '../model/registrations.model.js';
 let existUsername,
 sessionUser;
 
@@ -30,11 +32,11 @@ export async function register(req, res) {
     const existEmail = await UserModel.findOne({ email }).exec();
 
     if (existUsername) {
-      return res.status(400).send({ error: "Please use a unique username" });
+      return res.status(400).send({ error: "username already exist" });
     }
 
     if (existEmail) {
-      return res.status(400).send({ error: "Please use a unique Email" });
+      return res.status(400).send({ error: "Email already exist" });
     }
 
     if (password !== confirmPass) {
@@ -128,7 +130,7 @@ export async function login(req, res) {
 
 export async function adminLogin(req, res) {
   try {
-    console.log('helooo')
+
     const { username, password } = req.body;
 
     // Check if a user with the given username exists in the database.
@@ -268,6 +270,7 @@ export async function updateUser(req, res) {
 
 export async function updateUserProfile(req, res) {
   const { userId, profilePicture } = req.body;
+  // console.log(profilePicture)
   console.log('inside user profile controller')
   try {
     // Update the user's profile picture in MongoDB
@@ -281,6 +284,50 @@ export async function updateUserProfile(req, res) {
   }
 };
 
+/**POST : http://localhost:8080/api/onsite-competitions */
+export async function onSiteCompetition(req, res) {
+  const { title, date,max_registerations } = req.body;
+  if (!title || !date || !max_registerations) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    // Update the user's profile picture in MongoDB
+    await onSiteCompetitionsModel.create({
+      title,
+      date,
+      max_registerations
+    });
+
+    res.status(201).json({ message: 'On Site Competition Created' });
+  } catch (error) {
+    console.error('Error Creating On Site Competition:', error);
+    res.status(500).json({ error: 'Error Creating On Site Competition' });
+  }
+};
+
+/**POST : http://localhost:8080/api/register-onsite */
+export async function registerForOnsiteCompetition(req, res) {
+  const { title, members, phone_number,team_name } = req.body;
+  if (!title || !members || !phone_number || !team_name) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    // Update the user's profile picture in MongoDB
+    await registrationsModel.create({
+      title,
+      members,
+      phone_number,
+      team_name
+    });
+
+    res.status(201).json({ message: 'Registeration Successful' });
+  } catch (error) {
+    console.error('Registeration Failed:', error);
+    res.status(500).json({ error: 'Error Registering for Competition' });
+  }
+};
 
 
 /**GET: http://localhost:8080/api/generateOTP */
