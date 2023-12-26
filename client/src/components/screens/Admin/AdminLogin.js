@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import GlitchButton from "../../GlitchButton";
 // import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import "./AdminLogin.css";
 
@@ -80,14 +81,24 @@ export default function FspcLogin() {
         // For example, you can set cookies or store them in your application state
 
         // cookies.set('AUTHORISATION',  { path: '/' });
-        console.log('Login Successful');
+        // console.log('Login Successful');
+        toast.success("login Successfully")
         navigate('/admin/home');
       } else {
         // Handle errors
-        console.error('Invalid Credentials');
+        // console.error('Invalid Credentials');
+        const errorResponse = await response.json(); // Try to parse the response as JSON
+        toast.error(errorResponse.error, {
+          position: "top-right",
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored"
+        });
       }
     } catch (error) {
       console.error('Error:', error);
+      toast.error(error)
     }
   };
 
@@ -186,6 +197,7 @@ export default function FspcLogin() {
                     <div className="frame-6">
                       <input type="text"
                         value={username}
+                        required
                         onChange={handleChange}
                         placeholder="Enter username"
                         className="text-wrapper-7"></input>
@@ -197,6 +209,7 @@ export default function FspcLogin() {
                       <div className="frame-8">
                         <input type="password"
                           value={password}
+                          required
                           onChange={handleChange1}
                           placeholder="********"
                           className="text-wrapper-7"></input>

@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 export default function FspcSignup() {
@@ -30,7 +31,7 @@ export default function FspcSignup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendDataToBackend({username, email, password, confirmPass});
+    sendDataToBackend({ username, email, password, confirmPass });
   };
 
   const sendDataToBackend = async (data) => {
@@ -43,17 +44,28 @@ export default function FspcSignup() {
         },
         body: JSON.stringify(data),
       });
-
+      console.log('hi', JSON.stringify(response))
       if (response.ok) {
         // Data sent successfully
-        console.log('Registration Successful');
-        navigate('/')
+        // console.log('Registration Successful');
+        toast.success("Register Successfully")
+        navigate('/login')
       } else {
         // Handle errors
-        console.error('Registration Failed');
+        const errorResponse = await response.json(); // Try to parse the response as JSON
+        // console.log('Registration Failed', errorResponse.error);
+
+        toast.error(errorResponse.error, {
+          position: "top-right",
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored"
+        });
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
+      toast.error("An error occurred during registration");
     }
   };
 
@@ -76,6 +88,7 @@ export default function FspcSignup() {
                 <div className="div-wrapper">
                   <div className="text-wrapper-3">
                     <input
+                      required
                       type="text"
                       onChange={handleChange}
                       placeholder="Enter your username"
@@ -90,6 +103,7 @@ export default function FspcSignup() {
                     <div className="div-wrapper">
                       <div className="text-wrapper-3">
                         <input
+                          required
                           type="email"
                           onChange={handleChange1}
                           placeholder="Enter your email"
@@ -102,6 +116,7 @@ export default function FspcSignup() {
                       <div className="text-wrapper-2">Password</div>
                       <div className="frame-4">
                         <input
+                          required
                           type="password"
                           onChange={handleChange2}
                           placeholder="Enter your password"
@@ -114,6 +129,7 @@ export default function FspcSignup() {
                       <div className="text-wrapper-2">Confirm Password</div>
                       <div className="frame-4">
                         <input
+                          required
                           type="password"
                           onChange={handleChange3}
                           placeholder="Confirm your password"
@@ -127,12 +143,12 @@ export default function FspcSignup() {
                 <button className="signup-button">Sign-up</button>
               </div>
             </form>
-</div>
+          </div>
 
-<div className="frame-6">
-  <div className="text-wrapper-6">Already Have An Account?</div>
-  <button className="login-button" onClick={redirectToLogin}>Login</button>
-</div>
+          <div className="frame-6">
+            <div className="text-wrapper-6">Already Have An Account?</div>
+            <button className="login-button" onClick={redirectToLogin}>Login</button>
+          </div>
 
           <div className="illustration">
             <div className="overlap-group">

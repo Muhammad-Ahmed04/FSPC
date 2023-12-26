@@ -6,7 +6,7 @@ import GlitchButton from "../../GlitchButton";
 // import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
- 
+
 
 import "./style.css";
 
@@ -89,12 +89,12 @@ export default function FspcLogin() {
         navigate('/home');
       } else {
         // Handle errors
-        toast.error("wrong credentials",{
+        toast.error("Incorrect credentials", {
           position: "top-right",
-          autoClose : true,
-          hideProgressBar : false,
-          closeOnClick : true,
-          theme : "colored"
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored"
         })
         console.error('Invalid Credentials');
       }
@@ -197,6 +197,7 @@ export default function FspcLogin() {
                     <div className="text-wrapper-6">username</div>
                     <div className="frame-6">
                       <input type="text"
+                        required
                         value={username}
                         onChange={handleChange}
                         placeholder="Enter username"
@@ -208,6 +209,7 @@ export default function FspcLogin() {
                       <div className="text-wrapper-6">Password</div>
                       <div className="frame-8">
                         <input type="password"
+                          required
                           value={password}
                           onChange={handleChange1}
                           placeholder="********"

@@ -160,6 +160,20 @@
   /* padding-right: 70px; */
   line-height: 1;
 }
+#profile-picture-button-two {
+  background-color: #FF6934;
+  cursor: pointer;
+  color: white;
+  padding: 10px 10px ;
+  border: none;
+  border-radius: 5px;
+  margin-top: -45px;
+  margin-bottom: 50px;
+  width: fit-content;
+  margin-left: 150px;
+  /* padding-right: 70px; */
+  line-height: 1;
+}
 #update-profile {
   background-color: #FF6934;
   color: white;
