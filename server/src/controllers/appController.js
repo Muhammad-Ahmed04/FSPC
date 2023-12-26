@@ -102,20 +102,20 @@ export async function login(req, res) {
 
     // Omit the password from the response
     delete existUsername.password;
-
     const userInfo = {
       id: existUsername._id,
       username: existUsername.username,
       email: existUsername.email,
       role: existUsername.role,
       aboutme: existUsername.aboutme,
-      profilepicture: existUsername.profilePicture
+      likedPosts : existUsername.likedPosts,
+      profilepicture: existUsername.profilePicture,
     }
     sessionUser = userInfo
     req.session.user = userInfo
     await req.session.save()
 
-    console.log('Session user:', req.session.user); // Add this line
+    // console.log('Session user:', req.session.user); // Add this line
 
 
     // Send a response object containing token, username, and role
@@ -139,7 +139,7 @@ export async function adminLogin(req, res) {
     if (!existUsername) {
       return res.status(400).send({ error: 'Incorrect username' });
     }
-    console.log(existUsername.role)
+    // console.log(existUsername.role)
     if(existUsername.role != 'admin'){
       return res.status(403).send({ error: 'Forbidden' });      
     }
@@ -172,7 +172,7 @@ export async function adminLogin(req, res) {
     req.session.user = userInfo
     await req.session.save()
 
-    console.log('Session user:', req.session.user); // Add this line
+    // console.log('Session user:', req.session.user); // Add this line
 
     // Send a response object containing token, username, and role
     res.status(200).json({ username: existUsername.username, role, access: token, userInfo });
@@ -188,7 +188,7 @@ export async function adminLogin(req, res) {
 export async function userSessionInfo(req, res) {
   try {
     // console.log('helo')
-    console.log(sessionUser)
+    // console.log(sessionUser)
     res.status(200).json({ sessionUser });
 
   } catch (error) {
@@ -219,7 +219,7 @@ export async function logout(req, res) {
 /**GET: http://localhost:8080/api/user/example123 */
 export async function getUser(req, res) {
   const { username } = req.params;
-  console.log(username)
+  // console.log(username)
 
   try {
     //Check if any username entered
@@ -263,7 +263,7 @@ export async function updateUser(req, res) {
   user.aboutme = aboutMe;
   await user.save()
   sessionUser.aboutme = aboutMe
-  console.log(`about is ${user.aboutme}`)
+  // console.log(`about is ${user.aboutme}`)
   // Respond with the updated user data
   res.status(200).json({ success: true, aboutMe: aboutMe });
 };
@@ -271,7 +271,7 @@ export async function updateUser(req, res) {
 export async function updateUserProfile(req, res) {
   const { userId, profilePicture } = req.body;
   // console.log(profilePicture)
-  console.log('inside user profile controller')
+  // console.log('inside user profile controller')
   try {
     // Update the user's profile picture in MongoDB
     await UserModel.findByIdAndUpdate(userId, { profilePicture });
@@ -427,7 +427,7 @@ export async function getComp(req, res) {
 export async function deletePastPaper(req,res){
   try{
     const id = req.body.id
-    console.log(req.body)
+    // console.log(req.body)
     // console.log(`params is ${req.params}`)
     await pastpaperModel.deleteOne({_id : id})
     res.sendStatus(204)

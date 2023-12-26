@@ -1,13 +1,11 @@
 import Post from "../model/Post.js"
+
 import UserModel from "../model/User.model.js";
 
 export const createPost = async (req, res) => {
     try {
         const { description, profilepicture, userId, userName } = req.body;
-        // console.log(`userName is ${userName}`)
-        // Fetch the user using the user's ID
         const user = await UserModel.findById(userId);
-        // console.log("Fetched User:", user); // Add this log
 
         if (!user) {
             return res.status(404).send({ error: 'User not found' });
@@ -36,10 +34,33 @@ export const createPost = async (req, res) => {
 }
 
 export const updatePostLikes = async (req, res) => {
-    const { id, text3, userId } = req.body
-    console.log(req.body)
+    const { id, userId } = req.body
 
     try {
+        const exist = await Post.findOne({
+            _id: id, 
+            likedBy : userId
+        })
+        if(exist)
+        {
+            await Post.findOneAndUpdate(
+                { _id: id },
+                {
+                  $inc: { likes: -1 }, // Decrement likes by 1
+                  $pull: { likedBy: userId }, // Remove userId from likedBy array
+                },
+                { new: false }
+              );
+              
+              // Remove post from likedPosts array in UserModel
+              await UserModel.findByIdAndUpdate(userId, {
+                $pull: { likedPosts: id }, // Remove postId from likedPosts array
+              });
+
+            console.log('Like decrement')
+            return res.status(201).send({ msg: `what made you dislike the post` })
+
+        }
         const post = await Post.findOneAndUpdate(
             { _id: id },
             {
@@ -48,16 +69,14 @@ export const updatePostLikes = async (req, res) => {
             },
             { new: false }
         );
-        res.status(200).send({ msg: 'Like successfully' })
+        await UserModel.findByIdAndUpdate(userId,  {
+            $addToSet: { likedPosts: id }, // Use $addToSet to add userId only if not already present
+        },);
+        res.status(200).send({ msg: 'Liked successfully' })
     } catch (error) {
-        if (error.code === 11000 && error.keyPattern && error.keyPattern.likedBy) {
-            // Duplicate key error, i.e., user has already liked the post
-            res.status(403).send({ msg: 'Already Liked' });
-        }
-        else {
+
             console.error("Error updating post likes:", error);
             res.status(500).send('Internal Server Error');
-          }
     }
 }
 

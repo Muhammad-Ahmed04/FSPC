@@ -20,7 +20,7 @@ router.route('/admin-uc').post(controller.upcomingComp); //upload Upcoming Compe
 router.route('/pastpapers').post(controller.postPastPapers); //upload pp
 router.route('/logout').post(controller.logout)
 router.route('/me').get(controller.userSessionInfo)
-router.route('/admin/onsite-competition').post(controller.onSiteCompetition)
+router.route('/admin-onsite-competition').post(controller.onSiteCompetition)
 router.route('/register/onsite').post(controller.registerForOnsiteCompetition)
 
 

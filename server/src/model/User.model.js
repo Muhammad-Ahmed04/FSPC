@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 export const UserSchema = new mongoose.Schema({
@@ -36,6 +37,10 @@ export const UserSchema = new mongoose.Schema({
         type: Array,
         default: [],  
     },
+    likedPosts: {
+        type : [ObjectId],
+        default: [],
+   },
     firstName: { type:String},
     lastName: { type:String},
     mobile: { type:Number},
