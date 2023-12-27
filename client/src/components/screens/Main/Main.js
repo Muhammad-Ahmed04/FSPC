@@ -21,7 +21,7 @@ export default function Main() {
     // Fetch posts
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/posts"); // Update URL to your posts API
+        const response = await fetch("https://fspc.online/posts"); // Update URL to your posts API
         const result = await response.json();
         console.log("Fetched posts:", result); // Add this log
         setPosts(result);
@@ -37,7 +37,7 @@ export default function Main() {
     // Fetch competitions
     const fetchCompetitions = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/competitions");
+        const response = await fetch("https://fspc.online/api/competitions");
         const result = await response.json();
         setCompetitions(result);
         setIsLoadingCompetitions(false);
@@ -49,7 +49,7 @@ export default function Main() {
 
     const fetchUser = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/me", {
+        const response = await fetch("https://fspc.online/api/me", {
           method: 'GET',
           credentials: 'include'
         });
@@ -66,7 +66,7 @@ export default function Main() {
     }
     const fetchOnSiteCompeitions = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/get-onsite-competitions");
+        const response = await fetch("https://fspc.online/api/get-onsite-competitions");
         const result = await response.json();
         console.log(result)
         setonSiteCompetitions(result);
