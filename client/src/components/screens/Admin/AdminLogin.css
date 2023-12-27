@@ -707,7 +707,7 @@
     width: 420px;
   } */
   
-  .FSPC-login .text-wrapper-8 {
+ .FSPC-login .text-wrapper-8 {
     color: var(--gray-5);
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
@@ -717,7 +717,7 @@
     margin-top: -1px;
     position: relative;
     width: fit-content;
-  }
+  } 
   
   .FSPC-login .frame-9 {
     align-items: flex-start;

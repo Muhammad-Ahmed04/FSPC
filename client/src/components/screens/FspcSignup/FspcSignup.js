@@ -92,6 +92,19 @@ export default function FspcSignup() {
                       type="text"
                       onChange={handleChange}
                       placeholder="Enter your username"
+                      style={{
+                        color: 'black',
+                        alignItems: 'center',
+                        border: '1px solid',
+                        borderColor: '#ded2d9',
+                        borderRadius: '5px',
+                        display: 'flex',
+                        flex: '0 0 auto',
+                        gap: '13px',
+                        padding: '13px 10px',
+                        position: 'relative',
+                        width: '420px',
+                      }}
                     />
                   </div>
                 </div>
@@ -107,6 +120,19 @@ export default function FspcSignup() {
                           type="email"
                           onChange={handleChange1}
                           placeholder="Enter your email"
+                          style={{
+                            color: 'black',
+                            alignItems: 'center',
+                            border: '1px solid',
+                            borderColor: '#ded2d9',
+                            borderRadius: '5px',
+                            display: 'flex',
+                            flex: '0 0 auto',
+                            gap: '13px',
+                            padding: '13px 10px',
+                            position: 'relative',
+                            width: '420px',
+                          }}
                         />
                       </div>
                     </div>
@@ -120,6 +146,19 @@ export default function FspcSignup() {
                           type="password"
                           onChange={handleChange2}
                           placeholder="Enter your password"
+                          style={{
+                            color: 'black',
+                            alignItems: 'center',
+                            border: '1px solid',
+                            borderColor: '#ded2d9',
+                            borderRadius: '5px',
+                            display: 'flex',
+                            flex: '0 0 auto',
+                            gap: '13px',
+                            padding: '13px 10px',
+                            position: 'relative',
+                            width: '420px',
+                          }}
                         />
                       </div>
                     </div>
@@ -133,6 +172,19 @@ export default function FspcSignup() {
                           type="password"
                           onChange={handleChange3}
                           placeholder="Confirm your password"
+                          style={{
+                            color: 'black',
+                            alignItems: 'center',
+                            border: '1px solid',
+                            borderColor: '#ded2d9',
+                            borderRadius: '5px',
+                            display: 'flex',
+                            flex: '0 0 auto',
+                            gap: '13px',
+                            padding: '13px 10px',
+                            position: 'relative',
+                            width: '420px',
+                          }}
                         />
                       </div>
                     </div>

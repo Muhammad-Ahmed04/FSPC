@@ -1,7 +1,8 @@
 .box {
   height: 100vh !important;
   width: 100% !important;
-  background-color: #1E252B
+  background-color: #1E252B;
+  padding-bottom: 1200px
 }
 
 
@@ -47,7 +48,7 @@
   height: 44px;
   left: 32px;
   position: relative;
-  top: 410px;
+  top: 417px;
   width: 271px;
 }
 
@@ -150,13 +151,13 @@
   background-color: #FF6934;
   cursor: pointer;
   color: white;
-  padding: 10px 10px ;
+  padding: 9px 4px ;
   border: none;
   border-radius: 5px;
   margin-top: -75px;
   margin-bottom: 50px;
   width: fit-content;
-  margin-left: 150px;
+  margin-left: 180px;
   /* padding-right: 70px; */
   line-height: 1;
 }
@@ -358,3 +359,64 @@
   width: 33%;
   cursor: pointer;
 }
+
+/* Add this styling to your CSS file */
+
+/* Add this styling to your CSS file */
+
+/* ... (existing styling) ... */
+
+.box {
+  height: 100vh !important;
+  width: 100% !important;
+  background-color: rgb(30, 37, 43);
+  padding-bottom: 1200px;
+}
+
+.box .profile {
+  height: 1200px;
+  width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-left: 33%;
+}
+
+/* ... (existing styling) ... */
+
+.profile-edit-modal {
+  background-color: rgb(30, 37, 43);
+  border-radius: 10px;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.profile-edit-modal input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff; /* Assuming you want a white background for the input */
+  color: rgb(30, 37, 43); /* Assuming you want dark text color for the input */
+}
+
+.profile-edit-modal button {
+  background-color: #FF6934;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.profile-edit-modal button:last-child {
+  background-color: #dc3545;
+}
+
+/* ... (existing styling) ... */
+

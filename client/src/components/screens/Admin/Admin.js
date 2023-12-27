@@ -150,7 +150,7 @@ const handleModal2Submit = async (competitionData) => {
 
   return (
     <>
-      <AdminHeader page="pp"></AdminHeader>
+      <AdminHeader page="ah"></AdminHeader>
     <>
       <MyModal
         isOpen={isModalOpen}
