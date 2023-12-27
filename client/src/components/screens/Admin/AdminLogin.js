@@ -19,7 +19,7 @@ export default function FspcLogin() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/me', {
+        const response = await fetch('https://fspc.online/api/me', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function FspcLogin() {
   const sendDataToBackend = async (data) => {
     console.log('helo', JSON.stringify(data));
     try {
-      const response = await fetch('http://localhost:8080/api/admin/login', {
+      const response = await fetch('https://fspc.online/api/admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -33,8 +33,8 @@ app.use(session({
 }));
  
 const corsOptions = {
-  origin: `http://localhost:3000`,  //'https://fspc.s3.amazonaws.com/`, // Update with your frontend's origin
-  credentials: true,
+  origin: '*' // Update with your frontend's origin
+  // credentials: true,
 };
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
@@ -80,7 +80,7 @@ app.use("/posts", postRoutes)
 connect().then(() => {
   try {
     app.listen(port, () => {
-      console.log(`Server connected to http://localhost:${port}`);
+      console.log(`Server connected to https://fspc.online:${port}`);
     });
   } catch (error) {
     console.log('Cannot connect to the database');
