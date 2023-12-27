@@ -10,7 +10,7 @@
   background-color: #ffffff;
   border: 10px solid;
   border-color: #ffffff;
-  height: 1080px;
+  height: 990px;
   overflow: hidden;
   width: 1920px;
 }
@@ -38,14 +38,14 @@
   flex-direction: column;
   gap: 36px;
   justify-content: center;
-  left: 1374px;
+  left: 1379px;
   position: absolute;
-  top: 321px;
+  top: 347px;
 }
 
 .FSPC-signup .text-wrapper {
   color: #515151;
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 36px;
   font-weight: 700;
   letter-spacing: 0;
@@ -53,6 +53,7 @@
   margin-top: -1px;
   position: relative;
   width: fit-content;
+  right: 100px;
 }
 
 .FSPC-signup .div {
@@ -66,7 +67,7 @@
 
 .FSPC-signup .text-wrapper-2 {
   color: var(--gray-3);
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0;
@@ -89,7 +90,7 @@
   width: 420px;
 } */
 
-.FSPC-signup .text-wrapper-3 {
+/* .FSPC-signup .text-wrapper-3 {
   color: var(--gray-5);
   align-items: center;
   border: 1px solid;
@@ -101,7 +102,7 @@
   padding: 13px 10px;
   position: relative;
   width: 420px;
-}
+} */
 
 .FSPC-signup .frame-wrapper {
   align-items: flex-start;
@@ -130,7 +131,7 @@
   position: relative;
 }
 
-.FSPC-signup .frame-4 {
+/* .FSPC-signup .frame-4 {
   align-items: center;
   border: 1px solid;
   border-color: #ded2d9;
@@ -141,11 +142,11 @@
   padding: 18px 10px 13px;
   position: relative;
   width: 420px;
-}
+} */
 
 .FSPC-signup .text-wrapper-4 {
   color: var(--gray-5);
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 0;
@@ -158,7 +159,7 @@
 
 .FSPC-signup .text-wrapper-5 {
   color: #ffffff;
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0;
@@ -177,12 +178,12 @@
   justify-content: center;
   left: 1431px;
   position: absolute;
-  top: 1040px;
+  top: 975px;
 }
 
 .FSPC-signup .text-wrapper-6 {
   color: var(--gray-3);
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0;
@@ -194,7 +195,7 @@
 
 .FSPC-signup .text-wrapper-7 {
   color: #7f265b;
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0;
@@ -255,9 +256,9 @@
 
 .FSPC-signup .vector-3 {
   height: 82px;
-  left: 1072px;
+  left: 1012px;
   position: absolute;
-  top: 1058px;
+  top: 1031px;
   width: 167px;
 }
 
@@ -281,7 +282,7 @@
   height: 565px;
   left: 374px;
   position: absolute;
-  top: 379px;
+  top: 329px;
   width: 499px;
 }
 
@@ -311,6 +312,7 @@
 .signup-button {
   align-items: center;
   background-color: #7f265b;
+  margin-top: 25px;
   border-radius: 6px;
   display: flex;
   flex: 0 0 auto;
@@ -360,27 +362,27 @@
 
 .FSPC-signup .text-wrapper-8 {
   color: #e5ac62;
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 40px;
   font-weight: 800;
   left: 364px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 973px;
+  top: 923px;
 }
 
 .FSPC-signup .text-wrapper-9 {
   color: #b44538;
-  font-family: "Nunito Sans", Helvetica;
+  font-family: 'Poppins', sans-serif;
   font-size: 32px;
   font-weight: 600;
-  left: 558px;
+  left: 528px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   text-align: center;
-  top: 1020px;
+  top: 970px;
 }
 
 .FSPC-signup .vector-7 {

@@ -101,7 +101,7 @@ export const Header = ({ page }) => {
               <Calendar className="icon-instance-node" color="#F4F6F8" />
             </Link>
             </div>
-            <div className="home-wrapper-2">
+            <div className={page === "rh" ? "home-wrapper" : "home-wrapper-2"}>
 
               <Link to="/register-competition">
                 <Group

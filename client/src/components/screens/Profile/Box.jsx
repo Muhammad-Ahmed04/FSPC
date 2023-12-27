@@ -3,9 +3,33 @@ import { Header } from "../../Header";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
+const ProfileEditModal = ({ onClose, onSave }) => {
+  const [updatedAboutMe, setUpdatedAboutMe] = useState('');
+
+  const handleSave = () => {
+    onSave(updatedAboutMe);
+    onClose();
+  };
+
+  return (
+    <div className="profile-edit-modal">
+      <h3 style={{color:"white"}}>Edit 'About Me'</h3>
+      <input
+        type="text"
+        value={updatedAboutMe}
+        onChange={(e) => setUpdatedAboutMe(e.target.value)}
+        placeholder="Enter your updated 'About Me'"
+      />
+      <button onClick={handleSave}>Save</button>
+      <button onClick={onClose}>Cancel</button>
+    </div>
+  );
+};
+
 export default function Box() {
   const [userInfo, setUserInfo] = useState(null);
   const [selectedSection, setSelectedSection] = useState("aboutMe");
+  const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,8 +103,10 @@ export default function Box() {
   };
 
   const editProfile = async () => {
-    const updatedAboutMe = prompt("Enter your updated 'About Me'");
+    setIsEditingAboutMe(true);
+  };
 
+  const saveUpdatedAboutMe = async (updatedAboutMe) => {
     try {
       const response = await fetch("http://localhost:8080/api/update-profile", {
         method: 'PUT',
@@ -103,6 +129,8 @@ export default function Box() {
       }
     } catch (error) {
       console.error('Error updating profile', error);
+    } finally {
+      setIsEditingAboutMe(false);
     }
   };
 
@@ -223,6 +251,9 @@ export default function Box() {
           </div>
         </div>
       </div>
+      {isEditingAboutMe && (
+        <ProfileEditModal onClose={() => setIsEditingAboutMe(false)} onSave={saveUpdatedAboutMe} />
+      )}
     </>
   );
 }

@@ -1,12 +1,12 @@
 #admin.main {
   display: flex;
-  gap: 306px !important;
-  width: 100vw; /* Use viewport width to cover the entire screen */
+  gap: 300px !important;
+  /* width: 100vw; Use viewport width to cover the entire screen */
   justify-content: center;
-  height: 100vh; /* Use viewport height to cover the entire screen */
-  background-color: #1E252B;
-  padding: 100px;
-  margin: 0; /* Remove default margin */
+  /* height: 130vh; Use viewport height to cover the entire screen */
+  background-color: rgb(30, 37, 43);
+  min-height: 100vh;
+  padding: 60px
 }
 
 .button {
@@ -66,7 +66,7 @@
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
-  height: 328px;
+  height: 700px;
   width: 338px;
 }
 
