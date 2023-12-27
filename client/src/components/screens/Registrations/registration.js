@@ -23,19 +23,6 @@ export default function RegistrationPage() {
         setIsLoadingRegisterations(false);
       }
     };
-    // Fetch competitions
-    const fetchCompetitions = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/competitions");
-        const result = await response.json();
-        setCompetitions(result);
-        setIsLoadingCompetitions(false);
-      } catch (error) {
-        console.error("Error fetching competitions:", error);
-        setIsLoadingCompetitions(false);
-      }
-    };
-
     const fetchUser = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/me", {
@@ -43,20 +30,15 @@ export default function RegistrationPage() {
           credentials: 'include'
         });
         const result = await response.json();
-        // const { me } = result;
-        // console.log(`result is ${JSON.stringify(result)}`)
-        // console.log(result)
-        // console.log(response.json())
-        setUser(response);
+        setUser(result);
 
       } catch (error) {
         console.error('Error Fetching User data', error)
       }
     }
 
-    // Call both fetch functions when the component mounts
     fetchOnsiteCompetition();
-    fetchCompetitions();
+    // fetchCompetitions();
     fetchUser();
   }, []);
 
@@ -79,10 +61,11 @@ export default function RegistrationPage() {
                 <div className="club">
                   <div className="text-wrapper-3">*</div>
                   <img className="logo" alt="Chelsea Logo" src="/imgHome/rectangle-32-5.png" />
-                  <div className="text-wrapper-4"  style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.title}</div>
+                  <div className="text-wrapper-4" style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.title}</div>
+                  <div style={{ color: "red" }}>Register Now</div>
                 </div>
                 <div className="poin">
-                  <div className="text-wrapper-2"  style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.registerations_completed}</div>
+                  <div className="text-wrapper-2" style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.registerations_completed}</div>
                   <div className="text-wrapper-2" style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.max_registerations - item.registerations_completed}</div>
                 </div>
               </div>
