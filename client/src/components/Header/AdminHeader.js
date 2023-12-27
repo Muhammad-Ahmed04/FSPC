@@ -53,7 +53,6 @@ export const AdminHeader = ({ page }) => {
         });
         const result = await response.json();
         const { sessionUser } = result
-        console.log(`in create post ${JSON.stringify(sessionUser)}`);
         setUserInfo(sessionUser); 
         if (sessionUser && sessionUser.role === 'admin') {
             setShowDashboardOption(true);
