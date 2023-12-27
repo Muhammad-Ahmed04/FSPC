@@ -1,7 +1,65 @@
-#Home.main{
-  /* align-items: flex-start; */
-  /* display: inline-flex; */
-  gap: 100px !important;
+/* Set a base font size for the body */
+body {
+  font-size: 14px; /* Adjust the base font size as per your preference */
+}
+
+/* Increase font sizes for various elements */
+.main,
+.main p,
+.main a,
+.main div,
+.main span,
+.main li {
+  font-size: 0.875rem; /* 14px / 16px = 0.875 */
+  line-height: 1.5;
+}
+
+/* Add spacing around elements for better readability */
+.main {
+  padding: 15px; /* Adjust the padding as needed */
+}
+
+/* Adjustments for different screen sizes */
+.main .meetups.dark-46-on.design-component-instance-node,
+.main .data-4,
+.main .data-5,
+.main .action-2 {
+  gap: 15px; /* Adjust the gap as needed */
+}
+
+/* Additional adjustments based on your needs */
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .main .div-3 {
+    gap: 8px; /* Adjust the gap as needed */
+    margin-bottom: 15px; /* Add margin to create space between div-3 and other components */
+  }
+
+  .main .meetups.dark-46-on.design-component-instance-node {
+    gap: 8px; /* Adjust the gap as needed */
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .main {
+    padding-top: 10px; /* Adjust the padding as needed */
+  }
+
+  .main .div-3 {
+    gap: 5px; /* Adjust the gap as needed */
+    margin-bottom: 10px; /* Add margin to create space between div-3 and other components */
+  }
+
+  .main .meetups.dark-46-on.design-component-instance-node {
+    gap: 5px; /* Adjust the gap as needed */
+  }
+}
+
+/* Common styles for all screen sizes */
+#Home.main {
+  gap: 15px !important; /* Adjust the gap as needed */
   position: relative;
   background-color: #1E252B;
   width: 100%;
@@ -9,6 +67,7 @@
   flex-direction: row;
   padding-top: 15px;
   justify-content: center;
+  padding-bottom: 500px;
 }
 
 .main .div-3 {
@@ -16,38 +75,37 @@
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px; /* Adjust the gap as needed */
   position: relative;
   right: 75px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.main .design-component-instance-node {
+.main .design-component-instance-node,
+.main .meetups.dark-46-on.design-component-instance-node {
   flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.main .meetups.dark-46-on.design-component-instance-node .main-5 {
   width: 100%;
 }
 
-.main .popular-tags-instance {
-  margin-right: -2px !important;
+.main .post.dark-32-on {
+  box-shadow: 0 4px 4px rgba(255, 105, 52, 0.25) !important;
 }
 
-/* .main #post.main-wrapper {
-  align-items: flex-start;
-  background-color: #262D34;
-  border-radius: 16px;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 30px;
-  padding: 20px;
-  position: relative;
-  width: 829px;
-} */
+/* Add specific styles for larger screens if necessary */
+@media (min-width: 1200px) {
+  /* Add specific styles for larger screens if necessary */
+}
 
 .main .div-4 {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
-  gap: 20px;
+  gap: 15px; /* Adjust the gap as needed */
   position: relative;
 }
 
@@ -64,7 +122,7 @@
 .main .data-4 {
   align-items: flex-start;
   display: flex;
-  gap: 20px;
+  gap: 15px; /* Adjust the gap as needed */
   position: relative;
   width: 569px;
 }
@@ -183,7 +241,7 @@
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
-  gap: 40px;
+  gap: 15px; /* Adjust the gap as needed */
   position: relative;
 }
 

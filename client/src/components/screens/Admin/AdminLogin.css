@@ -10,7 +10,7 @@
     background-color: #ffffff;
     border: 10px solid;
     border-color: #ffffff;
-    height: 1080px;
+    height: 990px;
     overflow: hidden;
     width: 1920px;
   }
@@ -39,12 +39,12 @@
     justify-content: center;
     left: 1431px;
     position: absolute;
-    top: 1040px;
+    top: 1000px;
   }
   
   .FSPC-login .text-wrapper {
     color: var(--gray-3);
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0;
@@ -125,7 +125,7 @@
   
   .FSPC-login .div {
     color: #7f265b;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0;
@@ -186,7 +186,7 @@
   
   .FSPC-login .vector-3 {
     height: 82px;
-    left: 1072px;
+    left: 1012px;
     position: absolute;
     top: 1058px;
     width: 167px;
@@ -212,7 +212,7 @@
     height: 565px;
     left: 374px;
     position: absolute;
-    top: 379px;
+    top: 329px;
     width: 499px;
   }
   
@@ -252,19 +252,19 @@
   
   .FSPC-login .text-wrapper-2 {
     color: #e5ac62;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 40px;
     font-weight: 800;
     left: 364px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 973px;
+    top: 923px;
   }
   
   .FSPC-login .text-wrapper-3 {
     color: #b44538;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 32px;
     font-weight: 600;
     left: 558px;
@@ -272,7 +272,7 @@
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 1020px;
+    top: 970px;
   }
   
   .FSPC-login .vector-7 {
@@ -600,7 +600,7 @@
   
   .FSPC-login .text-wrapper-4 {
     color: #515151;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 36px;
     font-weight: 700;
     letter-spacing: 0;
@@ -612,7 +612,7 @@
   
   .FSPC-login .or-sign-in-with {
     color: transparent;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0;
@@ -649,7 +649,7 @@
   
   .FSPC-login .text-wrapper-6 {
     color: var(--gray-3);
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0;
@@ -709,7 +709,7 @@
   
   .FSPC-login .text-wrapper-8 {
     color: var(--gray-5);
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 10px;
     font-weight: 400;
     letter-spacing: 0;
@@ -758,7 +758,7 @@
   
   .FSPC-login .text-wrapper-9 {
     color: #a1a1a1;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0;
@@ -770,7 +770,7 @@
   
   .FSPC-login .text-wrapper-10 {
     color: #7f265b;
-    font-family: "Nunito Sans", Helvetica;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0;
