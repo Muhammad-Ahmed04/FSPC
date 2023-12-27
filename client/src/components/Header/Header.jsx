@@ -151,7 +151,7 @@ export const Header = ({ page }) => {
                   </button>
                   <div className="dropdown-content">
                     <Link to="/profile">Profile</Link>
-                    <Link to="/settings">Settings</Link>
+                    {/* <Link to="/settings">Settings</Link> */}
                     {showDashboardOption && (
                 <div className="dashboard-option" onClick={handleDashboardClick}>
                     Dashboard

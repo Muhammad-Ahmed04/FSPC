@@ -23,8 +23,7 @@ sessionUser;
  */
 export async function register(req, res) {
   try {
-    const { username, password, confirmPass, profile, email, picturePath, friends } = req.body;
-
+    const { username, password, confirmPass, profile, email, picturePath,  } = req.body;
     // Check existing user
     const existUsername = await UserModel.findOne({ username }).exec();
 
@@ -53,7 +52,7 @@ export async function register(req, res) {
         email,
         role: "student",
         picturePath,
-        friends,
+        likedPosts : []
       });
 
       // Save user to the database
@@ -287,8 +286,10 @@ export async function updateUserProfile(req, res) {
 /**GET : http://localhost:8080/api/get-onsite-competitions */
 export async function getOnsiteCompetitions(req, res) {
   try {
+    console.log('inside get onsite controller')
     // Update the user's profile picture in MongoDB
     const registerations = await onSiteCompetitionsModel.find().sort({ createdAt: -1 })
+    console.log(registerations)
     res.status(200).json(registerations);
   } catch (error) {
     console.error('Error fetching registerations', error);

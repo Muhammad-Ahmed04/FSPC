@@ -38,8 +38,8 @@ export const UserSchema = new mongoose.Schema({
         default: [],  
     },
     likedPosts: {
-        type : [ObjectId],
-        default: [],
+        type : Array,
+        unique: false,
    },
     firstName: { type:String},
     lastName: { type:String},
