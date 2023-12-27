@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Header } from '../Header';
 const fetchData = async () => {
     try {
-        const response = await fetch("https://fspc.online/api/pastpapers");
+        const response = await fetch("http://localhost:8080/api/pastpapers");
         const result = await response.json();
         return result;
     } catch (error) {

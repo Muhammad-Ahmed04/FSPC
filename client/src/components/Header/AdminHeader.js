@@ -16,7 +16,7 @@ const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
-    const response = await fetch('https://fspc.online/api/logout', {
+    const response = await fetch('http://localhost:8080/api/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export const AdminHeader = ({ page }) => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("https://fspc.online/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });

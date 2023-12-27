@@ -26,7 +26,7 @@ export const Post = ({
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("https://fspc.online/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });
@@ -51,7 +51,7 @@ export const Post = ({
         text3,
         userId: userInfo.id
       }
-      response = await fetch("https://fspc.online/posts/update-likes", {
+      response = await fetch("http://localhost:8080/posts/update-likes", {
         method: 'PUT',
         credentials: 'include',
         headers: {

@@ -37,7 +37,7 @@ export default function FspcSignup() {
   const sendDataToBackend = async (data) => {
     console.log(JSON.stringify(data));
     try {
-      const response = await fetch('https://fspc.online/api/register', {
+      const response = await fetch('http://localhost:8080/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

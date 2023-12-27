@@ -1,5 +1,6 @@
 import Post from "../model/Post.js"
-
+import { Types } from 'mongoose';
+const {ObjectId} = Types
 import UserModel from "../model/User.model.js";
 
 export const createPost = async (req, res) => {
@@ -35,11 +36,14 @@ export const createPost = async (req, res) => {
 
 export const updatePostLikes = async (req, res) => {
     const { id, userId } = req.body
+    const UserID = new ObjectId(userId)
+    console.log(req.body)
+    console.log(UserID)
 
     try {
         const exist = await Post.findOne({
             _id: id, 
-            likedBy : userId
+            likedBy : UserID
         })
         if(exist)
         {
@@ -47,13 +51,13 @@ export const updatePostLikes = async (req, res) => {
                 { _id: id },
                 {
                   $inc: { likes: -1 }, // Decrement likes by 1
-                  $pull: { likedBy: userId }, // Remove userId from likedBy array
+                  $pull: { likedBy: UserID }, // Remove UserID from likedBy array
                 },
                 { new: false }
               );
               
               // Remove post from likedPosts array in UserModel
-              await UserModel.findByIdAndUpdate(userId, {
+              await UserModel.findByIdAndUpdate(UserID, {
                 $pull: { likedPosts: id }, // Remove postId from likedPosts array
               });
 
@@ -65,11 +69,11 @@ export const updatePostLikes = async (req, res) => {
             { _id: id },
             {
                 $inc: { likes: 1 },
-                $addToSet: { likedBy: userId }, // Use $addToSet to add userId only if not already present
+                $addToSet: { likedBy: UserID }, // Use $addToSet to add UserID only if not already present
             },
             { new: false }
         );
-        await UserModel.findByIdAndUpdate(userId,  {
+        await UserModel.findByIdAndUpdate(UserID,  {
             $addToSet: { likedPosts: id }, // Use $addToSet to add userId only if not already present
         },);
         res.status(200).send({ msg: 'Liked successfully' })

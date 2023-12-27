@@ -12,7 +12,7 @@ export default function RegistrationPage() {
     // Fetch registerations
     const fetchOnsiteCompetition = async () => {
       try {
-        const response = await fetch("https://fspc.online/api/get-onsite-competitions"); // Update URL to your registerations API
+        const response = await fetch("http://localhost:8080/api/get-onsite-competitions"); // Update URL to your registerations API
         const result = await response.json();
         console.log("Fetched registerations:", result); // Add this log
         setRegisterations(result);
@@ -25,7 +25,7 @@ export default function RegistrationPage() {
     };
     const fetchUser = async () => {
       try {
-        const response = await fetch("https://fspc.online/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });

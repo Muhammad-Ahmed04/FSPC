@@ -5,7 +5,7 @@ import { Header } from '../../Header/';
 
 const fetchData = async () => {
   try {
-    const response = await fetch('https://fspc.online/api/pastpapers');
+    const response = await fetch('http://localhost:8080/api/pastpapers');
     const result = await response.json();
     return result;
   } catch (error) {
@@ -27,7 +27,7 @@ const PastPapers = () => {
     try {
         console.log(`paperToDelete id is ${paperToDelete._id}`);
         // const id = paperToDelete._id
-      const response = await fetch(`https://fspc.online/api/pastpapers`, {
+      const response = await fetch(`http://localhost:8080/api/pastpapers`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",

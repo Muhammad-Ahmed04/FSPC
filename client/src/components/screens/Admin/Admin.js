@@ -12,7 +12,7 @@ import { AdminHeader } from '../../Header/AdminHeader';
 
 const fetchData = async () => {
   try {
-    const response = await fetch("https://fspc.online/api/competitions");
+    const response = await fetch("http://localhost:8080/api/competitions");
     const result = await response.json();
     return result;
   } catch (error) {
@@ -31,7 +31,7 @@ export default function Admin() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("https://fspc.online/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });
@@ -85,7 +85,7 @@ export default function Admin() {
       url = "register-onsite-competition";
     }
     try {
-      const response = await fetch("https://fspc.online/api/" + url, {
+      const response = await fetch("http://localhost:8080/api/" + url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const handleModal2Submit = async (competitionData) => {
     console.log("Competition Data:", competitionData);
     const url = "admin-onsite-competition";
   try {
-    const response = await fetch("https://fspc.online/api/" + url, {
+    const response = await fetch("http://localhost:8080/api/" + url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

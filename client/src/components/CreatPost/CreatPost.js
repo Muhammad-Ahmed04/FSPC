@@ -12,7 +12,7 @@ export const CreatPost = ({ dark, className, onPostCreated ,profilepicture}) => 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("https://fspc.online/api/me", {
+        const response = await fetch("http://localhost:8080/api/me", {
           method: 'GET',
           credentials: 'include'
         });
@@ -47,7 +47,7 @@ export const CreatPost = ({ dark, className, onPostCreated ,profilepicture}) => 
     };
 
     try {
-      const response = await fetch("https://fspc.online/posts/postcreate", {
+      const response = await fetch("http://localhost:8080/posts/postcreate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

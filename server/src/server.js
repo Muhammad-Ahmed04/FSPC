@@ -33,8 +33,8 @@ app.use(session({
 }));
  
 const corsOptions = {
-  origin: '*' // Update with your frontend's origin
-  // credentials: true,
+  origin: 'http://localhost:3000' ,// Update with your frontend's origin
+  credentials: true,
 };
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
