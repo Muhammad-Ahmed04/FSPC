@@ -194,7 +194,7 @@ export default function FspcLogin() {
               <div className="frame-3">
                 <div className="frame-4">
                   <div className="frame-5">
-                    <div className="text-wrapper-6">username</div>
+                    <div className="text-wrapper-6">Username</div>
                     <div className="frame-6">
                       <input type="text"
                         value={username}
