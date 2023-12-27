@@ -62,7 +62,7 @@ export const Post = ({
 
       const result = await response.json();
       if (response.status == 200) {
-        toast.success("liked",{
+        toast.success("liked", {
           autoClose: 100,
           hideProgressBar: true,
           position: "top-center"
@@ -71,10 +71,10 @@ export const Post = ({
         setTimeout(() => {
           navigate(0);
         }, 1000);
-        
+
       }
-      else if(response.status== 201){
-        toast.success("unliked",{
+      else if (response.status == 201) {
+        toast.success("unliked", {
           autoClose: 100,
           hideProgressBar: true,
           position: "top-center"
@@ -82,15 +82,15 @@ export const Post = ({
         setTimeout(() => {
           navigate(0);
         }, 1000);
-        
+
       }
     } catch (error) {
-      toast.error(error.message,{
+      toast.error(error.message, {
         position: "top-right",
-        autoClose : true,
-        hideProgressBar : false,
-        closeOnClick : true,
-        theme : "colored"
+        autoClose: true,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored"
       })
       console.error('Error Fetching User data', error);
     }
@@ -115,7 +115,9 @@ export const Post = ({
                   <div className="element-weeks-ago">{text2}</div>
                 </div>
                 <div className="action">
-                  <div className="element-likes">{text3} likes</div>
+                  <div className="element-likes">
+                    {text3 === 1 ? `${text3} like` : text3 > 1 ? `${text3} likes` : "0 likes"}
+                  </div>
                   <div className="element-comments">{text4} comments</div>
                 </div>
               </div>
@@ -126,7 +128,7 @@ export const Post = ({
               className={iconLikeIconLikeClassName}
               heartClassName={isLiked ? `${iconLikeHeartClassName} liked` : iconLikeHeartClassName}
               fillColor={(isLiked || (userInfo && userInfo.likedPosts && userInfo.likedPosts.includes(idd))) ? "#FE4401" : "transparent"}
-              />
+            />
           </div>
         </div>
       </div>

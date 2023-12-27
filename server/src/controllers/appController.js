@@ -284,19 +284,30 @@ export async function updateUserProfile(req, res) {
   }
 };
 
+/**GET : http://localhost:8080/api/get-onsite-competitions */
+export async function getOnsiteCompetitions(req, res) {
+  try {
+    // Update the user's profile picture in MongoDB
+    const registerations = await onSiteCompetitionsModel.find().sort({ createdAt: -1 })
+    res.status(200).json(registerations);
+  } catch (error) {
+    console.error('Error fetching registerations', error);
+    res.status(500).json({ error: 'Error fetching registerations' });
+  }
+};
 /**POST : http://localhost:8080/api/onsite-competitions */
 export async function onSiteCompetition(req, res) {
-  const { title, date,max_registerations } = req.body;
-  if (!title || !date || !max_registerations) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
+  const { title, date,max_registerations,location } = req.body;
+  console.log(req.body)
+
 
   try {
     // Update the user's profile picture in MongoDB
     await onSiteCompetitionsModel.create({
       title,
       date,
-      max_registerations
+      max_registerations,
+      location,
     });
 
     res.status(201).json({ message: 'On Site Competition Created' });

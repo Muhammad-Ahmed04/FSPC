@@ -21,7 +21,7 @@ router.route('/pastpapers').post(controller.postPastPapers); //upload pp
 router.route('/logout').post(controller.logout)
 router.route('/me').get(controller.userSessionInfo)
 router.route('/admin-onsite-competition').post(controller.onSiteCompetition)
-router.route('/register/onsite').post(controller.registerForOnsiteCompetition)
+router.route('/register-onsite-competition').post(controller.registerForOnsiteCompetition)
 
 
 
@@ -32,6 +32,7 @@ router.route('/verifyOTP').get(controller.verifyOTP) // verify generated OTP
 router.route('/createResetSession').get(controller.createResetSession) // reset all the variables
 router.route('/competitions').get(controller.getComp) // reset all the variables
 router.route('/pastpapers').get(controller.getPastPapers) // reset all the variables
+router.route('/get-onsite-competitions').get(controller.getOnsiteCompetitions) // reset all the variables
 
 /** PUT Methods */
 router.route('/updateuser').put(controller.updateUser); // used to update user profile

@@ -64,7 +64,6 @@ export const Header = ({ page }) => {
         });
         const result = await response.json();
         const { sessionUser } = result
-        console.log(`in create post ${JSON.stringify(sessionUser)}`);
         setUserInfo(sessionUser);
         console.log('User Info:', sessionUser);
         if (sessionUser && sessionUser.role === 'admin') {

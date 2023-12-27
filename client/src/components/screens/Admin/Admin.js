@@ -4,6 +4,7 @@ import { PopularTags } from "../../PopularTags";
 import { Bitcoin3 } from "../../../icons/Bitcoin3";
 import "./admin.css";
 import MyModal from "../../Modal/modal";
+import MyModal2 from "../../Modal/regModal";
 import { Vector173 } from "../../../icons/Vector173";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { AdminHeader } from '../../Header/AdminHeader';
@@ -21,6 +22,7 @@ const fetchData = async () => {
 
 export default function Admin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOnSiteModalOpen, setIsOnSiteModalOpen] = useState(false); 
   const [data, setData] = useState([]);
   const [fetchDataFlag, setFetchDataFlag] = useState(true); // State to trigger data fetching
   const [modalMode, setModalMode] = useState(""); // State to store the modal mode
@@ -61,18 +63,27 @@ export default function Admin() {
   }, [fetchDataFlag]);
 
   const openModal = (mode) => {
-    setModalMode(mode); // Set the modal mode based on the button clicked
-    setIsModalOpen(true);
+    setModalMode(mode);
+    if (mode === "onsite-competition") {
+      setIsOnSiteModalOpen(true);
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsOnSiteModalOpen(false);
+
   };
 
   const handleModalSubmit = async (competitionData) => {
     // Perform actions with the competitionData (e.g., send it to your API)
     console.log("Competition Data:", competitionData);
     let url = modalMode === "competition" ? "admin-uc" : "pastpapers";
+    if (modalMode === "onsite-competition") {
+      url = "register-onsite-competition";
+    }
     try {
       const response = await fetch("http://localhost:8080/api/" + url, {
         method: "POST",
@@ -103,6 +114,39 @@ export default function Admin() {
     console.error("Error:", error);
   }
 };
+const handleModal2Submit = async (competitionData) => {
+  // Perform actions with the competitionData (e.g., send it to your API)
+    console.log("Competition Data:", competitionData);
+    const url = "admin-onsite-competition";
+  try {
+    const response = await fetch("http://localhost:8080/api/" + url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(competitionData),
+    });
+
+    if (response.ok) {
+      // Data sent successfully
+      console.log("Onsite Competition Upload Successful");
+      setFetchDataFlag(true);
+      const index = data.findIndex((item) => item.id === competitionData.id);
+
+    // Update the selectedTag for the specific competition
+    setData((prevData) => [
+      ...prevData.slice(0, index),
+      ...prevData.slice(index + 1),
+    ]);
+  } else {
+    // Handle errors
+    const errorMessage = await response.text(); // Get the error message from the response
+    console.error("Onsite Competition Upload Failed:", errorMessage);
+  }
+} catch (error) {
+  console.error("Error:", error);
+}
+};
 
   return (
     <>
@@ -113,6 +157,12 @@ export default function Admin() {
         onClose={closeModal}
         onSubmit={handleModalSubmit}
         mode={modalMode} // Pass the modal mode as a prop
+      />
+       <MyModal2
+        isOpen={isOnSiteModalOpen}
+        onClose={closeModal}
+        onSubmit={handleModal2Submit}
+        mode={modalMode}
       />
       <div id="admin" className="main">
         <div className="div-3">
@@ -148,6 +198,13 @@ export default function Admin() {
             onClick={() => openModal("pastpaper")} // Specify the mode when clicking "Add Pastpaper"
           >
             Add Pastpaper
+          </button>
+          <button
+            type="button"
+            className="button text-wrapper-3"
+            onClick={() => openModal("onsite-competition")} // Specify the mode when clicking "Upload on Site Competition"
+          >
+            Upload On-Site Competition
           </button>
         </div>
 

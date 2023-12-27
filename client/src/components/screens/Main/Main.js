@@ -131,8 +131,8 @@ export default function Main() {
           <div id="comp" className="meetups dark-46-on design-component-instance-node">
             <div className="main-5">
               <div className="title-4">
-                <div className="text-wrapper-9"><a href="/register-competition" style={{ textDecoration:"underline"}}>Upcoming Competitions !</a></div>
-                <Vector173 className="vector-17-3" color="#F7F7F7" />
+                <div className="text-wrapper-9">Upcoming Competitions! </div>
+                {/* <Vector173 className="vector-17-3" color="#F7F7F7" /> */}
               </div>
               <ul>
                 {isLoadingCompetitions ? (
