@@ -320,18 +320,29 @@ export async function onSiteCompetition(req, res) {
 
 /**POST : http://localhost:8080/api/register-onsite */
 export async function registerForOnsiteCompetition(req, res) {
-  const { title, members, phone_number,team_name } = req.body;
-  if (!title || !members || !phone_number || !team_name) {
+  const { title, member1,member2,member3, phoneNumber,teamName } = req.body;
+  if (!title || !member1 || !member2|| !member3 || !phoneNumber || !teamName) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
+  console.log(req.body)
+  const onsiteComp = await onSiteCompetitionsModel.findOne({title : title})
+  if(!onsiteComp)
+  return res.status(400).json({ error: 'Title Does not Exist' });
+  
+  console.log(onsiteComp)
+  onsiteComp.registerations_completed = onsiteComp.registerations_completed + 1
+  onsiteComp.save()
+
 
   try {
     // Update the user's profile picture in MongoDB
     await registrationsModel.create({
       title,
-      members,
-      phone_number,
-      team_name
+      member1,
+      member2,
+      member3,
+      phone_number : phoneNumber,
+      team_name: teamName
     });
 
     res.status(201).json({ message: 'Registeration Successful' });

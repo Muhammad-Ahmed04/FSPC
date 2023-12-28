@@ -50,7 +50,7 @@ export const PinnedGroup = ({
       <div className="main-2">
         <div className="title-2">
           <div className="title-2">
-            <div className="text-wrapper-2">{text}</div>
+            <div className="text-wrapper-2"><a href="https://codeforces.com/ratings/country/Pakistan/city/Karachi">{text}</a></div>
             <Vector173 className="vector" color={dark === "on" ? "#F7F7F7" : "#3F4354"} />
           </div>
         </div>

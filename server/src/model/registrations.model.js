@@ -5,17 +5,14 @@ export const registerationsSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide title"],
     },
-    members: {
-        type: [{
-            type: String,
-        }],
-        validate: {
-            validator: function (value) {
-                // Validate that the array has a maximum length of 3
-                return value.length <= 3;
-            },
-            message: "Members array must have at most 3 elements",
-        },
+    member1: {
+        type:  String,
+    },
+    member2: {
+        type:  String,
+    },
+    member3: {
+        type:  String,
     },
     phone_number: {
         type: String,
