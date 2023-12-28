@@ -285,6 +285,7 @@ const handleModal2Submit = async (competitionData) => {
                     text2={item.location}
                     kind={item.kind} // Pass the type here instead of selectedTag
                     key={item.id}
+                    link={item.link}
                   ></Meetups>
                 ))}
               </ul>
