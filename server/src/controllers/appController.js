@@ -318,6 +318,25 @@ export async function onSiteCompetition(req, res) {
   }
 };
 
+/**POST : http://localhost:8080/api/delete-onsite-competitions */
+export async function deleteOnSiteCompetition(req, res) {
+  const { id } = req.body;
+  console.log(req.body)
+
+  try {
+    // Update the user's profile picture in MongoDB
+    await onSiteCompetitionsModel.deleteOne({
+      _id : id
+    });
+
+    res.status(201).json({ message: 'On Site Competition Deleted' });
+  } catch (error) {
+    console.error('Error Deleting On Site Competition:', error);
+    res.status(409).json({ error: 'Error Deleting On Site Competition' });
+  }
+};
+
+
 /**POST : http://localhost:8080/api/register-onsite */
 export async function registerForOnsiteCompetition(req, res) {
   const { title, member1,member2,member3, phoneNumber,teamName } = req.body;

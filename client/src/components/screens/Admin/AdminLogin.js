@@ -1,14 +1,10 @@
 import React from "react";
-// import { Check } from "../../check/index.js";
 import { useState, useEffect } from "react";
-// import { Cookies } from "universal-cookie"
 import GlitchButton from "../../GlitchButton";
-// import { IconsNavigationOthers10Check1 } from "../../../assets/icons/IconsNavigationOthers10Check1";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import "./AdminLogin.css";
-
 
 export default function FspcLogin() {
   const [username, setUsername] = useState('');
@@ -81,7 +77,7 @@ export default function FspcLogin() {
         navigate('/admin/home');
       } else {
         // Handle errors
-        // console.error('Invalid Credentials');
+        console.error('Invalid Credentials');
         const errorResponse = await response.json(); // Try to parse the response as JSON
         toast.error(errorResponse.error, {
           position: "top-right",

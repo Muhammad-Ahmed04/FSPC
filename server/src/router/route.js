@@ -43,6 +43,7 @@ router.route('/update-profile-picture').put(controller.updateUserProfile)
 
 /**DELETE Methods */
 router.route('/pastpapers').delete(controller.deletePastPaper)
+router.route('/delete-onsite-competition').delete(controller.deleteOnSiteCompetition)
 
 
 

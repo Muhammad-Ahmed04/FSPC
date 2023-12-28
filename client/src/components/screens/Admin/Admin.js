@@ -7,6 +7,7 @@ import MyModal from "../../Modal/modal";
 import MyModal2 from "../../Modal/regModal";
 import { Vector173 } from "../../../icons/Vector173";
 import { Navigate, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 import { AdminHeader } from '../../Header/AdminHeader';
 
 
@@ -56,7 +57,8 @@ export default function Admin() {
         const { sessionUser } = result
         setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
         if(sessionUser.role !== 'admin'){
-          navigate('/')
+          navigate('/login')
+          toast.warning("Unauthorized")
           throw new Error('Unauthorized')
         }
       } catch (error) {
@@ -123,10 +125,39 @@ export default function Admin() {
         { ...prevData[index], kind: competitionData.kind },
         ...prevData.slice(index + 1),
       ]);
+      if(modalMode == "competition")
+      toast.success("Competition Upload Successful",{
+        position : "top-center",
+        autoClose :200
+      })
+      else
+      toast.success("Past Paper Upload Successful",{
+        position : "top-center",
+        autoClose :200
+      })
+
+      setTimeout(() =>{
+        navigate(0)
+      },1500)
+
     } else {
       // Handle errors
       const errorMessage = await response.text(); // Get the error message from the response
-      console.error("Competition Upload Failed:", errorMessage);
+      // console.error("Competition Upload Failed:", errorMessage);
+      if(modalMode == "competition")
+      toast.error("Error in Uploading Compeition",{
+        position : "top-center",
+        autoClose :200
+      })
+      else
+      toast.error("Error in Uploading Past Paper",{
+        position : "top-center",
+        autoClose :200
+      })
+      
+      setTimeout(() =>{
+        navigate(0)
+      },1500)
     }
   } catch (error) {
     console.error("Error:", error);
@@ -156,10 +187,25 @@ const handleModal2Submit = async (competitionData) => {
       ...prevData.slice(0, index),
       ...prevData.slice(index + 1),
     ]);
+    toast.success(`Competition Upload Successful`,{
+      position : "top-center",
+      autoClose :200
+    })
+    setTimeout(() =>{
+      navigate(0)
+    },1500)
+
   } else {
     // Handle errors
     const errorMessage = await response.text(); // Get the error message from the response
-    console.error("Onsite Competition Upload Failed:", errorMessage);
+    console.error("Competition Upload Failed:", errorMessage);
+    toast.error("Error in Uploading Compeition",{
+      position : "top-center",
+      autoClose :200
+    })
+    setTimeout(() =>{
+      navigate(0)
+    },1500)
   }
 } catch (error) {
   console.error("Error:", error);

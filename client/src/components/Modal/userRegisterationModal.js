@@ -65,7 +65,7 @@ function RegisterationModal({ isOpen, onClose, onSubmit, mode, selectedTag }) {
                 <Modal.Body>
                     <Form>
                         <Form.Group controlId="title">
-                            <Form.Label>{"Select Competition:"}</Form.Label>
+                            <Form.Label>{"Select Competition: "}</Form.Label>
                             <Form.Control
                             className="input-container"
                                 as="select"
@@ -81,7 +81,7 @@ function RegisterationModal({ isOpen, onClose, onSubmit, mode, selectedTag }) {
                             </Form.Control>
                         </Form.Group>
                         <Form.Group controlId="teamName">
-                            <Form.Label>{"Team Name:"}</Form.Label>
+                            <Form.Label>{"Team Name :"}</Form.Label>
                             <Form.Control
                             className="input-container"
                                 type="text"
@@ -90,7 +90,7 @@ function RegisterationModal({ isOpen, onClose, onSubmit, mode, selectedTag }) {
                             />
                         </Form.Group>
                         <Form.Group controlId="member1">
-                            <Form.Label>{"Member 1 ID (19k-0195):"}</Form.Label>
+                            <Form.Label>{"Member 1 ID (xxK-xxxx): "}</Form.Label>
                             <Form.Control
                             className="input-container"
                                 type="text"
@@ -99,7 +99,7 @@ function RegisterationModal({ isOpen, onClose, onSubmit, mode, selectedTag }) {
                             />
                         </Form.Group>
                         <Form.Group controlId="member2">
-                            <Form.Label>{"Member 2 ID (19k-0195):"}</Form.Label>
+                            <Form.Label>{"Member 2 ID (xxK-xxxx): "}</Form.Label>
                             <Form.Control
                             className="input-container"
                                 type="text"
@@ -108,7 +108,7 @@ function RegisterationModal({ isOpen, onClose, onSubmit, mode, selectedTag }) {
                             />
                         </Form.Group>
                         <Form.Group controlId="member3">
-                            <Form.Label>{"Member 3 ID (19k-0195):"}</Form.Label>
+                            <Form.Label>{"Member 3 ID (xxK-xxxx): "}</Form.Label>
                             <Form.Control
                             className="input-container"
                                 type="text"
@@ -117,7 +117,7 @@ function RegisterationModal({ isOpen, onClose, onSubmit, mode, selectedTag }) {
                             />
                         </Form.Group>
                         <Form.Group controlId="phoneNumber">
-                            <Form.Label>{"Phone Number:"}</Form.Label>
+                            <Form.Label>{"Phone Number :"}</Form.Label>
                             <Form.Control
                             className="input-container"
                                 type="text"

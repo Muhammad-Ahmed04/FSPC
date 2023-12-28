@@ -3,21 +3,24 @@ import RegisterationModal from "../../Modal/userRegisterationModal";
 import { Header } from "../../Header";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+
 
 
 export default function RegistrationPage() {
   const [registerations, setRegisterations] = useState([]);
-  const [competitions, setCompetitions] = useState([]);
   const [data, setData] = useState([]);
-  const [isRegisterationModalOpen, setIsRegisterationModalOpen] = useState(false); 
+  const [isRegisterationModalOpen, setIsRegisterationModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoadingRegisterations, setIsLoadingRegisterations] = useState(true);
-  const [isLoadingCompetitions, setIsLoadingCompetitions] = useState(true);
   const [fetchDataFlag, setFetchDataFlag] = useState(true); // State to trigger data fetching
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [userinfo, setUserInfo] = useState("")
   const [modalMode, setModalMode] = useState(""); // State to store the modal mode
- 
   const [user, setUser] = useState()
+
+  let role;
   useEffect(() => {
     // Fetch registerations
     const fetchOnsiteCompetition = async () => {
@@ -40,15 +43,21 @@ export default function RegistrationPage() {
           credentials: 'include'
         });
         const result = await response.json();
+        const { sessionUser } = result
+        setUserInfo(sessionUser)
         setUser(result);
-
+        console.log(sessionUser)
+        console.log(userinfo)
+        if (!sessionUser) {
+          toast.warning("your session is ended")
+          navigate('/login')
+        }
       } catch (error) {
         console.error('Error Fetching User data', error)
       }
     }
 
     fetchOnsiteCompetition();
-    // fetchCompetitions();
     fetchUser();
   }, []);
   const openModal = (mode) => {
@@ -61,7 +70,44 @@ export default function RegistrationPage() {
       setIsModalOpen(true);
     }
   };
-  
+  const deleteOnsiteCompetition = async (id) => {
+    try {
+      const data = {
+        id
+      }
+      const response = await fetch("http://localhost:8080/api/delete-onsite-competition", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        credentials: 'include',
+      }); // Update URL to your registerations API
+      if (response.ok) {
+        toast.success("Post Deleted", {
+          position: "top-center",
+          autoClose: 1000,
+        })
+      }
+      else {
+        toast.error('Could not delete Competition', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored"
+        });
+      }
+      setTimeout(() => {
+        navigate(0)
+      }, 1000)
+    } catch (error) {
+      console.error("Error fetching registerations:", error);
+      setIsLoadingRegisterations(false);
+    }
+
+  }
+
   const closeModal = () => {
     setIsRegisterationModalOpen(false);
     setIsModalOpen(false);
@@ -71,7 +117,7 @@ export default function RegistrationPage() {
     console.log(registerationData)
     // Perform actions with the registerationData (e.g., send it to your API)
     console.log("Registeration Data:", registerationData);
-      const url = "register-onsite-competition";
+    const url = "register-onsite-competition";
     try {
       const response = await fetch("http://localhost:8080/api/" + url, {
         method: "POST",
@@ -83,38 +129,53 @@ export default function RegistrationPage() {
 
       if (response.ok) {
         // Data sent successfully
-        console.log("Competition Upload Successful");
+        console.log("Registered Successfully");
         setFetchDataFlag(true);
         const index = data.findIndex((item) => item.id === registerationData.id);
 
-      // Update the selectedTag for the specific competition
-      setData((prevData) => [
-        ...prevData.slice(0, index),
-        ...prevData.slice(index + 1),
-      ]);
-      navigate(0)
-    } else {
-      // Handle errors
-      const errorMessage = await response.text(); // Get the error message from the response
-      console.error("Registeration Failed:", errorMessage);
+        // Update the selectedTag for the specific competition
+        setData((prevData) => [
+          ...prevData.slice(0, index),
+          ...prevData.slice(index + 1),
+        ]);
+        toast.success("Registered Successfully")
+        setTimeout(() => {
+          navigate(0);
+        }, 1000);
+
+      } else {
+        // Handle errors
+        const errorResponse = await response.json(); // Try to parse the response as JSON
+        toast.error(errorResponse.error, {
+          position: "top-right",
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored"
+        });
+      }
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: true,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored"
+      })
+      console.error("Error2:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
-
-
+  };
 
   return (
     <>
-    <>
-    <RegisterationModal
-        isOpen={isRegisterationModalOpen}
-        onClose={closeModal}
-        onSubmit={handleRegisterationModalSubmit}
-        mode={modalMode} // Pass the modal mode as a prop
-      />
-    </>
+      <>
+        <RegisterationModal
+          isOpen={isRegisterationModalOpen}
+          onClose={closeModal}
+          onSubmit={handleRegisterationModalSubmit}
+          mode={modalMode} // Pass the modal mode as a prop
+        />
+      </>
       <Header page="rh"></Header>
       <div className="register">
         <div className="text-wrapper">🏆 On-site Competitions</div>
@@ -133,11 +194,21 @@ export default function RegistrationPage() {
                   <div className="text-wrapper-3">*</div>
                   <img className="logo" alt="Chelsea Logo" src="/imgHome/rectangle-32-5.png" />
                   <div className="text-wrapper-4" style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.title}</div>
-                  <div style={{ color: "red", cursor:"pointer" }} onClick={ () => openModal("register-onsite-competition")} >Register Now</div>
+                  <div style={{ color: "red", cursor: "pointer" }} onClick={() => openModal("register-onsite-competition")} >Register Now</div>
                 </div>
                 <div className="poin">
                   <div className="text-wrapper-2" style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.registerations_completed}</div>
                   <div className="text-wrapper-2" style={{ color: (item.max_registerations - item.registerations_completed) < 10 ? "red" : "white" }}>{item.max_registerations - item.registerations_completed}</div>
+                  {/* <div> */}
+                  {userinfo && userinfo.role === "admin" && (
+                    <div
+                      style={{ marginRight: "-25px", color: "red", cursor: "pointer" }}
+                      onClick={() => deleteOnsiteCompetition(item._id)}
+                    >
+                      delete
+                    </div>
+                  )}
+
                 </div>
               </div>
             ))}

@@ -2,6 +2,8 @@ import "./style.css";
 import { Header } from "../../Header";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 const ProfileEditModal = ({ onClose, onSave }) => {
   const [updatedAboutMe, setUpdatedAboutMe] = useState('');
@@ -92,12 +94,34 @@ export default function Box() {
       });
 
       if (response.ok) {
-        console.log('Profile picture updated successfully');
-        navigate(0)
+        toast.success("Profile picture updated successfully",{
+          autoClose : 200,
+          hideProgressBar: true,
+          position:"top-center"
+        })
+        // console.log('Profile picture updated successfully');
+       setTimeout(() => {
+         navigate(0)
+       }, 1500);
       } else {
+
         console.error('Failed to update profile picture');
+        toast.error('Failed to update profile picture', {
+          position: "top-center",
+          autoClose: 200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored"
+        });
       }
     } catch (error) {
+      toast.error('File Too Large', {
+        position: "top-center",
+        autoClose: 200,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "colored"
+      });
       console.error('Error updating profile picture', error);
     }
   };
@@ -124,8 +148,19 @@ export default function Box() {
         });
 
         console.log('Profile updated successfully');
+        toast.success("Profile Updated successfully",{
+          position: "top-center"
+        })
       } else {
         console.error('Failed to update profile');
+        toast.error('Failed to update profile', {
+          position: "top-center",
+          autoClose: 200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored"
+        });
+
       }
     } catch (error) {
       console.error('Error updating profile', error);

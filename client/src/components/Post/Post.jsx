@@ -11,7 +11,7 @@ export const Post = ({
   className,
   text = "Default text",
   text1 = "Default user",
-  text2 = "Default time ago",
+  text2,
   text3,
   text4,
   iconLikeIconLikeClassName,
@@ -32,7 +32,7 @@ export const Post = ({
         });
         const result = await response.json();
         const { sessionUser } = result
-        console.log(`in create post ${JSON.stringify(sessionUser)}`);
+        // console.log(in create post ${JSON.stringify(sessionUser)});
         setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
       } catch (error) {
         console.error('Error Fetching User data', error);
@@ -96,6 +96,12 @@ export const Post = ({
     }
   };
 
+  const formattedDate = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }).format(new Date(text2));
+
 
   return (
     <div className={`post dark-32-${dark} ${className}`}>
@@ -112,7 +118,7 @@ export const Post = ({
                   <div className="name-5">
                     <div className="pavel-gvay">{text1}</div>
                   </div>
-                  <div className="element-weeks-ago">{text2}</div>
+                  <div className="element-weeks-ago">{formattedDate}</div>
                 </div>
                 <div className="action">
                   <div className="element-likes">
@@ -126,8 +132,14 @@ export const Post = ({
           <div className="love" onClick={handleLikeClick}>
             <IconLike
               className={iconLikeIconLikeClassName}
-              heartClassName={isLiked ? `${iconLikeHeartClassName} liked` : iconLikeHeartClassName}
-              fillColor={(isLiked || (userInfo && userInfo.likedPosts && userInfo.likedPosts.includes(idd))) ? "#FE4401" : "transparent"}
+              heartClassName={iconLikeHeartClassName}
+              style={{ cursor: "pointer" }}
+              isLiked={isLiked}
+              fillColor={
+                isLiked || (userInfo && userInfo.likedPosts && userInfo.likedPosts.includes(idd))
+                  ? "#FE4401"
+                  : "transparent"
+              }
             />
           </div>
         </div>
