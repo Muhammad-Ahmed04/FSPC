@@ -130,8 +130,9 @@ export default function Main() {
                         text1={item.userName}
                         text2={item.createdAt}
                         text3={item.likes}
-                        text4={item.comments}
-                        style={{ marginBottom: '50px' }} // Add styling here if needed
+                        text4={item.comments?.length ?? 0}
+                        comments={item.comments || []}
+                        style={{ marginBottom: '50px' }}
                       />
                     ))}
                   </div>

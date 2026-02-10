@@ -75,7 +75,7 @@ export const AdminHeader = ({ page }) => {
       <div className="main">
         <div className="div-2">
           <img className="logo" alt="Logo" src="/imgHome/logo-1.png" />
-          <div className="hipnode">FSPC</div>
+          <div className="hipnode">Neo Code</div>
         </div>
         <div className="main-2">
           <div className="icons">

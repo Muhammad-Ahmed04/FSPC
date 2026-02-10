@@ -23,7 +23,8 @@ sessionUser;
  */
 export async function register(req, res) {
   try {
-    const { username, password, confirmPass, profile, email, picturePath,  } = req.body;
+    const { username, password, confirmPass, profile, email, picturePath,phoneNumber  } = req.body;
+
     // Check existing user
     const existUsername = await UserModel.findOne({ username }).exec();
 
@@ -269,6 +270,7 @@ export async function updateUser(req, res) {
 
 export async function updateUserProfile(req, res) {
   const { userId, profilePicture } = req.body;
+  console.log("🚀 ~ updateUserProfile ~ profilePicture :", profilePicture )
   // console.log(profilePicture)
   // console.log('inside user profile controller')
   try {

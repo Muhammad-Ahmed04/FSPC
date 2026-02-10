@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { IconLike } from "../IconLike";
 import "./style.css";
 import { toast } from "react-toastify";
@@ -14,15 +13,29 @@ export const Post = ({
   text2,
   text3,
   text4,
+  comments: commentsProp = [],
   iconLikeIconLikeClassName,
   iconLikeHeartClassName,
   profilepicture,
   idd
 }) => {
+  const comments = Array.isArray(commentsProp) ? commentsProp : [];
 
-  const navigate = useNavigate()
   const [isLiked, setIsLiked] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [commentText, setCommentText] = useState("");
+  const [localComments, setLocalComments] = useState(comments);
+  const [localLikeCount, setLocalLikeCount] = useState(Number(text3) || 0);
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+
+  useEffect(() => {
+    setLocalComments(comments);
+  }, [comments]);
+
+  useEffect(() => {
+    setLocalLikeCount(Number(text3) || 0);
+  }, [text3]);
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -31,9 +44,8 @@ export const Post = ({
           credentials: 'include'
         });
         const result = await response.json();
-        const { sessionUser } = result
-        // console.log(in create post ${JSON.stringify(sessionUser)});
-        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+        const { sessionUser } = result;
+        setUserInfo(sessionUser);
       } catch (error) {
         console.error('Error Fetching User data', error);
       }
@@ -42,57 +54,105 @@ export const Post = ({
     fetchUserInfo();
   }, []);
 
+  // Sync isLiked with server state when userInfo loads (handles string vs ObjectId)
+  useEffect(() => {
+    if (!userInfo || !idd) return;
+    const liked = userInfo.likedPosts && userInfo.likedPosts.some(
+      (pid) => String(pid) === String(idd)
+    );
+    setIsLiked(!!liked);
+  }, [userInfo, idd]);
+
   const handleLikeClick = async () => {
+    if (!userInfo?.id) {
+      toast.info("Please log in to like");
+      return;
+    }
+    const previousLiked = isLiked;
+    const previousCount = localLikeCount;
     setIsLiked(!isLiked);
-    let response
+    setLocalLikeCount((c) => (isLiked ? c - 1 : c + 1));
     try {
-      let data = {
+      const data = {
         id: idd,
         text3,
         userId: userInfo.id
-      }
-      response = await fetch("http://localhost:8080/posts/update-likes", {
+      };
+      const response = await fetch("http://localhost:8080/posts/update-likes", {
         method: 'PUT',
         credentials: 'include',
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
       const result = await response.json();
-      if (response.status == 200) {
-        toast.success("liked", {
-          autoClose: 100,
+      if (response.status === 200) {
+        toast.success("Liked", {
+          autoClose: 800,
           hideProgressBar: true,
           position: "top-center"
-        }
-        )
-        setTimeout(() => {
-          navigate(0);
-        }, 1000);
-
-      }
-      else if (response.status == 201) {
-        toast.success("unliked", {
-          autoClose: 100,
+        });
+      } else if (response.status === 201) {
+        toast.success("Unliked", {
+          autoClose: 800,
           hideProgressBar: true,
           position: "top-center"
-        })
-        setTimeout(() => {
-          navigate(0);
-        }, 1000);
-
+        });
+      } else {
+        setIsLiked(previousLiked);
+        setLocalLikeCount(previousCount);
+        toast.error(result.message || "Something went wrong");
       }
     } catch (error) {
-      toast.error(error.message, {
+      setIsLiked(previousLiked);
+      setLocalLikeCount(previousCount);
+      toast.error(error.message || "Failed to update like", {
         position: "top-right",
         autoClose: true,
         hideProgressBar: false,
         closeOnClick: true,
         theme: "colored"
-      })
-      console.error('Error Fetching User data', error);
+      });
+      console.error('Error updating like', error);
+    }
+  };
+
+  const handleAddComment = async (e) => {
+    e.preventDefault();
+    const trimmed = commentText.trim();
+    if (!trimmed) return;
+    if (!userInfo?.id || !userInfo?.username) {
+      toast.info("Please log in to comment");
+      return;
+    }
+    setIsSubmittingComment(true);
+    try {
+      const response = await fetch(`http://localhost:8080/posts/${idd}/comment`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: userInfo.id,
+          userName: userInfo.username,
+          text: trimmed,
+        }),
+      });
+      const result = await response.json();
+      if (response.ok && result.comments) {
+        setLocalComments(result.comments);
+        setCommentText("");
+        toast.success("Comment added", {
+          autoClose: 1000,
+          hideProgressBar: true,
+          position: "top-center",
+        });
+      } else {
+        toast.error(result.message || "Failed to add comment");
+      }
+    } catch (err) {
+      toast.error(err.message || "Failed to add comment");
+    } finally {
+      setIsSubmittingComment(false);
     }
   };
 
@@ -122,9 +182,11 @@ export const Post = ({
                 </div>
                 <div className="action">
                   <div className="element-likes">
-                    {text3 === 1 ? `${text3} like` : text3 > 1 ? `${text3} likes` : "0 likes"}
+                    {localLikeCount === 1 ? "1 like" : localLikeCount > 1 ? `${localLikeCount} likes` : "0 likes"}
                   </div>
-                  <div className="element-comments">{text4} comments</div>
+                  <div className="element-comments">
+                    {localComments.length === 1 ? "1 comment" : `${localComments.length} comments`}
+                  </div>
                 </div>
               </div>
             </div>
@@ -135,14 +197,36 @@ export const Post = ({
               heartClassName={iconLikeHeartClassName}
               style={{ cursor: "pointer" }}
               isLiked={isLiked}
-              fillColor={
-                isLiked || (userInfo && userInfo.likedPosts && userInfo.likedPosts.includes(idd))
-                  ? "#FE4401"
-                  : "transparent"
-              }
+              fillColor={isLiked ? "#FE4401" : "transparent"}
             />
           </div>
         </div>
+      </div>
+      <div className="post-comments-section">
+        <div className="post-comments-list">
+          {localComments.map((c, idx) => (
+            <div key={idx} className="post-comment-item">
+              <span className="post-comment-author">{c.userName}:</span>
+              <span className="post-comment-text">{c.text}</span>
+              <span className="post-comment-date">
+                {c.createdAt ? new Intl.DateTimeFormat("en-US", { dateStyle: "short", timeStyle: "short" }).format(new Date(c.createdAt)) : ""}
+              </span>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleAddComment} className="post-comment-form">
+          <input
+            type="text"
+            placeholder="Write a comment..."
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            className="post-comment-input"
+            disabled={isSubmittingComment}
+          />
+          <button type="submit" className="post-comment-btn" disabled={!commentText.trim() || isSubmittingComment}>
+            {isSubmittingComment ? "..." : "Comment"}
+          </button>
+        </form>
       </div>
     </div>
   );

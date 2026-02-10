@@ -106,6 +106,40 @@ export const getUserPosts = async (req, res) => {
     }
 }
 
+/** Add comment to post */
+export const addComment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { userId, userName, text } = req.body;
+
+        if (!userId || !userName || !text || !text.trim()) {
+            return res.status(400).json({ message: 'userId, userName and comment text are required' });
+        }
+
+        const comment = {
+            userId,
+            userName,
+            text: text.trim(),
+            createdAt: new Date(),
+        };
+
+        const post = await Post.findByIdAndUpdate(
+            id,
+            { $push: { comments: comment } },
+            { new: true }
+        );
+
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        res.status(201).json(post);
+    } catch (err) {
+        console.error('Error adding comment:', err);
+        res.status(500).json({ message: err.message });
+    }
+};
+
 /** Update */
 export const likePost = async (req, res) => {
     try {

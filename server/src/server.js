@@ -62,7 +62,7 @@ const port = 8080;
 
 /** HTTP GET Request */
 app.get('/', (req, res) => {
-  res.send("Welcome to FSPC");
+  res.send("Welcome to NEO CODE SYNDICATE PORTAL");
 });
 const upload = multer({storage});
 
@@ -80,7 +80,7 @@ app.use("/posts", postRoutes)
 connect().then(() => {
   try {
     app.listen(port, () => {
-      console.log(`Server connected to https://fspc.online:${port}`);
+      console.log(`Server connected to http://localhost:${port}`);
     });
   } catch (error) {
     console.log('Cannot connect to the database');
