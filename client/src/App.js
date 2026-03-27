@@ -11,6 +11,8 @@ import Profile from './components/screens/Profile/Box.jsx';
 import FspcLogin from './components/screens/FspcLogin/FspcLogin';
 import Notification from './components/Notification/Notification.tsx';
 import RegistrationPage from './components/screens/Registrations/registration.js';
+import AdminLogin from './components/screens/Admin/AdminLogin.js';
+import AdminPastpaper from './components/screens/Admin/AdminPastpaper.js'
 
 
 /** auth middleware */
@@ -42,6 +44,7 @@ export default function App() {
         <Route path="/" element={<FspcStart />} />
         <Route path="/login" element={<FspcLogin />} />
         <Route path="/register" element={<FspcSignup />} />  
+        <Route path="/admin/login" element={<AdminLogin />} />
         {/* <Route path="/admin" element={<Admin />} />   */}
              
 
@@ -52,9 +55,10 @@ export default function App() {
           <Route path="/home" element={<Main />} />
           <Route path="/pastpaper" element={<PastPapers />} />
           <Route path="/home" element={<Main />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/home" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/register-competition" element={<RegistrationPage />} />
+          <Route path="/admin/pastpaper" element={<AdminPastpaper />} />
           </>
         )}
 

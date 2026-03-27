@@ -25,20 +25,36 @@ const LogoutButton = () => {
     if (!response.ok) {
       console.log('could not end the user session')
     }
+    console.log(response)
     localStorage.removeItem('access');
     navigate('/');
     navigate(0);
   };
 
-  return (
-    <button onClick={handleLogOut}>
-      Log Out
-    </button>
+
+    return (
+      <div className="dropdown-content">
+        <div className="logout-button" onClick={handleLogOut}>
+          Log Out
+        </div>
+      </div>
   );
 };
 
+
 export const Header = ({ page }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const [showDashboardOption, setShowDashboardOption] = useState(false);
+  const navigate = useNavigate();
+  const handlePastPaperLink = () => {
+    console.log("Han bhai dab raha");
+    if (userInfo && userInfo.role === 'admin') {
+      navigate('/admin/pastpaper');
+    } else {
+      navigate('/pastpaper');
+    }
+    console.log("Han Bhai navigate bhi ho raha");
+  };
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -48,21 +64,30 @@ export const Header = ({ page }) => {
         });
         const result = await response.json();
         const { sessionUser } = result
-        console.log(`in create post ${JSON.stringify(sessionUser)}`);
-        setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
+        setUserInfo(sessionUser);
+        console.log('User Info:', sessionUser);
+        if (sessionUser && sessionUser.role === 'admin') {
+          setShowDashboardOption(true);
+        }
+        
       } catch (error) {
         console.error('Error Fetching User data', error);
       }
     };
 
+
     fetchUserInfo();
   }, []);
+
+  const handleDashboardClick = () => {
+    navigate('/admin/home');
+  };
   return (
     <div id="navbar" className="header">
       <div className="main">
         <div className="div-2">
           <img className="logo" alt="Logo" src="/imgHome/logo-1.png" />
-          <div className="hipnode">FSPC</div>
+          <div className="hipnode">Neo Code Syndicate</div>
         </div>
         <div className="main-2">
           <div className="icons">
@@ -72,11 +97,11 @@ export const Header = ({ page }) => {
               </Link>
             </div>
             <div className={page === "pp" ? "home-wrapper" : "home-wrapper-2"}>
-              <Link to="/pastpaper">
-                <Calendar className="icon-instance-node" color="#F4F6F8" />
-              </Link>
+            <Link to="#" onClick={(e) => { e.preventDefault(); handlePastPaperLink(); }}>
+              <Calendar className="icon-instance-node" color="#F4F6F8" />
+            </Link>
             </div>
-            <div className="home-wrapper-2">
+            <div className={page === "rh" ? "home-wrapper" : "home-wrapper-2"}>
 
               <Link to="/register-competition">
                 <Group
@@ -126,7 +151,12 @@ export const Header = ({ page }) => {
                   </button>
                   <div className="dropdown-content">
                     <Link to="/profile">Profile</Link>
-                    <Link to="/settings">Settings</Link>
+                    {/* <Link to="/settings">Settings</Link> */}
+                    {showDashboardOption && (
+                <div className="dashboard-option" onClick={handleDashboardClick}>
+                    Dashboard
+                    </div>
+                    )}
                     <LogoutButton />
                   </div>
                 </div>

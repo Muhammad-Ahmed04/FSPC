@@ -23,8 +23,12 @@ const postSchema = mongoose.Schema(
     profilepicture: String,
     userPicturePath: String,
     likes: {
-        type: Map,
-        of: Boolean,
+        type: Number,
+        default: 0
+    },
+    likedBy: {
+        type :[ObjectId],
+        default: [],
     },
     comments: {
         type: Array,

@@ -4,9 +4,11 @@ import { PopularTags } from "../../PopularTags";
 import { Bitcoin3 } from "../../../icons/Bitcoin3";
 import "./admin.css";
 import MyModal from "../../Modal/modal";
+import MyModal2 from "../../Modal/regModal";
 import { Vector173 } from "../../../icons/Vector173";
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import { toast } from "react-toastify";
+import { AdminHeader } from '../../Header/AdminHeader';
 
 
 const fetchData = async () => {
@@ -21,12 +23,30 @@ const fetchData = async () => {
 
 export default function Admin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoadingCompetitions, setIsLoadingCompetitions] = useState(true);
+  const [isOnSiteModalOpen, setIsOnSiteModalOpen] = useState(false); 
   const [data, setData] = useState([]);
   const [fetchDataFlag, setFetchDataFlag] = useState(true); // State to trigger data fetching
   const [modalMode, setModalMode] = useState(""); // State to store the modal mode
   const [userInfo, setUserInfo] = useState(null);
+  const [onSiteCompetitions, setonSiteCompetitions] = useState([]);
+
   const navigate = useNavigate() 
+
   useEffect(() => {
+    const fetchOnSiteCompeitions = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/get-onsite-competitions");
+        const result = await response.json();
+        console.log(result)
+        setonSiteCompetitions(result);
+        setIsLoadingCompetitions(false);
+      } catch (error) {
+        console.error("Error fetching competitions:", error);
+        setIsLoadingCompetitions(false);
+      }
+    };
+
     const fetchUserInfo = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/me", {
@@ -37,7 +57,8 @@ export default function Admin() {
         const { sessionUser } = result
         setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
         if(sessionUser.role !== 'admin'){
-          navigate('/')
+          navigate('/login')
+          toast.warning("Unauthorized")
           throw new Error('Unauthorized')
         }
       } catch (error) {
@@ -47,6 +68,7 @@ export default function Admin() {
     };
 
     fetchUserInfo();
+    fetchOnSiteCompeitions()
   }, []);
   useEffect(() => {
     const fetchDataAndSetData = async () => {
@@ -61,18 +83,27 @@ export default function Admin() {
   }, [fetchDataFlag]);
 
   const openModal = (mode) => {
-    setModalMode(mode); // Set the modal mode based on the button clicked
-    setIsModalOpen(true);
+    setModalMode(mode);
+    if (mode === "onsite-competition") {
+      setIsOnSiteModalOpen(true);
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsOnSiteModalOpen(false);
+
   };
 
   const handleModalSubmit = async (competitionData) => {
     // Perform actions with the competitionData (e.g., send it to your API)
     console.log("Competition Data:", competitionData);
     let url = modalMode === "competition" ? "admin-uc" : "pastpapers";
+    if (modalMode === "onsite-competition") {
+      url = "register-onsite-competition";
+    }
     try {
       const response = await fetch("http://localhost:8080/api/" + url, {
         method: "POST",
@@ -94,17 +125,96 @@ export default function Admin() {
         { ...prevData[index], kind: competitionData.kind },
         ...prevData.slice(index + 1),
       ]);
+      if(modalMode == "competition")
+      toast.success("Competition Upload Successful",{
+        position : "top-center",
+        autoClose :200
+      })
+      else
+      toast.success("Past Paper Upload Successful",{
+        position : "top-center",
+        autoClose :200
+      })
+
+      setTimeout(() =>{
+        navigate(0)
+      },1500)
+
     } else {
       // Handle errors
       const errorMessage = await response.text(); // Get the error message from the response
-      console.error("Competition Upload Failed:", errorMessage);
+      // console.error("Competition Upload Failed:", errorMessage);
+      if(modalMode == "competition")
+      toast.error("Error in Uploading Compeition",{
+        position : "top-center",
+        autoClose :200
+      })
+      else
+      toast.error("Error in Uploading Past Paper",{
+        position : "top-center",
+        autoClose :200
+      })
+      
+      setTimeout(() =>{
+        navigate(0)
+      },1500)
     }
   } catch (error) {
     console.error("Error:", error);
   }
 };
+const handleModal2Submit = async (competitionData) => {
+  // Perform actions with the competitionData (e.g., send it to your API)
+    console.log("Competition Data:", competitionData);
+    const url = "admin-onsite-competition";
+  try {
+    const response = await fetch("http://localhost:8080/api/" + url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(competitionData),
+    });
+
+    if (response.ok) {
+      // Data sent successfully
+      console.log("Onsite Competition Upload Successful");
+      setFetchDataFlag(true);
+      const index = data.findIndex((item) => item.id === competitionData.id);
+
+    // Update the selectedTag for the specific competition
+    setData((prevData) => [
+      ...prevData.slice(0, index),
+      ...prevData.slice(index + 1),
+    ]);
+    toast.success(`Competition Upload Successful`,{
+      position : "top-center",
+      autoClose :200
+    })
+    setTimeout(() =>{
+      navigate(0)
+    },1500)
+
+  } else {
+    // Handle errors
+    const errorMessage = await response.text(); // Get the error message from the response
+    console.error("Competition Upload Failed:", errorMessage);
+    toast.error("Error in Uploading Compeition",{
+      position : "top-center",
+      autoClose :200
+    })
+    setTimeout(() =>{
+      navigate(0)
+    },1500)
+  }
+} catch (error) {
+  console.error("Error:", error);
+}
+};
 
   return (
+    <>
+      <AdminHeader page="ah"></AdminHeader>
     <>
       <MyModal
         isOpen={isModalOpen}
@@ -112,25 +222,29 @@ export default function Admin() {
         onSubmit={handleModalSubmit}
         mode={modalMode} // Pass the modal mode as a prop
       />
+       <MyModal2
+        isOpen={isOnSiteModalOpen}
+        onClose={closeModal}
+        onSubmit={handleModal2Submit}
+        mode={modalMode}
+      />
       <div id="admin" className="main">
-        <div className="div-3">
-          <PopularTags
-            className="design-component-instance-node"
-            dark="on"
-            icon={<Bitcoin3 className="bitcoin-3" />}
-            mainClassName="popular-tags-instance"
-            text="Registrations !"
-            text1="SOFTEC"
-            text10="IEEExtreme"
-            text2="Upcoming"
-            text3="PROCOM’24"
-            text4="21 registration"
-            text5="Asia West"
-            text6="Upcoming"
-            text7="ICPC"
-            text8="Upcoming"
-            text9="Coder’s Cup"
-          />
+      <div className="div-3">
+          <div id="comp" className="meetups dark-46-on design-component-instance-node1">
+            <div className="main-5">
+              <div className="text-wrapper-9" style={{fontSize : "15px"}}><a href="/register-competition">Onsite Registerations ! </a></div>
+            </div>
+            {isLoadingCompetitions ? (
+              <p>Loading competitions...</p>
+            ) : (
+              <div>
+                {onSiteCompetitions.map((item) => (
+                  <PopularTags className="design-component-instance-node"
+                    dark="on" text="Registerations !" date={item.date} text1={item.title} text2={item.max_registerations} text3={item.registerations_completed} text4={item.location}/>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         <div className="div-3">
           <button
@@ -146,6 +260,13 @@ export default function Admin() {
             onClick={() => openModal("pastpaper")} // Specify the mode when clicking "Add Pastpaper"
           >
             Add Pastpaper
+          </button>
+          <button
+            type="button"
+            className="button text-wrapper-3"
+            onClick={() => openModal("onsite-competition")} // Specify the mode when clicking "Upload on Site Competition"
+          >
+            Upload On-Site Competition
           </button>
         </div>
 
@@ -164,6 +285,7 @@ export default function Admin() {
                     text2={item.location}
                     kind={item.kind} // Pass the type here instead of selectedTag
                     key={item.id}
+                    link={item.link}
                   ></Meetups>
                 ))}
               </ul>
@@ -172,5 +294,6 @@ export default function Admin() {
         </div>
       </div>
     </>
+  </>
   );
 }

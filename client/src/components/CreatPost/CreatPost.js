@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TextareaAutosize from 'react-textarea-autosize';
 import "./style.css";
+import { toast } from "react-toastify";
 
 export const CreatPost = ({ dark, className, onPostCreated ,profilepicture}) => {
   const [postContent, setPostContent] = useState("");
@@ -18,6 +19,7 @@ export const CreatPost = ({ dark, className, onPostCreated ,profilepicture}) => 
         });
         const result = await response.json();
         const {sessionUser} = result
+        
         console.log(`in create post ${JSON.stringify(sessionUser)}`);
         setUserInfo(sessionUser); // Assuming the user information is under the key 'userInfo'
       } catch (error) {

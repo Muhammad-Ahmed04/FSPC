@@ -2,10 +2,36 @@ import "./style.css";
 import { Header } from "../../Header";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+
+const ProfileEditModal = ({ onClose, onSave }) => {
+  const [updatedAboutMe, setUpdatedAboutMe] = useState('');
+
+  const handleSave = () => {
+    onSave(updatedAboutMe);
+    onClose();
+  };
+
+  return (
+    <div className="profile-edit-modal">
+      <h3 style={{color:"white"}}>Edit 'About Me'</h3>
+      <input
+        type="text"
+        value={updatedAboutMe}
+        onChange={(e) => setUpdatedAboutMe(e.target.value)}
+        placeholder="Enter your updated 'About Me'"
+      />
+      <button onClick={handleSave}>Save</button>
+      <button onClick={onClose}>Cancel</button>
+    </div>
+  );
+};
 
 export default function Box() {
   const [userInfo, setUserInfo] = useState(null);
   const [selectedSection, setSelectedSection] = useState("aboutMe");
+  const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,19 +94,43 @@ export default function Box() {
       });
 
       if (response.ok) {
-        console.log('Profile picture updated successfully');
-        navigate(0)
+        toast.success("Profile picture updated successfully",{
+          autoClose : 200,
+          hideProgressBar: true,
+          position:"top-center"
+        })
+        // console.log('Profile picture updated successfully');
+       setTimeout(() => {
+         navigate(0)
+       }, 1500);
       } else {
+
         console.error('Failed to update profile picture');
+        toast.error('Failed to update profile picture', {
+          position: "top-center",
+          autoClose: 200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored"
+        });
       }
     } catch (error) {
+      toast.error('File Too Large', {
+        position: "top-center",
+        autoClose: 200,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "colored"
+      });
       console.error('Error updating profile picture', error);
     }
   };
 
   const editProfile = async () => {
-    const updatedAboutMe = prompt("Enter your updated 'About Me'");
+    setIsEditingAboutMe(true);
+  };
 
+  const saveUpdatedAboutMe = async (updatedAboutMe) => {
     try {
       const response = await fetch("http://localhost:8080/api/update-profile", {
         method: 'PUT',
@@ -98,11 +148,24 @@ export default function Box() {
         });
 
         console.log('Profile updated successfully');
+        toast.success("Profile Updated successfully",{
+          position: "top-center"
+        })
       } else {
         console.error('Failed to update profile');
+        toast.error('Failed to update profile', {
+          position: "top-center",
+          autoClose: 200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored"
+        });
+
       }
     } catch (error) {
       console.error('Error updating profile', error);
+    } finally {
+      setIsEditingAboutMe(false);
     }
   };
 
@@ -223,6 +286,9 @@ export default function Box() {
           </div>
         </div>
       </div>
+      {isEditingAboutMe && (
+        <ProfileEditModal onClose={() => setIsEditingAboutMe(false)} onSave={saveUpdatedAboutMe} />
+      )}
     </>
   );
 }

@@ -18,7 +18,7 @@ export const Meetups = ({ text1, text2, date, kind, link }) => {
           <div className="data-3">
             <div className="title-5">
               <p className="UIHUT-crunchbase">{text1}</p>
-              <p className="UIHUT-crunchbase" style={{color: "#FF4401"}}><a href={link}>Register Now</a> </p>
+              <p className="UIHUT-crunchbase" style={{color: "#FF4401"}}><a href={link}>Go Now!</a> </p>
               <div className="profile">
                 <img className="img" alt="Rectangle" src="/imgHome/rectangle-32-5.png" />
                 <div className="text-wrapper-12">{text2}</div>

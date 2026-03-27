@@ -15,7 +15,7 @@ export default function FspcStart() {
     navigate('/login');
   };
   const redirectToAdmin = () => {
-    navigate('/admin');
+    navigate('/admin/login');
   };
 
   return (
